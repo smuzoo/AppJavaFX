@@ -1,9 +1,9 @@
 package validators;
 
-import java.util.HashMap;
 
-public class ValidatorEnv extends ValidatorWithExit{
-    private int lenghtArgs;
+
+public class ValidatorEnv extends Validator{
+    private final int lenghtArgs;
     public ValidatorEnv(int lenghtArgs){
         this.lenghtArgs = lenghtArgs;
     }
@@ -11,10 +11,14 @@ public class ValidatorEnv extends ValidatorWithExit{
         return lenghtArgs == 0;
     }
 
-
     @Override
     protected void addValidError(){
         validatesMethods.put(this::validateOnHaveEnvironment, EnvErrors.NOTHAVEENVIRONMENT);
+    }
 
+    @Override
+    public void validate(){
+        EnvErrors error = validateAll();
+        if(error != EnvErrors.NOTHAVEERRORS) printErrorWithExit(error);
     }
 }
