@@ -3,33 +3,33 @@ package validators;
 import java.util.HashMap;
 
 abstract public class Validator {
-    protected HashMap<IsValidating, EnvErrors> validatesMethods = new HashMap<>();
+    protected HashMap<IsValidating, Errors> validatesMethods = new HashMap<>();
 
-    abstract void addValidError();
-    abstract void validate();
+    abstract protected void addValidError();
 
-    protected EnvErrors validateAll(){
+    protected Errors validateAll(){
         addValidError();
         for(IsValidating method : validatesMethods.keySet()){
             if(method.isNotValidate()){
                 return validatesMethods.get(method);
             }
         }
-        return EnvErrors.NOTHAVEERRORS;
-    }
-
-    protected void printError(EnvErrors error){
-        System.out.println(error);
-    }
-
-    protected void printErrorWithExit(EnvErrors error){
-        printError(error);
-        System.exit(0);
+        return Errors.NOTHAVEERRORS;
     }
 
 
+    public void validate(){
+        Errors error = validateAll();
+        if(error != Errors.NOTHAVEERRORS){
+            System.out.println(error);
+        }
+    }
 
-
-
-
+    public void validateWithExit(){
+        Errors error = validateAll();
+        if(error != Errors.NOTHAVEERRORS){
+            System.out.println(error);
+            System.exit(130);
+        }
+    }
 }
