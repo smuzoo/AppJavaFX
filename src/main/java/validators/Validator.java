@@ -1,9 +1,10 @@
 package validators;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 abstract public class Validator {
-    protected HashMap<IsValidating, Errors> validatesMethods = new HashMap<>();
+    protected Map<IsValidating, Errors> validatesMethods = new LinkedHashMap<>();
 
     abstract protected void addValidError();
 
@@ -18,18 +19,17 @@ abstract public class Validator {
     }
 
 
-    public void validate(){
+    public boolean isValid(){
         Errors error = validateAll();
         if(error != Errors.NOTHAVEERRORS){
             System.out.println(error);
+            return false;
         }
+        return true;
     }
 
     public void validateWithExit(){
-        Errors error = validateAll();
-        if(error != Errors.NOTHAVEERRORS){
-            System.out.println(error);
-            System.exit(130);
-        }
+        boolean validation = isValid();
+        if(!validation)System.exit(130);
     }
 }

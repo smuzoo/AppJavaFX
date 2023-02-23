@@ -1,8 +1,8 @@
 package collection;
 
-public enum Mood {
-    LONGING,
-    GLOOM,
-    APATHY,
-    RAGE;
-}
+    public enum Mood {
+        LONGING,
+        GLOOM,
+        APATHY,
+        RAGE;
+    }

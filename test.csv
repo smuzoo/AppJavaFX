@@ -1,0 +1,4 @@
+id,name,coordinate.x,coordinate.y,creationDate,realHero,hasToothpick,impactSpeed,weaponType,mood,car.cool
+7682ce91-b041-4f46-9f11-7d63dfed53bb,Oleg,12,34,23.02.2023,true,false,400,HAMMER,LONGING,true
+8715f869-026b-48b2-9272-1b571c33a217,Oleg,-912,34,23.02.2023,true,false,3,HAMMER,LONGING,true
+7af36077-ef7e-4312-9cf3-188785ae1024,Oleg,-9172,34,25.02.2023,true,false,56,HAMMER,LONGING,true
