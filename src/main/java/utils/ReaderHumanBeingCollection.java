@@ -28,11 +28,8 @@ public class ReaderHumanBeingCollection {
             String line = bufferedReader.readLine();
             while((line = bufferedReader.readLine()) != null){
                 String[] data = split(line, ',');
-                System.out.println(Arrays.toString(data));
-                System.out.println(data.length);
                 DataFileValidator dataValidator = new DataFileValidator(data);
                 if(!dataValidator.isValidateData()) continue;
-                System.out.println(Arrays.toString(data));
                 try {
                     final UUID id = UUID.fromString(data[0]);
                     final String name = data[1];

@@ -1,11 +1,12 @@
 import collection.HumanBeing;
-import commands.ShowCollection;
+import commands.CommandController;
 import utils.ReaderHumanBeingCollection;
 import validators.env.EnvValidator;
 import validators.file.CSVFileValidator;
 import validators.file.NameFileValidator;
 
 import java.util.Map;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Main {
@@ -19,7 +20,14 @@ public class Main {
         csvFileValidator.validateWithExit();
         ReaderHumanBeingCollection readerHumanBeingCollection = new ReaderHumanBeingCollection(FILE_PATH);
         Map<UUID, HumanBeing> humanBeingCollection = readerHumanBeingCollection.read();
-        ShowCollection showCollection = new ShowCollection(humanBeingCollection);
-        showCollection.show();
+        CommandController commandController = new CommandController(humanBeingCollection);
+        commandController.init();
+
+        Scanner scanner = new Scanner(System.in);
+        String request;
+        while(!((request = scanner.nextLine()).equals("exit"))){
+            commandController.executeCommand(request);
+        }
+
     }
 }
