@@ -1,15 +1,13 @@
 package collection;
 
-import utils.ReaderHumanBeingCollection;
+import utils.ReaderFromFileToCollection;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class HumanBeingCollection {
 
     private static Map<UUID, HumanBeing> humanBeingCollection;
+    private static List<HumanBeing> humanBeingList = new ArrayList<>();
     private static Date dateOfInitialization;
     private static Date dateOfLastChange;
 
@@ -20,24 +18,30 @@ public class HumanBeingCollection {
     }
 
     public static void readFile(String FILE_PATH){
-        ReaderHumanBeingCollection reader = new ReaderHumanBeingCollection(FILE_PATH);
-        humanBeingCollection = reader.read();
+        ReaderFromFileToCollection reader = new ReaderFromFileToCollection(FILE_PATH);
+        reader.read();
+        humanBeingCollection = reader.getHumanBeingCollection();
+        humanBeingList = reader.getHumanBeingList();
     }
 
     public static void add(HumanBeing human){
         dateOfLastChange = new Date();
         humanBeingCollection.put(human.getId(), human);
+        humanBeingList.add(human);
     }
 
     public static void clear(){
         dateOfLastChange = new Date();
         humanBeingCollection.clear();
+        humanBeingList.clear();
     }
 
     public static void remove(UUID id){
+        dateOfLastChange = new Date();
+        humanBeingList.remove(humanBeingCollection.get(id));
         humanBeingCollection.remove(id);
     }
-    
+
     public static boolean hasElement(UUID id) {return humanBeingCollection.get(id) != null;}
     
     public static long getCountHumanBeingCollection(){

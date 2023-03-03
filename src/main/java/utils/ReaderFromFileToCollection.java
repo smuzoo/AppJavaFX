@@ -15,14 +15,16 @@ import java.util.*;
 import static colors.Colors.RED;
 import static colors.Colors.RESET;
 
-public class ReaderHumanBeingCollection {
+public class ReaderFromFileToCollection {
     private final String FILE_PATH;
     private Map<UUID, HumanBeing> humanBeingCollection = new HashMap<>();
-    public ReaderHumanBeingCollection(String FILE_PATH){
+    private List<HumanBeing> humanBeingList = new ArrayList<>();
+
+    public ReaderFromFileToCollection(String FILE_PATH){
         this.FILE_PATH = FILE_PATH;
     }
 
-    public Map<UUID, HumanBeing> read(){
+    public void read(){
         try(InputStreamReader reader = new InputStreamReader(new FileInputStream(FILE_PATH));
             BufferedReader bufferedReader = new BufferedReader(reader)){
             String line = bufferedReader.readLine();
@@ -46,6 +48,7 @@ public class ReaderHumanBeingCollection {
                     HumanBeing human = new HumanBeing(id, name, coordinates, date, realHero, hasToothpick, impactSpeed, weaponType,
                             mood, car);
                     humanBeingCollection.put(id, human);
+                    humanBeingList.add(human);
                 } catch (NumberFormatException e){
                     /* logging Y*/
 
@@ -61,8 +64,14 @@ public class ReaderHumanBeingCollection {
         }catch (IOException e){
             System.out.println(RED + "Невозможно прочитать файл" + RESET);
         }
+    }
 
+    public Map<UUID, HumanBeing> getHumanBeingCollection() {
         return humanBeingCollection;
+    }
+
+    public List<HumanBeing> getHumanBeingList() {
+        return humanBeingList;
     }
 
     private String[] split(String s, char regex){
