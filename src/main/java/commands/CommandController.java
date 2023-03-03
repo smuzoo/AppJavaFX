@@ -8,9 +8,7 @@ import java.util.Map;
 public class CommandController {
     private final Map<String, Command> commands = new HashMap<>();
 
-
     {
-        commands.put("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
         commands.put("show", new ShowCollection());
         commands.put("help", new ShowHelp());
         commands.put("info", new ShowInfo());
@@ -20,10 +18,8 @@ public class CommandController {
         commands.put("count_greater_than_impact_speed", new CountGreaterThanImpactSpeed());
         commands.put("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
         commands.put("print_field_descending_mood", new ShowFieldDescendingMood());
-        commands.put("count_greater_than_impact_speed", new commands.CountGreaterThanImpactSpeed());
 
     }
-
 
     public void executeCommand(String commandText){
         Command command = commands.get(commandText);
