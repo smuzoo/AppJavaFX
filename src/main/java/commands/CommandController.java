@@ -10,6 +10,7 @@ public class CommandController {
 
 
     {
+        commands.put("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
         commands.put("show", new ShowCollection());
         commands.put("help", new ShowHelp());
         commands.put("info", new ShowInfo());
