@@ -14,8 +14,9 @@ public enum Errors {
     NOTCANWRITEFILE("Данный файл не имеет права доступа на запись данных в файл, разрешите доступ для записи в файл"),
     NOTCSVFILE("Данный файл не является csv файлом, передайте в переменную окружения csv-файл"),
     NOTHAVEERRORS("Ошибок не было найдено"),
-    NOTHASONEARGUMENT("Команда remove_key принимает на вход 1 аргумент"),
+    NOTHASONEARGUMENT("Данная команда принимает на вход 1 аргумент"),
     NOTCANTRANSFORMTOUUID("Невозможно преобразовать данный ключ к типу UUID"),
+    NOTCANTRANSFORMTOINT("Данный аргумент не является числом"),
     NOTHASELEMENT("Элемента с таким ключом не существует в коллекции");
 
     final String error;
