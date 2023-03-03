@@ -71,4 +71,8 @@ public class HumanBeingCollection {
     public static Date getDateOfInitialization() {
         return dateOfInitialization;
     }
+
+    public static Collection<HumanBeing> getHumanBeings(){
+        return humanBeingCollection.values();
+    }
 }

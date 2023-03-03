@@ -46,6 +46,10 @@ public class HumanBeing implements Comparable<HumanBeing> {
         return id;
     }
 
+    public Integer getImpactSpeed() {
+        return impactSpeed;
+    }
+
     @Override
     public String toString() {
         return "HumanBeing{" +

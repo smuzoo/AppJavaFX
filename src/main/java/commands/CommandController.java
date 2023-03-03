@@ -16,6 +16,7 @@ public class CommandController {
         commands.put("clear", new ClearCollection());
         commands.put("remove_key", new RemoveElement());
         commands.put("remove_greater_key", new RemoveGreaterKey());
+        commands.put("count_greater_than_impact_speed", new commands.CountGreaterThanImpactSpeed());
     }
 
 
