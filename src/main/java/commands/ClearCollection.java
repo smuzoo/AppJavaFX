@@ -9,4 +9,9 @@ public class ClearCollection implements Command{
         HumanBeingCollection.clear();
         System.out.println("Коллекция успешно очищена");
     }
+
+    @Override
+    public String description(){
+        return "clear : очистить коллекцию";
+    }
 }

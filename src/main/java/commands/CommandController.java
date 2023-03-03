@@ -1,18 +1,19 @@
 package commands;
 
-import collection.HumanBeing;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class CommandController {
-    private Map<String, Command> commands = new HashMap<>();
+    private final Map<String, Command> commands = new HashMap<>();
 
 
-    public void setCommand(String commandText, Command command){
-        commands.put(commandText, command);
+    {
+        commands.put("show", new ShowCollection());
+        commands.put("help", new ShowHelp());
+        commands.put("info", new ShowInfo());
+        commands.put("clear", new ClearCollection());
     }
+
 
     public void executeCommand(String commandText){
         Command command = commands.get(commandText);
@@ -22,10 +23,7 @@ public class CommandController {
         }
     }
 
-    public void init(){
-        setCommand("show", new ShowCollection());
-        setCommand("help", new ShowHelp());
-        setCommand("info", new ShowInfo());
-        setCommand("clear", new ClearCollection());
+    public Map<String, Command> getCommands() {
+        return commands;
     }
 }

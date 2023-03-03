@@ -11,4 +11,9 @@ public class ShowInfo implements Command{
         System.out.println("Дата последнего изменения коллекции: " + HumanBeingCollection.getDateOfLastChange());
         System.out.println("Количество элементов в коллекции: " + HumanBeingCollection.getCountHumanBeingCollection());
     }
+
+    @Override
+    public String description(){
+        return "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)";
+    }
 }

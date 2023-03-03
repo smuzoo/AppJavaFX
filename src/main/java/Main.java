@@ -18,8 +18,6 @@ public class Main {
         csvFileValidator.validateWithExit();
         HumanBeingCollection.readFile(FILE_PATH);
         CommandController commandController = new CommandController();
-        commandController.init();
-        System.out.println(Mood.valueOf("1"));
         Scanner scanner = new Scanner(System.in);
         String request;
         while(!((request = scanner.nextLine()).equals("exit"))){
