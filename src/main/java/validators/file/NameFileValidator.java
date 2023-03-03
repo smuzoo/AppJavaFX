@@ -18,8 +18,8 @@ public class NameFileValidator extends Validator {
     }
 
     @Override
-    protected void addValidError(){
-        validatesMethods.put(this::isOnNull, Errors.WRONGENVIRONMENT);
-        validatesMethods.put(this::isOnEmpty, Errors.EMPTYENVIRONMENT);
+    protected void addAllError(){
+        addError(this::isOnNull, Errors.WRONGENVIRONMENT);
+        addError(this::isOnEmpty, Errors.EMPTYENVIRONMENT);
     }
 }

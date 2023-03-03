@@ -11,27 +11,27 @@ public class CSVFileValidator extends NameFileValidator {
 
     private final File file = new File(FILE_PATH);
 
-    private boolean isFileExist(){
+    private boolean isFileNotExist(){
         return !file.exists();
     }
 
-    private boolean isFileCanRead(){
+    private boolean isFileNotCanRead(){
         return !file.canRead();
     }
 
-    private boolean isFileCanWrite(){
+    private boolean isFileNotCanWrite(){
         return !file.canWrite();
     }
 
-    private boolean isFileCSV(){
+    private boolean isFileNotCSV(){
         return !file.getName().toLowerCase().endsWith(".csv");
     }
 
     @Override
-    protected void addValidError(){
-        validatesMethods.put(this::isFileExist, Errors.NOTEXISTFILE);
-        validatesMethods.put(this::isFileCanRead, Errors.NOTCANREADFILE);
-        validatesMethods.put(this::isFileCanWrite, Errors.NOTCANWRITEFILE);
-        validatesMethods.put(this::isFileCSV, Errors.NOTCSVFILE);
+    protected void addAllError(){
+        addError(this::isFileNotExist, Errors.NOTEXISTFILE);
+        addError(this::isFileNotCanRead, Errors.NOTCANREADFILE);
+        addError(this::isFileNotCanWrite, Errors.NOTCANWRITEFILE);
+        addError(this::isFileNotCSV, Errors.NOTCSVFILE);
     }
 }

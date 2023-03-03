@@ -12,6 +12,7 @@ public class CommandController {
         commands.put("help", new ShowHelp());
         commands.put("info", new ShowInfo());
         commands.put("clear", new ClearCollection());
+        commands.put("remove_key", new RemoveElement());
     }
 
 

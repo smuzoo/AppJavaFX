@@ -37,7 +37,9 @@ public class HumanBeingCollection {
     public static void remove(UUID id){
         humanBeingCollection.remove(id);
     }
-
+    
+    public static boolean hasElement(UUID id) {return humanBeingCollection.get(id) != null;}
+    
     public static long getCountHumanBeingCollection(){
         return humanBeingCollection.size();
     }

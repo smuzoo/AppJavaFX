@@ -4,12 +4,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 abstract public class Validator {
-    protected Map<IsValidating, Errors> validatesMethods = new LinkedHashMap<>();
+    private final Map<IsValidating, Errors> validatesMethods = new LinkedHashMap<>();
 
-    abstract protected void addValidError();
+    abstract protected void addAllError();
+
+    protected void addError(IsValidating method, Errors error){
+        validatesMethods.put(method, error);
+    }
 
     protected Errors validateAll(){
-        addValidError();
+        addAllError();
         for(IsValidating method : validatesMethods.keySet()){
             if(method.isNotValidate()){
                 return validatesMethods.get(method);
@@ -17,6 +21,7 @@ abstract public class Validator {
         }
         return Errors.NOTHAVEERRORS;
     }
+
 
 
     public boolean isValid(){
@@ -32,4 +37,6 @@ abstract public class Validator {
         boolean validation = isValid();
         if(!validation)System.exit(130);
     }
+
+
 }

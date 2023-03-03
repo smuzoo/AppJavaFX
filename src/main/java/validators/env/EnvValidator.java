@@ -13,7 +13,7 @@ public class EnvValidator extends Validator {
     }
 
     @Override
-    protected void addValidError(){
-        validatesMethods.put(this::validateOnHaveEnvironment, Errors.NOTHAVEENVIRONMENT);
+    protected void addAllError(){
+        addError(this::validateOnHaveEnvironment, Errors.NOTHAVEENVIRONMENT);
     }
 }

@@ -13,7 +13,10 @@ public enum Errors {
     NOTCANREADFILE("Данный файл не имеет права доступа на чтение файла, разрешите доступ для чтения файла"),
     NOTCANWRITEFILE("Данный файл не имеет права доступа на запись данных в файл, разрешите доступ для записи в файл"),
     NOTCSVFILE("Данный файл не является csv файлом, передайте в переменную окружения csv-файл"),
-    NOTHAVEERRORS("Ошибок не было найдено");
+    NOTHAVEERRORS("Ошибок не было найдено"),
+    NOTHASONEARGUMENT("Команда remove_key принимает на вход 1 аргумент"),
+    NOTCANTRANSFORMTOUUID("Невозможно преобразовать данный ключ к типу UUID"),
+    NOTHASELEMENT("Элемента с таким ключом не существует в коллекции");
 
     final String error;
     Errors(String error){
