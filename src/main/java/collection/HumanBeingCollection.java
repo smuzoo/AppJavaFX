@@ -7,12 +7,13 @@ import java.util.*;
 public class HumanBeingCollection {
 
     private static Map<UUID, HumanBeing> humanBeingCollection;
-    private static List<HumanBeing> humanBeingList = new ArrayList<>();
-    private static Date dateOfInitialization;
+    private static List<HumanBeing> humanBeingList;
+    private final static Date dateOfInitialization;
     private static Date dateOfLastChange;
 
     static {
         humanBeingCollection = new HashMap<>();
+        humanBeingList = new ArrayList<>();
         dateOfInitialization = new Date();
         dateOfLastChange = new Date();
     }

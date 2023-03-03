@@ -2,7 +2,7 @@ package collection;
 
 import java.util.UUID;
 
-public class HumanBeing {
+public class HumanBeing implements Comparable<HumanBeing> {
     private UUID id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -26,6 +26,20 @@ public class HumanBeing {
         this.weaponType = weaponType;
         this.mood = mood;
         this.car = car;
+    }
+
+    private int countPower(){
+        int power = 0;
+        if(realHero) power += 100;
+        if(car.getStatus()) power += 75;
+        if(hasToothpick) power -= 50;
+        power += impactSpeed + weaponType.getPower() + mood.getPower();
+        return power;
+    }
+
+    @Override
+    public int compareTo(HumanBeing human){
+        return this.countPower() - human.countPower();
     }
 
     public UUID getId() {

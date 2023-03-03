@@ -1,17 +1,19 @@
 package collection;
 
     public enum Mood {
-        LONGING("LONGING", "1"),
-        GLOOM("GLOOM", "2"),
-        APATHY("APATHY", "3"),
-        RAGE("RAGE", "4");
+        LONGING("LONGING", "1", 0),
+        GLOOM("GLOOM", "2", 0),
+        APATHY("APATHY", "3", 0),
+        RAGE("RAGE", "4", 50);
 
         private final String name, order;
+        private final int power;
 
 
-        Mood(String name, String order) {
+        Mood(String name, String order, int power) {
             this.name = name;
             this.order = order;
+            this.power = power;
         }
 
         public String getName() {
@@ -20,6 +22,10 @@ package collection;
 
         public String getOrder() {
             return order;
+        }
+
+        public int getPower() {
+            return power;
         }
 
         public static Mood getMood(String s) throws  IllegalArgumentException{
