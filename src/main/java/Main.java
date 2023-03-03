@@ -1,13 +1,11 @@
-import collection.HumanBeing;
+import collection.HumanBeingCollection;
+import collection.Mood;
 import commands.CommandController;
-import utils.ReaderHumanBeingCollection;
 import validators.env.EnvValidator;
 import validators.file.CSVFileValidator;
 import validators.file.NameFileValidator;
 
-import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,11 +16,10 @@ public class Main {
         nameFileValidator.validateWithExit();
         CSVFileValidator csvFileValidator = new CSVFileValidator(FILE_PATH);
         csvFileValidator.validateWithExit();
-        ReaderHumanBeingCollection readerHumanBeingCollection = new ReaderHumanBeingCollection(FILE_PATH);
-        Map<UUID, HumanBeing> humanBeingCollection = readerHumanBeingCollection.read();
-        CommandController commandController = new CommandController(humanBeingCollection);
+        HumanBeingCollection.readFile(FILE_PATH);
+        CommandController commandController = new CommandController();
         commandController.init();
-
+        System.out.println(Mood.valueOf("1"));
         Scanner scanner = new Scanner(System.in);
         String request;
         while(!((request = scanner.nextLine()).equals("exit"))){

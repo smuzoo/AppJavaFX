@@ -28,6 +28,10 @@ public class HumanBeing {
         this.car = car;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "HumanBeing{" +

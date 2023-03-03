@@ -7,12 +7,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class CommandController {
-    private Map<UUID, HumanBeing> humanBeingCollection;
     private Map<String, Command> commands = new HashMap<>();
 
-    public CommandController(Map<UUID, HumanBeing> humanBeingCollection){
-        this.humanBeingCollection = humanBeingCollection;
-    }
 
     public void setCommand(String commandText, Command command){
         commands.put(commandText, command);
@@ -22,12 +18,14 @@ public class CommandController {
         Command command = commands.get(commandText);
         if(command == null) System.out.println("У меня нет такой команды");
         else{
-            command.execute(humanBeingCollection);
+            command.execute();
         }
     }
 
     public void init(){
-        ShowCollection showCollection = new ShowCollection();
-        setCommand("show", showCollection);
+        setCommand("show", new ShowCollection());
+        setCommand("help", new ShowHelp());
+        setCommand("info", new ShowInfo());
+        setCommand("clear", new ClearCollection());
     }
 }
