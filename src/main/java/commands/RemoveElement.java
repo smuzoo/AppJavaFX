@@ -9,8 +9,7 @@ import java.util.UUID;
 public class RemoveElement implements Command{
 
     @Override
-    public void execute(){
-        String[] arguments = ReaderFromConsole.getLastLine().split(" ");
+    public void execute(String[] arguments){
         RemoveElementValidator removeElementValidator = new RemoveElementValidator(arguments);
         if(removeElementValidator.isValid()){
             HumanBeingCollection.remove(UUID.fromString(arguments[1]));

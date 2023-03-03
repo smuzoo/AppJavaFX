@@ -1,5 +1,7 @@
 package commands;
 
+import utils.ReaderFromConsole;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +15,7 @@ public class CommandController {
         commands.put("info", new ShowInfo());
         commands.put("clear", new ClearCollection());
         commands.put("remove_key", new RemoveElement());
+        commands.put("remove_greater_key", new RemoveGreaterKey());
     }
 
 
@@ -20,7 +23,7 @@ public class CommandController {
         Command command = commands.get(commandText);
         if(command == null) System.out.println("У меня нет такой команды");
         else{
-            command.execute();
+            command.execute(ReaderFromConsole.getLastLine().split(" "));
         }
     }
 

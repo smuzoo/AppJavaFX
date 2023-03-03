@@ -5,7 +5,7 @@ import java.util.Map;
 public class ShowHelp implements Command {
 
     @Override
-    public void execute() {
+    public void execute(String[] ignore) {
         CommandController commandController = new CommandController();
         Map<String, Command> commands = commandController.getCommands();
         for(Command command : commands.values()){

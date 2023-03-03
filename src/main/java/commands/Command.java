@@ -1,6 +1,6 @@
 package commands;
 
 public interface Command {
-    void execute();
+    void execute(String[] arguments);
     String description();
 }

@@ -2,8 +2,8 @@ package collection;
 
     public enum Mood {
         LONGING("LONGING", "1", 0),
-        GLOOM("GLOOM", "2", 0),
-        APATHY("APATHY", "3", 0),
+        GLOOM("GLOOM", "2", 1),
+        APATHY("APATHY", "3", 2),
         RAGE("RAGE", "4", 50);
 
         private final String name, order;

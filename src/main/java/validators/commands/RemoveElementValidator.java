@@ -6,27 +6,11 @@ import validators.Validator;
 
 import java.util.UUID;
 
-public class RemoveElementValidator extends Validator {
-    private final String[] arguments;
+public class RemoveElementValidator extends RemoveGreaterKeyValidator {
 
-    public RemoveElementValidator(String[] arguments) { this.arguments = arguments; }
+    public RemoveElementValidator(String[] arguments) { super(arguments); }
 
-    private boolean isLineNotHasOneArgument(){
-        return arguments.length != 2;
-    }
-
-    private boolean isNotCanTransformToUUID(){
-        String id = arguments[1];
-        try{
-            UUID.fromString(id);
-        }
-        catch (IllegalArgumentException ex){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isNotHasElement(){
+    protected boolean isNotHasElement(){
         UUID id = UUID.fromString(arguments[1]);
         return !HumanBeingCollection.hasElement(id);
     }

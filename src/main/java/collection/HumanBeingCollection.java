@@ -23,12 +23,14 @@ public class HumanBeingCollection {
         reader.read();
         humanBeingCollection = reader.getHumanBeingCollection();
         humanBeingList = reader.getHumanBeingList();
+        sort();
     }
 
     public static void add(HumanBeing human){
         dateOfLastChange = new Date();
         humanBeingCollection.put(human.getId(), human);
         humanBeingList.add(human);
+        sort();
     }
 
     public static void clear(){
@@ -41,12 +43,21 @@ public class HumanBeingCollection {
         dateOfLastChange = new Date();
         humanBeingList.remove(humanBeingCollection.get(id));
         humanBeingCollection.remove(id);
+        sort();
+    }
+
+    public static void sort(){
+        Collections.sort(humanBeingList);
     }
 
     public static boolean hasElement(UUID id) {return humanBeingCollection.get(id) != null;}
     
     public static long getCountHumanBeingCollection(){
         return humanBeingCollection.size();
+    }
+
+    public static Set<UUID> getUUIDs(){
+        return humanBeingCollection.keySet();
     }
 
     public static Date getDateOfLastChange() {
