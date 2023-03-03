@@ -16,8 +16,8 @@ public enum Errors {
     NOTHAVEERRORS("Ошибок не было найдено"),
     NOTHASONEARGUMENT("Данная команда принимает на вход 1 аргумент"),
     NOTCANTRANSFORMTOUUID("Невозможно преобразовать данный ключ к типу UUID"),
-    NOTCANTRANSFORMTOINT("Данный аргумент не является числом"),
-    NOTHASELEMENT("Элемента с таким ключом не существует в коллекции");
+    NOTHASELEMENT("Элемента с таким ключом не существует в коллекции"),
+    NOTCANTRANSFORMTOINT("Данный аргумент не является числом");
 
     final String error;
     Errors(String error){

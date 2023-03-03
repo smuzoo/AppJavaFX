@@ -30,3 +30,4 @@ public class ImpactSpeedValidator extends Validator {
         addError(this::isNotCanTransformToInt, Errors.NOTCANTRANSFORMTOINT);
     }
 }
+
