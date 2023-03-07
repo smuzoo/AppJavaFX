@@ -28,7 +28,7 @@ public class CSVFileValidator extends NameFileValidator {
     }
 
     @Override
-    protected void addAllError(){
+    protected void addAllErrors(){
         addError(this::isFileNotExist, Errors.NOTEXISTFILE);
         addError(this::isFileNotCanRead, Errors.NOTCANREADFILE);
         addError(this::isFileNotCanWrite, Errors.NOTCANWRITEFILE);

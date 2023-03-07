@@ -6,14 +6,14 @@ import java.util.Map;
 abstract public class Validator {
     private final Map<IsValidating, Errors> validatesMethods = new LinkedHashMap<>();
 
-    abstract protected void addAllError();
+    abstract protected void addAllErrors();
 
     protected void addError(IsValidating method, Errors error){
         validatesMethods.put(method, error);
     }
 
     protected Errors validateAll(){
-        addAllError();
+        addAllErrors();
         for(IsValidating method : validatesMethods.keySet()){
             if(method.isNotValidate()){
                 return validatesMethods.get(method);

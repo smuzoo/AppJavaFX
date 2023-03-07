@@ -9,7 +9,7 @@ public enum WeaponType {
 
     private final String name, order;
 
-    private final int power;
+    private int power;
 
     WeaponType(String name, String order, int power) {
         this.name = name;
@@ -26,6 +26,10 @@ public enum WeaponType {
         return order;
     }
 
+    public void setPower(int power){
+        this.power = power;
+    }
+
     public int getPower() {
         return power;
     }
@@ -38,6 +42,15 @@ public enum WeaponType {
             }
         }
         return null;
+    }
+
+    public static String getStringValues() {
+        StringBuilder sb = new StringBuilder();
+        for (WeaponType weaponType : WeaponType.values()) {
+            sb.append(weaponType.getOrder()).append(" - ").append(weaponType.getName()).append(" | ");
+        }
+        sb.delete(sb.length() - 3, sb.length()); // удаление последнего разделителя "| "
+        return sb.toString();
     }
 
     @Override

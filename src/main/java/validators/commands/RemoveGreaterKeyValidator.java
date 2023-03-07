@@ -28,7 +28,7 @@ public class RemoveGreaterKeyValidator extends Validator {
     }
 
     @Override
-    protected void addAllError() {
+    protected void addAllErrors() {
         addError(this::isNotHasArgument, Errors.NOTHASARGUMENT);
         addError(this::isNotCanTransformToUUID, Errors.NOTCANTRANSFORMTOUUID);
     }

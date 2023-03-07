@@ -18,7 +18,7 @@ public class NameFileValidator extends Validator {
     }
 
     @Override
-    protected void addAllError(){
+    protected void addAllErrors(){
         addError(this::isOnNull, Errors.WRONGENVIRONMENT);
         addError(this::isOnEmpty, Errors.EMPTYENVIRONMENT);
     }

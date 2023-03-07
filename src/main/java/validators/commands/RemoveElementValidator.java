@@ -15,7 +15,7 @@ public class RemoveElementValidator extends RemoveGreaterKeyValidator {
     }
 
     @Override
-    protected void addAllError() {
+    protected void addAllErrors() {
         addError(this::isNotHasArgument, Errors.NOTHASARGUMENT);
         addError(this::isNotCanTransformToUUID, Errors.NOTCANTRANSFORMTOUUID);
         addError(this::isNotHasElement, Errors.NOTHASELEMENT);
