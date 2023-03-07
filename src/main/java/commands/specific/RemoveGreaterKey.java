@@ -1,12 +1,12 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeingCollection;
-import utils.ReaderFromConsole;
+import commands.Command;
 import validators.commands.RemoveGreaterKeyValidator;
 
 import java.util.UUID;
 
-public class RemoveGreaterKey implements Command{
+public class RemoveGreaterKey implements Command {
 
     @Override
     public void execute(String argument){

@@ -1,8 +1,9 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeingCollection;
+import commands.Command;
 
-public class ClearCollection implements Command{
+public class ClearCollection implements Command {
 
     @Override
     public void execute(String ignore){
