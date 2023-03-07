@@ -9,10 +9,10 @@ import java.util.UUID;
 public class RemoveGreaterKey implements Command{
 
     @Override
-    public void execute(String[] arguments){
-        RemoveGreaterKeyValidator removeGreaterKeyValidator = new RemoveGreaterKeyValidator(arguments);
+    public void execute(String argument){
+        RemoveGreaterKeyValidator removeGreaterKeyValidator = new RemoveGreaterKeyValidator(argument);
         if(removeGreaterKeyValidator.isValid()){
-            UUID id = UUID.fromString(arguments[1]);
+            UUID id = UUID.fromString(argument);
             for(UUID humanId : HumanBeingCollection.getUUIDs()){
                 if(humanId.compareTo(id) > 0) HumanBeingCollection.remove(humanId);
             }

@@ -3,20 +3,21 @@ package validators.commands;
 import validators.Errors;
 import validators.Validator;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class RemoveGreaterKeyValidator extends Validator {
 
-    protected String[] arguments;
+    protected String argument;
 
-    public RemoveGreaterKeyValidator(String[] arguments) { this.arguments = arguments; }
+    public RemoveGreaterKeyValidator(String argument) { this.argument = argument; }
 
-    protected boolean isLineNotHasOneArgument(){
-        return arguments.length != 2;
+    protected boolean isNotHasArgument(){
+        return !argument.equals("");
     }
 
     protected boolean isNotCanTransformToUUID(){
-        String id = arguments[1];
+        String id = argument;
         try{
             UUID.fromString(id);
         }
@@ -28,7 +29,7 @@ public class RemoveGreaterKeyValidator extends Validator {
 
     @Override
     protected void addAllError() {
-        addError(this::isLineNotHasOneArgument, Errors.NOTHASONEARGUMENT);
+        addError(this::isNotHasArgument, Errors.NOTHASARGUMENT);
         addError(this::isNotCanTransformToUUID, Errors.NOTCANTRANSFORMTOUUID);
     }
 }

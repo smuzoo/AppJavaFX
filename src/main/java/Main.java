@@ -18,8 +18,7 @@ public class Main {
         CommandController commandController = new CommandController();
         String request;
         while(!((request = ReaderFromConsole.getNewLine()).equals("exit"))){
-            String command = request.split(" ")[0];
-            commandController.executeCommand(command);
+            commandController.executeCommand(request);
         }
 
     }

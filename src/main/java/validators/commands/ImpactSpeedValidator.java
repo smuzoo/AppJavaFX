@@ -5,19 +5,19 @@ import validators.Validator;
 
 public class ImpactSpeedValidator extends Validator {
 
-    protected String[] arguments;
+    protected String argument;
 
-    public ImpactSpeedValidator(String[] arguments){
-        this.arguments = arguments;
+    public ImpactSpeedValidator(String argument){
+        this.argument = argument;
     }
 
-    protected boolean isLineNotHasOneArgument(){
-        return arguments.length != 2;
+    protected boolean isNotHasArgument(){
+        return !argument.equals("");
     }
 
     protected boolean isNotCanTransformToInt(){
         try{
-            Integer.parseInt(arguments[1]);
+            Integer.parseInt(argument);
         }catch (NumberFormatException ex){
             return true;
         }
@@ -26,7 +26,7 @@ public class ImpactSpeedValidator extends Validator {
 
     @Override
     protected void addAllError(){
-        addError(this::isLineNotHasOneArgument, Errors.NOTHASONEARGUMENT);
+        addError(this::isNotHasArgument, Errors.NOTHASARGUMENT);
         addError(this::isNotCanTransformToInt, Errors.NOTCANTRANSFORMTOINT);
     }
 }

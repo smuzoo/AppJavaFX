@@ -8,7 +8,7 @@ import java.util.*;
 public class ShowFieldDescendingMood implements Command{
 
     @Override
-    public void execute(String[] ignore){
+    public void execute(String ignore){
         List<HumanBeing> humanBeingSortedByMood = new ArrayList<>(HumanBeingCollection.getHumanBeings());
         humanBeingSortedByMood.sort((human1, human2) -> {
             if (human1.getMood() == null & human2.getMood() != null) return 1;

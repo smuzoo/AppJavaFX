@@ -8,7 +8,7 @@ import java.util.UUID;
 public class ShowCollection implements Command {
 
     @Override
-    public void execute(String[] ignore){
+    public void execute(String ignore){
         Map<UUID, HumanBeing> humanBeingCollection = HumanBeingCollection.getHumanBeingCollection();
         for(HumanBeing human : humanBeingCollection.values()){
             System.out.println(human);

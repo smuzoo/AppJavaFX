@@ -7,10 +7,10 @@ import validators.commands.ImpactSpeedValidator;
 public class CountGreaterThanImpactSpeed implements Command{
 
     @Override
-    public void execute(String[] arguments){
-        ImpactSpeedValidator impactSpeedValidator = new ImpactSpeedValidator(arguments);
+    public void execute(String argument){
+        ImpactSpeedValidator impactSpeedValidator = new ImpactSpeedValidator(argument);
         if(impactSpeedValidator.isValid()){
-            Integer impactSpeed = Integer.parseInt(arguments[1]);
+            Integer impactSpeed = Integer.parseInt(argument);
             int count = 0;
             for(HumanBeing human : HumanBeingCollection.getHumanBeings()){
                 if(human.getImpactSpeed() > impactSpeed) count++;
