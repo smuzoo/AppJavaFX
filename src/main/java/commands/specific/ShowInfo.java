@@ -1,8 +1,9 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeingCollection;
+import commands.Command;
 
-public class ShowInfo implements Command{
+public class ShowInfo implements Command {
 
     @Override
     public void execute(String ignore){

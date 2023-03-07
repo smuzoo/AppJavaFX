@@ -1,5 +1,7 @@
 package commands;
 
+import commands.specific.*;
+
 import java.util.HashMap;
 import java.util.Map;
 

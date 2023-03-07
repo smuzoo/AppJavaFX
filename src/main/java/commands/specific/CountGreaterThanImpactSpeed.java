@@ -1,10 +1,11 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
+import commands.Command;
 import validators.commands.ImpactSpeedValidator;
 
-public class CountGreaterThanImpactSpeed implements Command{
+public class CountGreaterThanImpactSpeed implements Command {
 
     @Override
     public void execute(String argument){

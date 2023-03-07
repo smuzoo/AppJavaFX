@@ -1,4 +1,7 @@
-package commands;
+package commands.specific;
+
+import commands.Command;
+import commands.CommandController;
 
 import java.util.Map;
 

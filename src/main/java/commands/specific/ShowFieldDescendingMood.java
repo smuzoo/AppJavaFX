@@ -1,11 +1,12 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
+import commands.Command;
 
 import java.util.*;
 
-public class ShowFieldDescendingMood implements Command{
+public class ShowFieldDescendingMood implements Command {
 
     @Override
     public void execute(String ignore){

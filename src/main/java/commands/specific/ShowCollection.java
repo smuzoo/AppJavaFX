@@ -1,7 +1,9 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
+import commands.Command;
+
 import java.util.Map;
 import java.util.UUID;
 

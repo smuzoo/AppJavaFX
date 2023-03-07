@@ -1,12 +1,12 @@
-package commands;
+package commands.specific;
 
 import collection.HumanBeingCollection;
-import utils.ReaderFromConsole;
+import commands.Command;
 import validators.commands.RemoveElementValidator;
 
 import java.util.UUID;
 
-public class RemoveElement implements Command{
+public class RemoveElement implements Command {
 
     @Override
     public void execute(String argument){
