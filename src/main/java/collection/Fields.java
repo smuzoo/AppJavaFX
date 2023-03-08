@@ -8,13 +8,13 @@ public enum Fields {
     IMPACTSPEED("скорость удара", "может быть null, не должно превышать значение " + Fields.MAXIMUM_IMPACT_SPEED),
     REALHERO("настоящий герой", "по умолчанию false, при вводе 1 или true - поле становится true"),
     HASTOOTHPICK("ковыряется в зубах", "по умолчанию false, при вводе 1 или true - поле становится true"),
-    WEAPONTYPE("тип оружия", "может быть " + WeaponType.getStringValues() + " может быть null"),
-    MOOD("муд", "может быть " + Mood.getStringValues() + " может быть null");
+    WEAPONTYPE("тип оружия", "может быть " + WeaponType.getStringValues() + ", может быть null"),
+    MOOD("муд", "может быть " + Mood.getStringValues() + ", может быть null");
 
 
     final static float MAXIMUM_X = -809f;
     final static int MAXIMUM_IMPACT_SPEED = 496;
-    String name, comments;
+    final String name, comments;
 
     Fields(String name, String comments) {
         this.name = name;
@@ -25,4 +25,4 @@ public enum Fields {
     public String toString(){
         return "Введите значение поля " + name + " : " + comments;
     }
-    }
+}

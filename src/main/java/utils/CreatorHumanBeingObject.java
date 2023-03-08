@@ -9,9 +9,9 @@ import java.util.function.Predicate;
 
 public class CreatorHumanBeingObject {
 
-    private final ReaderFromConsole reader;
+    private final Reader reader;
 
-    public CreatorHumanBeingObject(ReaderFromConsole reader){
+    public CreatorHumanBeingObject(Reader reader){
         this.reader = reader;
     }
 
