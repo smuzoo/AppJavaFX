@@ -5,7 +5,6 @@ import collection.HumanBeingCollection;
 import commands.Command;
 import utils.CreatorHumanBeingObject;
 import utils.Reader;
-import utils.ReaderFromConsole;
 import validators.fields.UUIDValidator;
 
 import java.util.UUID;
@@ -35,6 +34,7 @@ public class InsertHumanBeing implements Command {
             HumanBeing human = creatorHumanBeingObject.create();
             human.setId(id);
             HumanBeingCollection.add(human);
+            System.out.println("Элемент успешно добавлен в коллекцию");
         }
 
     }

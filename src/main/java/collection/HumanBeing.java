@@ -32,6 +32,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
         addSetter(Fields.HASTOOTHPICK, this::setHasToothpick);
         addSetter(Fields.WEAPONTYPE, this::setWeaponType);
         addSetter(Fields.MOOD, this::setMood);
+        addSetter(Fields.CARCOOL, this::setCar);
     }
 
 
@@ -65,41 +66,16 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public boolean isRealHero() {
-        return realHero;
     }
 
     public void setRealHero(String realHero) {
         if(realHero.equals("1")) this.realHero = true;
         else this.realHero = Boolean.parseBoolean(realHero);
-    }
-
-    public boolean isHasToothpick() {
-        return hasToothpick;
     }
 
     public void setHasToothpick(String hasToothpick) {
@@ -111,10 +87,6 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.impactSpeed = impactSpeed;
     }
 
-    public WeaponType getWeaponType() {
-        return weaponType;
-    }
-
     public void setWeaponType(String weaponType) {
         this.weaponType = WeaponType.getWeaponType(weaponType);
     }
@@ -123,12 +95,9 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.mood = Mood.getMood(mood);
     }
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCar(String isCarCool) {
+        boolean coolCar = Boolean.parseBoolean(isCarCool);
+        this.car = new Car(coolCar);
     }
 
     public boolean isSetName(String name){

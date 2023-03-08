@@ -11,12 +11,12 @@ public class NameValidator extends Validator {
         this.name = name;
     }
 
-    private boolean isNotEmpty(){
-        return !name.equals("");
+    private boolean isEmpty(){
+        return name.trim().equals("");
     }
 
     @Override
     public void addAllErrors(){
-        addError(this::isNotEmpty, Errors.EMPTYFIELD);
+        addError(this::isEmpty, Errors.EMPTYFIELD);
     }
 }

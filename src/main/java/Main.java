@@ -15,8 +15,8 @@ public class Main {
         CSVFileValidator csvFileValidator = new CSVFileValidator(FILE_PATH);
         csvFileValidator.validateWithExit();
         HumanBeingCollection.readFile(FILE_PATH);
-        CommandController commandController = new CommandController(new ReaderFromConsole());
         ReaderFromConsole reader = new ReaderFromConsole();
+        CommandController commandController = new CommandController(reader);
         String request;
         while(!((request = reader.getNewLine()).equals("exit"))){
             commandController.executeCommand(request);

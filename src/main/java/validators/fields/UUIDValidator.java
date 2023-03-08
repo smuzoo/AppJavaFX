@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class UUIDValidator extends Validator {
 
-    private final String id;
+    protected final String id;
 
     public UUIDValidator(String id) {
         this.id = id;

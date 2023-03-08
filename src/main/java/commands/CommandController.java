@@ -13,20 +13,7 @@ public class CommandController {
 
     public CommandController(Reader reader) {
         this.reader = reader;
-    }
-
-    {
-        addCommand("show", new ShowCollection());
-        addCommand("help", new ShowHelp());
-        addCommand("info", new ShowInfo());
-        addCommand("clear", new ClearCollection());
-        addCommand("remove_key", new RemoveElement());
-        addCommand("remove_greater_key", new RemoveGreaterKey());
-        addCommand("count_greater_than_impact_speed", new CountGreaterThanImpactSpeed());
-        addCommand("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
-        addCommand("print_field_descending_mood", new ShowFieldDescendingMood());
-        addCommand("insert", new InsertHumanBeing(reader));
-
+        init();
     }
 
     public void executeCommand(String commandText){
@@ -40,7 +27,23 @@ public class CommandController {
         }
     }
 
-    public void addCommand(String nameCommand, Command command){
+    private void init(){
+        addCommand("show", new ShowCollection());
+        addCommand("help", new ShowHelp());
+        addCommand("info", new ShowInfo());
+        addCommand("clear", new ClearCollection());
+        addCommand("remove_key", new RemoveElement());
+        addCommand("remove_greater_key", new RemoveGreaterKey());
+        addCommand("count_greater_than_impact_speed", new CountGreaterThanImpactSpeed());
+        addCommand("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
+        addCommand("print_field_descending_mood", new ShowFieldDescendingMood());
+        addCommand("insert", new InsertHumanBeing(reader));
+        addCommand("remove_greater", new RemoveGreaterHumanBeing(reader));
+        addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
+        addCommand("update", new UpdateHumanBeing(reader));
+    }
+
+    private void addCommand(String nameCommand, Command command){
         commands.put(nameCommand, command);
     }
 

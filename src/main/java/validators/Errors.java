@@ -24,6 +24,7 @@ public enum Errors {
     BIGGERX("Значение поля coordinate.x не может превышать " + Fields.MAXIMUM_X),
     BIGGERIMPACTSPEED("Значение поля impactSpeed не может превышать " + Fields.MAXIMUM_IMPACT_SPEED),
     NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
+    NOTHASFIELD("Номера с таким полем не существует"),
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y.");
 
     final String error;
