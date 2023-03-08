@@ -1,12 +1,19 @@
 package commands;
 
 import commands.specific.*;
+import utils.Reader;
+import utils.ReaderFromConsole;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandController {
     private final Map<String, Command> commands = new HashMap<>();
+    private Reader reader;
+
+    public CommandController(Reader reader) {
+        this.reader = reader;
+    }
 
     {
         addCommand("show", new ShowCollection());
@@ -18,6 +25,7 @@ public class CommandController {
         addCommand("count_greater_than_impact_speed", new CountGreaterThanImpactSpeed());
         addCommand("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
         addCommand("print_field_descending_mood", new ShowFieldDescendingMood());
+        addCommand("insert", new InsertHumanBeing(reader));
 
     }
 

@@ -17,7 +17,7 @@ public class DataFileValidator {
         return data.length != COLUMNS_IN_FILE;
     }
 
-    private boolean isNotNull(){
+    private boolean isNull(){
         /* Check id, name, coordinates, creationDate, realHero, hasToothpick on null */
         for(int i =0; i < 6; i++){
             if(data[i] == null) return true;
@@ -53,7 +53,7 @@ public class DataFileValidator {
 
     private void addValidMethods(){
         validatesMethods.add(this::isNotEnoughColumns);
-        validatesMethods.add(this::isNotNull);
+        validatesMethods.add(this::isNull);
         validatesMethods.add(this::isNotCanTransformToNumber);
         validatesMethods.add(this::isBiggerX);
         validatesMethods.add(this::isBiggerImpactSpeed);

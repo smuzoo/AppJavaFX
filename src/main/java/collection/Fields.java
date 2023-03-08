@@ -12,8 +12,8 @@ public enum Fields {
     MOOD("муд", "может быть " + Mood.getStringValues() + ", может быть null");
 
 
-    final static float MAXIMUM_X = -809f;
-    final static int MAXIMUM_IMPACT_SPEED = 496;
+    public final static float MAXIMUM_X = -809f;
+    public final static int MAXIMUM_IMPACT_SPEED = 496;
     final String name, comments;
 
     Fields(String name, String comments) {

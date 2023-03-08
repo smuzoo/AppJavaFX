@@ -1,5 +1,7 @@
 package validators;
 
+import collection.Fields;
+
 import static colors.Colors.*;
 
 public enum Errors {
@@ -19,8 +21,9 @@ public enum Errors {
     NOTHASELEMENT("Элемента с таким ключом не существует в коллекции"),
     NOTCANTRANSFORMTOINT("Данный аргумент не является числом"),
     EMPTYFIELD("Данное поле не может быть пустым"),
-    BIGGERX("Значение поля coordinate.x не может превышать -809"),
-    BIGGERIMPACTSPEED("Значение поля impactSpeed не может превышать 496"),
+    BIGGERX("Значение поля coordinate.x не может превышать " + Fields.MAXIMUM_X),
+    BIGGERIMPACTSPEED("Значение поля impactSpeed не может превышать " + Fields.MAXIMUM_IMPACT_SPEED),
+    NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y.");
 
     final String error;
