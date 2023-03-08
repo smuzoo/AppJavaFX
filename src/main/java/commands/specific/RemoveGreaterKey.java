@@ -1,9 +1,12 @@
 package commands.specific;
 
+import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import commands.Command;
 import validators.commands.RemoveGreaterKeyValidator;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class RemoveGreaterKey implements Command {
@@ -13,9 +16,8 @@ public class RemoveGreaterKey implements Command {
         RemoveGreaterKeyValidator removeGreaterKeyValidator = new RemoveGreaterKeyValidator(argument);
         if(removeGreaterKeyValidator.isValid()){
             UUID id = UUID.fromString(argument);
-            for(UUID humanId : HumanBeingCollection.getUUIDs()){
-                if(humanId.compareTo(id) > 0) HumanBeingCollection.remove(humanId);
-            }
+            Set<Map.Entry<UUID, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
+            humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getKey().compareTo(id) > 0);
             System.out.println("Элементы, с id больше заданного были удалены");
         }
     }

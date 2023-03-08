@@ -6,6 +6,7 @@ import validators.fields.NameValidator;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -150,6 +151,12 @@ public class HumanBeing implements Comparable<HumanBeing>{
 
     public int getMoodPower() {
         return mood.getPower();
+    }
+
+    public String getAllFields(){
+        return id + "," + name + "," + coordinates.getX() + "," + coordinates.getY() + "," + creationDate + ","
+                + realHero + "," + hasToothpick + "," + impactSpeed + "," + weaponType + "," + mood + ","
+                + car.getStatus();
     }
 
     private int countPower(){

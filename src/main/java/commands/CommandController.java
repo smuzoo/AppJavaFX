@@ -16,18 +16,18 @@ public class CommandController {
         init();
     }
 
-    public void executeCommand(String commandText){
+    public void executeCommand(String commandText) {
         final String[] commandWithArgument = commandText.split(" ");
         final String commandName = commandWithArgument[0];
-        final String argument = commandWithArgument.length > 1 ?  commandWithArgument[1] : "";
+        final String argument = commandWithArgument.length > 1 ? commandWithArgument[1] : "";
         Command command = getCommand(commandName);
-        if(command == null) System.out.println("У меня нет такой команды");
-        else{
+        if (command == null) System.out.println("У меня нет такой команды");
+        else {
             command.execute(argument);
         }
     }
 
-    private void init(){
+    private void init() {
         addCommand("show", new ShowCollection());
         addCommand("help", new ShowHelp());
         addCommand("info", new ShowInfo());
@@ -41,9 +41,10 @@ public class CommandController {
         addCommand("remove_greater", new RemoveGreaterHumanBeing(reader));
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
+        addCommand("save", new SaveCollection());
     }
 
-    private void addCommand(String nameCommand, Command command){
+    private void addCommand(String nameCommand, Command command) {
         commands.put(nameCommand, command);
     }
 
@@ -51,7 +52,7 @@ public class CommandController {
         return commands;
     }
 
-    private Command getCommand(String commandName){
+    private Command getCommand(String commandName) {
         return commands.get(commandName);
     }
 }

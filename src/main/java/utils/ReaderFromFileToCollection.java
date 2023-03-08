@@ -1,6 +1,7 @@
 package utils;
 
 import collection.*;
+import validators.Errors;
 import validators.file.DataFileValidator;
 
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ public class ReaderFromFileToCollection {
     public void read(){
         try(InputStreamReader reader = new InputStreamReader(new FileInputStream(FILE_PATH));
             BufferedReader bufferedReader = new BufferedReader(reader)){
-            String line = bufferedReader.readLine();
+            String line;
             while((line = bufferedReader.readLine()) != null){
                 String[] data = split(line, ',');
                 DataFileValidator dataValidator = new DataFileValidator(data);
@@ -62,7 +63,7 @@ public class ReaderFromFileToCollection {
 
             }
         }catch (IOException e){
-            System.out.println(RED + "Невозможно прочитать файл" + RESET);
+            System.out.println(Errors.IMPOSSIBLEREADFILE);
         }
     }
 

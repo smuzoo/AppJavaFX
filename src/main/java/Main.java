@@ -1,5 +1,6 @@
 import collection.HumanBeingCollection;
 import commands.CommandController;
+import utils.FileConstant;
 import utils.ReaderFromConsole;
 import validators.env.EnvValidator;
 import validators.file.CSVFileValidator;
@@ -14,6 +15,7 @@ public class Main {
         nameFileValidator.validateWithExit();
         CSVFileValidator csvFileValidator = new CSVFileValidator(FILE_PATH);
         csvFileValidator.validateWithExit();
+        FileConstant.setFilePath(FILE_PATH);
         HumanBeingCollection.readFile(FILE_PATH);
         ReaderFromConsole reader = new ReaderFromConsole();
         CommandController commandController = new CommandController(reader);

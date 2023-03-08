@@ -25,6 +25,8 @@ public enum Errors {
     BIGGERIMPACTSPEED("Значение поля impactSpeed не может превышать " + Fields.MAXIMUM_IMPACT_SPEED),
     NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
     NOTHASFIELD("Номера с таким полем не существует"),
+    IMPOSSIBLEREADFILE("Невозможно прочитать файл"),
+    IMPOSSIBLEWRITETOFILE("Невозможно записать данные в файл"),
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y.");
 
     final String error;

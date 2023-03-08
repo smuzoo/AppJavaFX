@@ -49,6 +49,10 @@ public class HumanBeingCollection {
         return humanBeingCollection.keySet();
     }
 
+    public static Set<Map.Entry<UUID, HumanBeing>> getEntrySet(){
+        return humanBeingCollection.entrySet();
+    }
+
     public static Collection<HumanBeing> getHumanBeings(){
         return humanBeingCollection.values();
     }
