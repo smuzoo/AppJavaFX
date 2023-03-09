@@ -9,6 +9,7 @@ import utils.Reader;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import static colors.Colors.*;
 
 public class RemoveLowerHumanBeing implements Command {
 
@@ -29,6 +30,6 @@ public class RemoveLowerHumanBeing implements Command {
 
     @Override
     public String description(){
-        return "remove_lower {element} : удалить из коллекции все элементы, меньшие, чем заданный";
+        return BLUE + "remove_lower" + PURPLE + " {element}" + RESET + " : удалить из коллекции все элементы, меньшие, чем заданный";
     }
 }

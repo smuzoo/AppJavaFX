@@ -6,6 +6,8 @@ import utils.ReaderFromConsole;
 
 import java.util.Map;
 
+import static colors.Colors.*;
+
 public class ShowHelp implements Command {
 
     @Override
@@ -19,6 +21,6 @@ public class ShowHelp implements Command {
 
     @Override
     public String description(){
-        return "help : вывести справку по доступным командам";
+        return BLUE + "help" + RESET + " : вывести справку по доступным командам";
     }
 }

@@ -9,6 +9,8 @@ import validators.fields.UUIDValidator;
 
 import java.util.UUID;
 
+import static colors.Colors.*;
+
 public class InsertHumanBeing implements Command {
 
     private final Reader reader;
@@ -41,7 +43,7 @@ public class InsertHumanBeing implements Command {
 
     @Override
     public String description(){
-        return "insert null {element} : добавить новый элемент с заданным ключом";
+        return BLUE + "insert" + PURPLE +" null {element}" + RESET + " : добавить новый элемент с заданным ключом";
     }
 
 

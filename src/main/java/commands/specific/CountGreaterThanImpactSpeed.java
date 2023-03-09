@@ -5,6 +5,8 @@ import collection.HumanBeingCollection;
 import commands.Command;
 import validators.commands.ImpactSpeedValidator;
 
+import static colors.Colors.*;
+
 public class CountGreaterThanImpactSpeed implements Command {
 
     @Override
@@ -23,7 +25,7 @@ public class CountGreaterThanImpactSpeed implements Command {
 
     @Override
     public String description(){
-        return "count_greater_than_impact_speed impactSpeed : вывести количество элементов, значение поля impactSpeed которых больше заданного";
+        return BLUE + "count_greater_than_impact_speed" + PURPLE + " impactSpeed" + RESET + " : вывести количество элементов, значение поля impactSpeed которых больше заданного";
     }
 
 }

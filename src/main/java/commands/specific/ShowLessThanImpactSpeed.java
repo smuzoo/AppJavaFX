@@ -4,6 +4,7 @@ import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import commands.Command;
 import validators.commands.ImpactSpeedValidator;
+import static colors.Colors.*;
 
 public class ShowLessThanImpactSpeed implements Command {
 
@@ -20,7 +21,7 @@ public class ShowLessThanImpactSpeed implements Command {
 
     @Override
     public String description(){
-        return "filter_less_than_impact_speed impactSpeed : вывести элементы, " +
+        return BLUE + "filter_less_than_impact_speed" + PURPLE + " impactSpeed" + RESET + " : вывести элементы, " +
                 "значение поля impactSpeed которых меньше заданного";
     }
 }

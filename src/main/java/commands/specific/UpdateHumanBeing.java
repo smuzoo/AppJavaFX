@@ -12,6 +12,8 @@ import validators.fields.UUIDValidator;
 import java.util.Arrays;
 import java.util.UUID;
 
+import static colors.Colors.*;
+
 public class UpdateHumanBeing implements Command {
 
     private final Reader reader;
@@ -75,7 +77,7 @@ public class UpdateHumanBeing implements Command {
 
     @Override
     public String description(){
-        return "update id {element} : обновить значение элемента коллекции, id которого равен заданному";
+        return BLUE + "update" + PURPLE + " id {element}" + RESET + " : обновить значение элемента коллекции, id которого равен заданному";
     }
 
 }

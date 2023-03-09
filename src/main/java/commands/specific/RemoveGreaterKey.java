@@ -8,6 +8,7 @@ import validators.commands.RemoveGreaterKeyValidator;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import static colors.Colors.*;
 
 public class RemoveGreaterKey implements Command {
 
@@ -24,6 +25,6 @@ public class RemoveGreaterKey implements Command {
 
     @Override
     public String description(){
-        return "remove_greater_key null : удалить из коллекции все элементы, ключ которых превышает заданный";
+        return BLUE + "remove_greater_key" + PURPLE + " null" + RESET + " : удалить из коллекции все элементы, ключ которых превышает заданный";
     }
 }

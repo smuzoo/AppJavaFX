@@ -11,6 +11,7 @@ import validators.file.CSVFileValidator;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import static colors.Colors.*;
 
 
 public class SaveCollection implements Command {
@@ -40,6 +41,6 @@ public class SaveCollection implements Command {
 
     @Override
     public String description(){
-        return "save : сохранить коллекцию в файл";
+        return BLUE + "save" + RESET + " : сохранить коллекцию в файл";
     }
 }

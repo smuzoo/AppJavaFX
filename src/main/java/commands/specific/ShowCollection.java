@@ -6,6 +6,7 @@ import commands.Command;
 
 import java.util.Map;
 import java.util.UUID;
+import static colors.Colors.*;
 
 public class ShowCollection implements Command {
 
@@ -19,6 +20,6 @@ public class ShowCollection implements Command {
 
     @Override
     public String description(){
-        return "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
+        return BLUE + "show" + RESET + " : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 }

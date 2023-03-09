@@ -3,6 +3,8 @@ package commands.specific;
 import collection.HumanBeingCollection;
 import commands.Command;
 
+import static colors.Colors.*;
+
 public class ClearCollection implements Command {
 
     @Override
@@ -13,6 +15,6 @@ public class ClearCollection implements Command {
 
     @Override
     public String description(){
-        return "clear : очистить коллекцию";
+        return BLUE + "clear" + RESET + " : очистить коллекцию";
     }
 }

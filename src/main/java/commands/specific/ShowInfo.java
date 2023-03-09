@@ -2,6 +2,7 @@ package commands.specific;
 
 import collection.HumanBeingCollection;
 import commands.Command;
+import static colors.Colors.*;
 
 public class ShowInfo implements Command {
 
@@ -15,6 +16,6 @@ public class ShowInfo implements Command {
 
     @Override
     public String description(){
-        return "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)";
+        return BLUE + "info" + RESET + " :  вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)";
     }
 }

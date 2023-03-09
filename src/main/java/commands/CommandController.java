@@ -41,6 +41,7 @@ public class CommandController {
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
         addCommand("save", new SaveCollection());
+
     }
 
     private void addCommand(String nameCommand, Command command) {
@@ -54,4 +55,5 @@ public class CommandController {
     private Command getCommand(String commandName) {
         return commands.get(commandName);
     }
+
 }

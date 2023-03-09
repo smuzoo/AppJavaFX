@@ -9,6 +9,7 @@ import utils.Reader;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import static colors.Colors.*;
 
 public class RemoveGreaterHumanBeing implements Command {
     private final Reader reader;
@@ -28,6 +29,6 @@ public class RemoveGreaterHumanBeing implements Command {
 
     @Override
     public String description(){
-        return "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный";
+        return BLUE + "remove_greater" + PURPLE + " {element}" + RESET + " : удалить из коллекции все элементы, превышающие заданный";
     }
 }

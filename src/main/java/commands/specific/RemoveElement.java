@@ -6,6 +6,8 @@ import validators.commands.RemoveElementValidator;
 
 import java.util.UUID;
 
+import static colors.Colors.*;
+
 public class RemoveElement implements Command {
 
     @Override
@@ -19,6 +21,6 @@ public class RemoveElement implements Command {
 
     @Override
     public String description(){
-        return "remove_key null : удалить элемент из коллекции по его ключу";
+        return BLUE + "remove_key" + PURPLE + " null" + RESET + " : удалить элемент из коллекции по его ключу";
     }
 }

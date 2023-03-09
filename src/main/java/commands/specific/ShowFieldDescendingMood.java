@@ -5,6 +5,7 @@ import collection.HumanBeingCollection;
 import commands.Command;
 
 import java.util.*;
+import static colors.Colors.*;
 
 public class ShowFieldDescendingMood implements Command {
 
@@ -25,6 +26,6 @@ public class ShowFieldDescendingMood implements Command {
 
     @Override
     public String description(){
-        return "print_field_descending_mood : вывести значения поля mood всех элементов в порядке убывания";
+        return BLUE + "print_field_descending_mood" + RESET + " : вывести значения поля mood всех элементов в порядке убывания";
     }
 }
