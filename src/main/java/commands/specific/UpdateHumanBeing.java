@@ -65,7 +65,7 @@ public class UpdateHumanBeing implements Command {
         System.out.println("Введите через запятую номера полей, которые хотите изменить:");
         Fields[] fieldsValues = Fields.values();
         for(int i =1; i <= fieldsValues.length; i++){
-            System.out.println(i + " - " + fieldsValues[i]);
+            System.out.println(i + " - " + fieldsValues[i-1].getName());
         }
     }
 

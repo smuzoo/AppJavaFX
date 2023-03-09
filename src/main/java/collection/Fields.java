@@ -34,6 +34,10 @@ public enum Fields {
         return null;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString(){
         return "Введите значение поля " + name + " : " + comments;

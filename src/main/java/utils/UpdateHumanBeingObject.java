@@ -15,17 +15,16 @@ public class UpdateHumanBeingObject {
     }
 
     public void update(HumanBeing human, Fields field) {
-        String valueField = reader.getNewLine();
         Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
+        System.out.println(field);
+        String valueField = reader.getNewLine();
         Predicate<String> notNullSetter = notNullSetters.get(field);
         if(notNullSetter == null) updateNullSetter(human, field, valueField);
         else {
-            boolean isCorrectField;
-            do{
+            while(!notNullSetters.get(field).test(valueField)){
                 System.out.println(field);
-                String fieldValue = reader.getNewLine();
-                isCorrectField = notNullSetters.get(field).test(fieldValue);
-            }while (!isCorrectField);
+                valueField = reader.getNewLine();
+            }
         }
 
 
