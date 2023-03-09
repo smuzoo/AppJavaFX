@@ -19,7 +19,7 @@ public class SaveCollection implements Command {
         try(FileWriter fileWriter = new FileWriter(FILE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             for(HumanBeing human : HumanBeingCollection.getHumanBeings()){
-                bufferedWriter.write(human.getAllFields());
+                bufferedWriter.write(human.getAllFieldsAsString());
                 bufferedWriter.newLine();
             }
         } catch (IOException e) {
