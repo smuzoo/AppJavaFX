@@ -12,7 +12,7 @@ public class ImpactSpeedValidator extends Validator {
     }
 
     protected boolean isNotHasArgument(){
-        return !argument.equals("");
+        return argument.equals("");
     }
 
     protected boolean isNotCanTransformToInt(){

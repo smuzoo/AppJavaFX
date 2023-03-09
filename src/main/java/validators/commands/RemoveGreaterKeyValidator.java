@@ -13,7 +13,7 @@ public class RemoveGreaterKeyValidator extends Validator {
     public RemoveGreaterKeyValidator(String argument) { this.argument = argument; }
 
     protected boolean isNotHasArgument(){
-        return !argument.equals("");
+        return argument.equals("");
     }
 
     protected boolean isNotCanTransformToUUID(){

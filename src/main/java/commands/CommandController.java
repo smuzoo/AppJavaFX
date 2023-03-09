@@ -2,7 +2,6 @@ package commands;
 
 import commands.specific.*;
 import utils.Reader;
-import utils.ReaderFromConsole;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +17,7 @@ public class CommandController {
 
     public void executeCommand(String commandText) {
         final String[] commandWithArgument = commandText.split(" ");
-        final String commandName = commandWithArgument[0];
+        final String commandName = commandWithArgument.length > 0 ? commandWithArgument[0] : "";
         final String argument = commandWithArgument.length > 1 ? commandWithArgument[1] : "";
         Command command = getCommand(commandName);
         if (command == null) System.out.println("У меня нет такой команды");
