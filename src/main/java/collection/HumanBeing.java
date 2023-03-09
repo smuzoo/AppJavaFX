@@ -154,14 +154,14 @@ public class HumanBeing implements Comparable<HumanBeing>{
     }
 
     public String getAllFieldsAsString() {
-        String impactSpeedString = (impactSpeed != null) ? impactSpeed.toString() : "";
+        /*String impactSpeedString = (impactSpeed != null) ? impactSpeed.toString() : "";
         String weaponTypeString = (weaponType != null) ? weaponType.toString() : "";
         String moodString = (mood != null) ? mood.toString() : "";
-        String carString = (car != null) ? String.valueOf(car.getStatus()) : "";
+        String carString = (car != null) ? String.valueOf(car.getStatus()) : "";*/
 
         return id + "," + name + "," + coordinates.getX() + "," + coordinates.getY() + "," + creationDate + ","
-                + realHero + "," + hasToothpick + "," + impactSpeedString + "," + weaponTypeString + ","
-                + moodString + "," + carString;
+                + realHero + "," + hasToothpick + "," + impactSpeed + "," + weaponType + ","
+                + mood + "," + car;
     }
 
     private int countPower(){
