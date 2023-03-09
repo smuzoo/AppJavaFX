@@ -13,13 +13,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
-import static colors.Colors.RED;
-import static colors.Colors.RESET;
 
 public class ReaderFromFileToCollection {
     private final String FILE_PATH;
     private Map<UUID, HumanBeing> humanBeingCollection = new HashMap<>();
-    private List<HumanBeing> humanBeingList = new ArrayList<>();
 
     public ReaderFromFileToCollection(String FILE_PATH){
         this.FILE_PATH = FILE_PATH;
@@ -49,7 +46,6 @@ public class ReaderFromFileToCollection {
                     HumanBeing human = new HumanBeing(id, name, coordinates, date, realHero, hasToothpick, impactSpeed, weaponType,
                             mood, car);
                     humanBeingCollection.put(id, human);
-                    humanBeingList.add(human);
                 } catch (NumberFormatException e){
                     /* logging Y*/
 
@@ -69,10 +65,6 @@ public class ReaderFromFileToCollection {
 
     public Map<UUID, HumanBeing> getHumanBeingCollection() {
         return humanBeingCollection;
-    }
-
-    public List<HumanBeing> getHumanBeingList() {
-        return humanBeingList;
     }
 
     private String[] split(String s, char regex){

@@ -11,7 +11,6 @@ public class HumanBeingCollection {
     private static Date dateOfLastChange;
 
     static {
-        humanBeingCollection = new HashMap<>();
         dateOfInitialization = new Date();
         dateOfLastChange = new Date();
     }
