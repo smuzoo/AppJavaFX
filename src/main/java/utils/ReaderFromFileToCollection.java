@@ -22,19 +22,23 @@ public class ReaderFromFileToCollection {
         this.FILE_PATH = FILE_PATH;
     }
 
-    public void read(){
+    public Map<UUID, HumanBeing> read(){
         try(InputStreamReader reader = new InputStreamReader(new FileInputStream(FILE_PATH));
             BufferedReader bufferedReader = new BufferedReader(reader)){
             String line;
             while((line = bufferedReader.readLine()) != null){
                 String[] data = split(line, ',');
                 DataFileValidator dataValidator = new DataFileValidator(data);
-                if(!dataValidator.isValidateData()) continue;
+                if(!dataValidator.isValidateData()) {
+
+                    continue;
+
+                }
                 try {
                     final UUID id = UUID.fromString(data[0]);
                     final String name = data[1];
                     final Coordinates coordinates = new Coordinates(Float.parseFloat(data[2]), Integer.parseInt(data[3]));
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     formatter = formatter.withLocale(Locale.ROOT);
                     final LocalDate date = LocalDate.parse(data[4], formatter);
                     final boolean realHero = Boolean.parseBoolean(data[5]);
@@ -61,11 +65,9 @@ public class ReaderFromFileToCollection {
         }catch (IOException e){
             System.out.println(Errors.IMPOSSIBLEREADFILE);
         }
-    }
-
-    public Map<UUID, HumanBeing> getHumanBeingCollection() {
         return humanBeingCollection;
     }
+
 
     private String[] split(String s, char regex){
 

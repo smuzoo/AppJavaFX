@@ -17,8 +17,7 @@ public class HumanBeingCollection {
 
     public static void readFile(String FILE_PATH){
         ReaderFromFileToCollection reader = new ReaderFromFileToCollection(FILE_PATH);
-        reader.read();
-        humanBeingCollection = reader.getHumanBeingCollection();
+        humanBeingCollection = reader.read();
     }
 
     public static void add(HumanBeing human){
