@@ -23,15 +23,10 @@ public class CSVFileValidator extends NameFileValidator {
         return !file.canWrite();
     }
 
-    private boolean isFileNotCSV(){
-        return !file.getName().toLowerCase().endsWith(".csv");
-    }
-
     @Override
     protected void addAllErrors(){
         addError(this::isFileNotExist, Errors.NOTEXISTFILE);
         addError(this::isFileNotCanRead, Errors.NOTCANREADFILE);
         addError(this::isFileNotCanWrite, Errors.NOTCANWRITEFILE);
-        addError(this::isFileNotCSV, Errors.NOTCSVFILE);
     }
 }
