@@ -6,7 +6,6 @@ import validators.fields.NameValidator;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -154,14 +153,14 @@ public class HumanBeing implements Comparable<HumanBeing>{
     }
 
     public String getAllFieldsAsString() {
-        /*String impactSpeedString = (impactSpeed != null) ? impactSpeed.toString() : "";
+        String impactSpeedString = (impactSpeed != null) ? impactSpeed.toString() : "";
         String weaponTypeString = (weaponType != null) ? weaponType.toString() : "";
         String moodString = (mood != null) ? mood.toString() : "";
-        String carString = (car != null) ? String.valueOf(car.getStatus()) : "";*/
+        String carString = (car != null) ? String.valueOf(car.getStatus()) : "";
 
         return id + "," + name + "," + coordinates.getX() + "," + coordinates.getY() + "," + creationDate + ","
-                + realHero + "," + hasToothpick + "," + impactSpeed + "," + weaponType + ","
-                + mood + "," + car;
+                + realHero + "," + hasToothpick + "," + impactSpeedString + "," + weaponTypeString + ","
+                + moodString + "," + carString;
     }
 
     private int countPower(){
