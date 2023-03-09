@@ -12,4 +12,6 @@ public class Car {
     public boolean getStatus(){
         return cool;
     }
+
+
 }
