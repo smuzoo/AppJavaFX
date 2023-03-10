@@ -27,6 +27,7 @@ public enum Errors {
     NOTHASFIELD("Номера с таким полем не существует"),
     IMPOSSIBLEREADFILE("Невозможно прочитать файл"),
     IMPOSSIBLEWRITETOFILE("Невозможно записать данные в файл"),
+    MANYRECURSIONS("Превышен лимит рекурсивного вызова команды"),
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y.");
 
     final String error;

@@ -13,7 +13,6 @@ public class ReaderManager extends Reader{
     public String getNewLine(){
         String request = reader.getNewLine();
         if(request == null){
-            System.out.println("Im here");
             setReader(new ReaderFromConsole());
             setNameReader(NameReader.READERCONSOLE);
             request = reader.getNewLine();

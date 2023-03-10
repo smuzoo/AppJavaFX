@@ -7,6 +7,7 @@ import utils.readers.Reader;
 import utils.readers.ReaderFromFile;
 import utils.readers.ReaderManager;
 import validators.commands.ArgumentValidator;
+import validators.commands.RecursionValidator;
 import validators.file.FileValidatorToRead;
 
 import static colors.Colors.*;
@@ -19,13 +20,16 @@ public class ExecuteScript implements Command {
     public void execute(String FILE_PATH){
         countRecursion++;
         ArgumentValidator argumentValidator = new ArgumentValidator(FILE_PATH);
-        FileValidatorToRead fileValidatorToRead = new FileValidatorToRead(FILE_PATH);
-        if(argumentValidator.isValid() & fileValidatorToRead.isValid()){
-            ReaderManager reader = new ReaderManager(new ReaderFromFile(FILE_PATH), NameReader.READERFILE);
-            CommandController commandController = new CommandController(reader);
-            while(reader.getNameReader() != NameReader.READERCONSOLE & countRecursion < MAX_COUNT_RECURSION){
-                String request = reader.getNewLine();
-                commandController.executeCommand(request);
+        if(argumentValidator.isValid()){
+            FileValidatorToRead fileValidatorToRead = new FileValidatorToRead(FILE_PATH);
+            if(fileValidatorToRead.isValid()) {
+                RecursionValidator recursionValidator = new RecursionValidator(countRecursion, MAX_COUNT_RECURSION);
+                ReaderManager reader = new ReaderManager(new ReaderFromFile(FILE_PATH), NameReader.READERFILE);
+                CommandController commandController = new CommandController(reader);
+                while (reader.getNameReader() != NameReader.READERCONSOLE & recursionValidator.isValid()) {
+                    String request = reader.getNewLine();
+                    commandController.executeCommand(request);
+                }
             }
 
         }
