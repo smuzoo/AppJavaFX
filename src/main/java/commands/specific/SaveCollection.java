@@ -4,9 +4,9 @@ import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import commands.Command;
 import utils.FileConstant;
-import utils.ReaderFromConsole;
+import utils.readers.ReaderFromConsole;
 import validators.Errors;
-import validators.file.CSVFileValidator;
+import validators.file.FileValidatorToReadAndWrite;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -20,12 +20,12 @@ public class SaveCollection implements Command {
     public void execute(String ignore){
         String FILE_PATH = FileConstant.getFilePath();
         ReaderFromConsole reader = new ReaderFromConsole();
-        CSVFileValidator csvFileValidator = new CSVFileValidator(FILE_PATH);
-        while (!csvFileValidator.isValid()){
+        FileValidatorToReadAndWrite fileValidatorToReadAndWrite = new FileValidatorToReadAndWrite(FILE_PATH);
+        while (!fileValidatorToReadAndWrite.isValid()){
             System.out.println("Введите название нового файла");
             FILE_PATH = reader.getNewLine();
             FileConstant.setFilePath(FILE_PATH);
-            csvFileValidator = new CSVFileValidator(FILE_PATH);
+            fileValidatorToReadAndWrite = new FileValidatorToReadAndWrite(FILE_PATH);
         }
         try(FileWriter fileWriter = new FileWriter(FILE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {

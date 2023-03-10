@@ -1,9 +1,9 @@
 import collection.HumanBeingCollection;
 import commands.CommandController;
 import utils.FileConstant;
-import utils.ReaderFromConsole;
+import utils.readers.ReaderFromConsole;
 import validators.env.EnvValidator;
-import validators.file.CSVFileValidator;
+import validators.file.FileValidatorToReadAndWrite;
 import validators.file.NameFileValidator;
 
 public class Main {
@@ -13,8 +13,8 @@ public class Main {
         final String FILE_PATH = System.getenv(args[0]);
         NameFileValidator nameFileValidator = new NameFileValidator(FILE_PATH);
         nameFileValidator.validateWithExit();
-        CSVFileValidator csvFileValidator = new CSVFileValidator(FILE_PATH);
-        csvFileValidator.validateWithExit();
+        FileValidatorToReadAndWrite fileValidatorToReadAndWrite = new FileValidatorToReadAndWrite(FILE_PATH);
+        fileValidatorToReadAndWrite.validateWithExit();
         FileConstant.setFilePath(FILE_PATH);
         HumanBeingCollection.readFile(FILE_PATH);
         ReaderFromConsole reader = new ReaderFromConsole();

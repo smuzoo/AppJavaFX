@@ -7,7 +7,7 @@ package collection;
         RAGE("RAGE", "4", 50);
 
         private final String name, order;
-        private int power;
+        private final int power;
 
 
         Mood(String name, String order, int power) {
@@ -22,10 +22,6 @@ package collection;
 
         public String getOrder() {
             return order;
-        }
-
-        public void setPower(int power){
-            this.power = power;
         }
 
         public int getPower() {

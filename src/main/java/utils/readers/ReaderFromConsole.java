@@ -1,14 +1,9 @@
-package utils;
+package utils.readers;
 
 import java.util.Scanner;
 
 public class ReaderFromConsole extends Reader {
     private final Scanner scanner = new Scanner(System.in);
-
-    @Override
-    public String getLastLine(){
-        return lastLine;
-    }
 
     @Override
     public String getNewLine(){

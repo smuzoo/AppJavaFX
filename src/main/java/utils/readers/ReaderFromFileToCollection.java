@@ -1,4 +1,4 @@
-package utils;
+package utils.readers;
 
 import collection.*;
 import validators.Errors;
@@ -16,7 +16,7 @@ import java.util.*;
 
 public class ReaderFromFileToCollection {
     private final String FILE_PATH;
-    private Map<UUID, HumanBeing> humanBeingCollection = new HashMap<>();
+    private final Map<UUID, HumanBeing> humanBeingCollection = new HashMap<>();
 
     public ReaderFromFileToCollection(String FILE_PATH){
         this.FILE_PATH = FILE_PATH;

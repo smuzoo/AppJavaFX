@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class ExistUUIDValidator extends Validator {
 
-    private UUID id;
+    private final UUID id;
 
     public ExistUUIDValidator(UUID id) {
         this.id = id;

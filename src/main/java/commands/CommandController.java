@@ -1,14 +1,14 @@
 package commands;
 
 import commands.specific.*;
-import utils.Reader;
+import utils.readers.Reader;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandController {
     private final Map<String, Command> commands = new HashMap<>();
-    private Reader reader;
+    private final Reader reader;
 
     public CommandController(Reader reader) {
         this.reader = reader;
@@ -41,6 +41,8 @@ public class CommandController {
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
         addCommand("save", new SaveCollection());
+        addCommand("execute_script", new ExecuteScript());
+        addCommand("exit", new Exit());
 
     }
 

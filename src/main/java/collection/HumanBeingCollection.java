@@ -1,6 +1,6 @@
 package collection;
 
-import utils.ReaderFromFileToCollection;
+import utils.readers.ReaderFromFileToCollection;
 
 import java.util.*;
 
@@ -42,10 +42,6 @@ public class HumanBeingCollection {
     public static boolean hasElement(UUID id) {return humanBeingCollection.get(id) != null;}
     
     public static long getCountHumanBeingCollection(){ return humanBeingCollection.size(); }
-
-    public static Set<UUID> getUUIDs(){
-        return humanBeingCollection.keySet();
-    }
 
     public static Set<Map.Entry<UUID, HumanBeing>> getEntrySet(){
         return humanBeingCollection.entrySet();

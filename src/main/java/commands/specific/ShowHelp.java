@@ -2,7 +2,7 @@ package commands.specific;
 
 import commands.Command;
 import commands.CommandController;
-import utils.ReaderFromConsole;
+import utils.readers.ReaderFromConsole;
 
 import java.util.Map;
 

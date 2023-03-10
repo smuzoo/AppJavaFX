@@ -2,8 +2,6 @@ package validators.commands;
 
 import validators.Errors;
 import validators.Validator;
-
-import java.util.Objects;
 import java.util.UUID;
 
 public class RemoveGreaterKeyValidator extends Validator {

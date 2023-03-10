@@ -16,7 +16,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     private UUID id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private boolean realHero;
     private boolean hasToothpick;
     private Integer impactSpeed; //Максимальное значение поля: 496, Поле может быть null

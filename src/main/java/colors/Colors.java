@@ -6,7 +6,7 @@ public enum Colors {
     BLUE("\u001B[34m"),
     RESET("\u001B[0m");
 
-    private String code;
+    private final String code;
 
     Colors(String code){
         this.code = code;

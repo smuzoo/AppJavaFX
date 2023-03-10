@@ -4,7 +4,7 @@ import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import commands.Command;
 import utils.CreatorHumanBeingObject;
-import utils.Reader;
+import utils.readers.Reader;
 
 import java.util.Map;
 import java.util.Set;

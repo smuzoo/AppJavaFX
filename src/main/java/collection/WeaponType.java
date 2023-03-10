@@ -9,7 +9,7 @@ public enum WeaponType {
 
     private final String name, order;
 
-    private int power;
+    private final int power;
 
     WeaponType(String name, String order, int power) {
         this.name = name;
@@ -24,10 +24,6 @@ public enum WeaponType {
 
     public String getOrder() {
         return order;
-    }
-
-    public void setPower(int power){
-        this.power = power;
     }
 
     public int getPower() {

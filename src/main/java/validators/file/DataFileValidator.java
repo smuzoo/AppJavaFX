@@ -8,7 +8,7 @@ import java.util.List;
 public class DataFileValidator {
     private final int COLUMNS_IN_FILE = 11;
     private final String[] data;
-    private List<IsValidating> validatesMethods = new ArrayList<>();
+    private final List<IsValidating> validatesMethods = new ArrayList<>();
     public DataFileValidator(String[] data){
         this.data = data;
     }
