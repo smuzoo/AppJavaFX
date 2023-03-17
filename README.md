@@ -101,10 +101,12 @@ public enum Mood {
     RAGE;
 }
 ```
+<<<<<<< HEAD
 ## Документация
 Документация по всем классам оформлена в javadoc. 
 
 Путь к документации: build/docs/javadoc/index.html
+
 ## Запуск
 
 ### Helios
