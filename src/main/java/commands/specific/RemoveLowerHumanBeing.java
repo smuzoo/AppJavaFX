@@ -11,10 +11,19 @@ import java.util.Set;
 import java.util.UUID;
 import static colors.Colors.*;
 
+/**
+ * The command Remove lower human being.
+ */
 public class RemoveLowerHumanBeing implements Command {
 
     private final Reader reader;
 
+
+    /**
+     * Instantiates a new Remove lower human being.
+     *
+     * @param reader the reader
+     */
     public RemoveLowerHumanBeing(Reader reader) {
         this.reader = reader;
     }

@@ -3,12 +3,20 @@ package validators.fields;
 import validators.Errors;
 import validators.Validator;
 
+/**
+ * The type Coordinates validator.
+ */
 public class CoordinatesValidator extends Validator {
 
     final private String[] coordinates;
     private String x;
     private String y;
 
+    /**
+     * Instantiates a new Coordinates validator.
+     *
+     * @param args the args
+     */
     public CoordinatesValidator(String[] args){
         this.coordinates = args;
     }

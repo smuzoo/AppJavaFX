@@ -12,6 +12,9 @@ import validators.file.FileValidatorToRead;
 
 import static colors.Colors.*;
 
+/**
+ * The command Execute script.
+ */
 public class ExecuteScript implements Command {
     private final static int MAX_COUNT_RECURSION = 300;
     private static int countRecursion = 0;

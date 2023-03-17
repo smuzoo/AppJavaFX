@@ -7,6 +7,9 @@ import commands.Command;
 import java.util.*;
 import static colors.Colors.*;
 
+/**
+ * The command Show field descending mood.
+ */
 public class ShowFieldDescendingMood implements Command {
 
     @Override

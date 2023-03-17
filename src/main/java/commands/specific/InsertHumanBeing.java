@@ -11,10 +11,19 @@ import java.util.UUID;
 
 import static colors.Colors.*;
 
+/**
+ * The command Insert human being.
+ */
 public class InsertHumanBeing implements Command {
 
     private final Reader reader;
 
+
+    /**
+     * Instantiates a new Insert human being.
+     *
+     * @param reader the reader
+     */
     public InsertHumanBeing(Reader reader){
         this.reader = reader;
     }

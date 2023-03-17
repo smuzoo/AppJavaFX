@@ -5,10 +5,21 @@ import validators.Validator;
 
 import java.util.UUID;
 
+/**
+ * The type Uuid validator.
+ */
 public class UUIDValidator extends Validator {
 
+    /**
+     * The Id.
+     */
     protected final String id;
 
+    /**
+     * Instantiates a new Uuid validator.
+     *
+     * @param id the id
+     */
     public UUIDValidator(String id) {
         this.id = id;
     }

@@ -6,15 +6,29 @@ import utils.readers.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Command controller.
+ */
 public class CommandController {
     private final Map<String, Command> commands = new HashMap<>();
     private final Reader reader;
 
+
+    /**
+     * Instantiates a new Command controller.
+     *
+     * @param reader the reader
+     */
     public CommandController(Reader reader) {
         this.reader = reader;
         init();
     }
 
+    /**
+     * Execute command.
+     *
+     * @param commandText the command text
+     */
     public void executeCommand(String commandText) {
         final String[] commandWithArgument = commandText.split(" ");
         final String commandName = commandWithArgument.length > 0 ? commandWithArgument[0] : "";
@@ -27,6 +41,7 @@ public class CommandController {
     }
 
     private void init() {
+        /** Initialize all commands */
         addCommand("show", new ShowCollection());
         addCommand("help", new ShowHelp());
         addCommand("info", new ShowInfo());
@@ -50,6 +65,11 @@ public class CommandController {
         commands.put(nameCommand, command);
     }
 
+    /**
+     * Gets commands.
+     *
+     * @return the commands
+     */
     public Map<String, Command> getCommands() {
         return commands;
     }

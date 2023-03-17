@@ -8,8 +8,8 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group 'o.3143'
+version '1.0'
 
 repositories {
     mavenCentral()

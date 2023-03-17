@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.UUID;
 import static colors.Colors.*;
 
+/**
+ * The command Show collection.
+ */
 public class ShowCollection implements Command {
 
     @Override

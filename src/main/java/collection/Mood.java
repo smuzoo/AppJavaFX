@@ -1,10 +1,25 @@
 package collection;
 
-    public enum Mood {
-        LONGING("LONGING", "1", 0),
-        GLOOM("GLOOM", "2", 1),
-        APATHY("APATHY", "3", 2),
-        RAGE("RAGE", "4", 50);
+/**
+ * The enum Mood.
+ */
+public enum Mood {
+    /**
+     * Longing mood.
+     */
+    LONGING("LONGING", "1", 0),
+    /**
+     * Gloom mood.
+     */
+    GLOOM("GLOOM", "2", 1),
+    /**
+     * Apathy mood.
+     */
+    APATHY("APATHY", "3", 2),
+    /**
+     * Rage mood.
+     */
+    RAGE("RAGE", "4", 50);
 
         private final String name, order;
         private final int power;
@@ -16,19 +31,41 @@ package collection;
             this.power = power;
         }
 
-        public String getName() {
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
+    public String getName() {
             return name;
         }
 
-        public String getOrder() {
+    /**
+     * Gets order.
+     *
+     * @return the order
+     */
+    public String getOrder() {
             return order;
         }
 
-        public int getPower() {
+    /**
+     * Gets power.
+     *
+     * @return the power
+     */
+    public int getPower() {
             return power;
         }
 
-        public static Mood getMood(String s) throws  IllegalArgumentException{
+    /**
+     * Gets mood for field name or order.
+     *
+     * @param s the s
+     * @return the mood
+     * @throws IllegalArgumentException the illegal argument exception
+     */
+    public static Mood getMood(String s) throws  IllegalArgumentException{
             Mood[] moodValues = Mood.values();
             for (Mood mood : moodValues) {
                 if (s.equals(mood.getName()) || s.equals(mood.getOrder())) {
@@ -38,7 +75,12 @@ package collection;
             return null;
         }
 
-        public static String getStringValues() {
+    /**
+     * Gets string all values in Mood.
+     *
+     * @return the string values in Mood
+     */
+    public static String getStringValues() {
             StringBuilder sb = new StringBuilder();
             for (Mood mood : Mood.values()) {
                 sb.append(mood.getOrder()).append(" - ").append(mood.getName()).append(" | ");

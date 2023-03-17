@@ -14,14 +14,27 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 
 
+/**
+ * The type Reader from file to collection.
+ */
 public class ReaderFromFileToCollection {
     private final String FILE_PATH;
     private final Map<UUID, HumanBeing> humanBeingCollection = new HashMap<>();
 
+    /**
+     * Instantiates a new Reader from file to collection.
+     *
+     * @param FILE_PATH the file path
+     */
     public ReaderFromFileToCollection(String FILE_PATH){
         this.FILE_PATH = FILE_PATH;
     }
 
+    /**
+     * Read map.
+     *
+     * @return the map
+     */
     public Map<UUID, HumanBeing> read(){
         try(InputStreamReader reader = new InputStreamReader(new FileInputStream(FILE_PATH));
             BufferedReader bufferedReader = new BufferedReader(reader)){

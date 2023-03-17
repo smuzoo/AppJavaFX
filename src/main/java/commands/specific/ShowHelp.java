@@ -8,6 +8,9 @@ import java.util.Map;
 
 import static colors.Colors.*;
 
+/**
+ * The command Show help.
+ */
 public class ShowHelp implements Command {
 
     @Override

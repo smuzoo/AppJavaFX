@@ -14,10 +14,19 @@ import java.util.UUID;
 
 import static colors.Colors.*;
 
+/**
+ * The command Update human being.
+ */
 public class UpdateHumanBeing implements Command {
 
     private final Reader reader;
 
+
+    /**
+     * Instantiates a new Update human being.
+     *
+     * @param reader the reader
+     */
     public UpdateHumanBeing(Reader reader) {
         this.reader = reader;
     }

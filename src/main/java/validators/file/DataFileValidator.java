@@ -5,10 +5,19 @@ import validators.IsValidating;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Data file validator.
+ */
 public class DataFileValidator {
     private final int COLUMNS_IN_FILE = 11;
     private final String[] data;
     private final List<IsValidating> validatesMethods = new ArrayList<>();
+
+    /**
+     * Instantiates a new Data file validator.
+     *
+     * @param data the data
+     */
     public DataFileValidator(String[] data){
         this.data = data;
     }
@@ -59,6 +68,11 @@ public class DataFileValidator {
         validatesMethods.add(this::isBiggerImpactSpeed);
     }
 
+    /**
+     * Is validate data boolean.
+     *
+     * @return the boolean
+     */
     public boolean isValidateData(){
         addValidMethods();
         for(IsValidating method : validatesMethods){

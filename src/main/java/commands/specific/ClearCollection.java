@@ -5,6 +5,9 @@ import commands.Command;
 
 import static colors.Colors.*;
 
+/**
+ * The command Clear collection.
+ */
 public class ClearCollection implements Command {
 
     @Override

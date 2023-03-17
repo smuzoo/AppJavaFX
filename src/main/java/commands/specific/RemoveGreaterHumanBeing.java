@@ -11,9 +11,17 @@ import java.util.Set;
 import java.util.UUID;
 import static colors.Colors.*;
 
+/**
+ * The command Remove greater human being.
+ */
 public class RemoveGreaterHumanBeing implements Command {
     private final Reader reader;
 
+    /**
+     * Instantiates a new Remove greater human being.
+     *
+     * @param reader the reader
+     */
     public RemoveGreaterHumanBeing(Reader reader) {
         this.reader = reader;
     }

@@ -8,6 +8,9 @@ import java.util.UUID;
 
 import static colors.Colors.*;
 
+/**
+ * The command Remove element.
+ */
 public class RemoveElement implements Command {
 
     @Override

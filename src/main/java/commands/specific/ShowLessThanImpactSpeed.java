@@ -6,6 +6,9 @@ import commands.Command;
 import validators.commands.ImpactSpeedValidator;
 import static colors.Colors.*;
 
+/**
+ * The command Show less than impact speed.
+ */
 public class ShowLessThanImpactSpeed implements Command {
 
     @Override

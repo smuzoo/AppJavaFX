@@ -6,7 +6,18 @@ import validators.env.EnvValidator;
 import validators.file.FileValidatorToReadAndWrite;
 import validators.file.NameFileValidator;
 
+/**
+ * The main class to launch app.
+ * @author Kozhinov Pavel and Dudar Ilia
+ * @author Dudar Ilia
+ * @version 1.0
+ */
 public class Main {
+    /**
+     * The main method.
+     *
+     * @param args the input file collection
+     */
     public static void main(String[] args) {
         EnvValidator envValidator = new EnvValidator(args.length);
         envValidator.validateWithExit();

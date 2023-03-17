@@ -10,6 +10,9 @@ import java.util.Set;
 import java.util.UUID;
 import static colors.Colors.*;
 
+/**
+ * The command Remove greater key.
+ */
 public class RemoveGreaterKey implements Command {
 
     @Override

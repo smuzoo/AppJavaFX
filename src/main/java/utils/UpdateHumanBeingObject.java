@@ -8,14 +8,28 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * The type Update human being object.
+ */
 public class UpdateHumanBeingObject {
 
     private final Reader reader;
 
+    /**
+     * Instantiates a new Update human being object.
+     *
+     * @param reader the reader
+     */
     public UpdateHumanBeingObject(Reader reader) {
         this.reader = reader;
     }
 
+    /**
+     * Update fields in HumanBeing object.
+     *
+     * @param human the human
+     * @param field the field
+     */
     public void update(HumanBeing human, Fields field) {
         Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
         System.out.println(field);
@@ -32,6 +46,13 @@ public class UpdateHumanBeingObject {
 
     }
 
+    /**
+     * Update fields that may null in HumanBeing object.
+     *
+     * @param human      the human
+     * @param field      the field
+     * @param valueField the value field
+     */
     public void updateNullSetter(HumanBeing human, Fields field, String valueField){
         Map<Fields, Consumer<String>> setters = human.getSetters();
         setters.get(field).accept(valueField);

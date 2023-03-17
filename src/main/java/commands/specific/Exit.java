@@ -5,6 +5,9 @@ import commands.Command;
 import static colors.Colors.BLUE;
 import static colors.Colors.RESET;
 
+/**
+ * The command Exit.
+ */
 public class Exit implements Command {
 
     @Override

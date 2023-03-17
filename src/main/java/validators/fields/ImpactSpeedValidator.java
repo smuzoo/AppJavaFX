@@ -3,10 +3,18 @@ package validators.fields;
 import validators.Errors;
 import validators.Validator;
 
+/**
+ * The type Impact speed validator.
+ */
 public class ImpactSpeedValidator extends Validator {
 
     final private String impactSpeed;
 
+    /**
+     * Instantiates a new Impact speed validator.
+     *
+     * @param impactSpeed the impact speed
+     */
     public ImpactSpeedValidator(String impactSpeed) {
         this.impactSpeed = impactSpeed;
     }

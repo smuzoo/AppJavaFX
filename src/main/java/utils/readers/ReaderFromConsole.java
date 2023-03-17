@@ -2,6 +2,9 @@ package utils.readers;
 
 import java.util.Scanner;
 
+/**
+ * The type Reader from console.
+ */
 public class ReaderFromConsole extends Reader {
     private final Scanner scanner = new Scanner(System.in);
 

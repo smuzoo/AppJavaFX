@@ -14,6 +14,9 @@ import java.io.IOException;
 import static colors.Colors.*;
 
 
+/**
+ * The command Save collection.
+ */
 public class SaveCollection implements Command {
 
     @Override
