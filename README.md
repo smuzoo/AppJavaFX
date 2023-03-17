@@ -111,10 +111,10 @@ public enum Mood {
 ## Запуск
 
 ### Helios
-``` bash
+```bash
 export <название_переменной_окружения>=<путь_к_файлу>
 cd /home/studs/s367292/Lab5/ConsoleApp
-java -jar ./build/libs/ConsoleApp-1.0-SNAPSHOT.jar <название_переменной_окружения>
+java -jar ./build/libs/ConsoleApp-1.0.jar <название_переменной_окружения>
 ```
 
 ### На локальном компьютере
@@ -124,5 +124,5 @@ sudo apt install openjdk-17-jdk
 git clone https://github.com/oAnthocyane/ConsoleApp.git
 cd ConsoleApp
 export <название_переменной_окружения>=<путь_к_файлу>
-java -jar ./build/libs/ConsoleApp-1.0-SNAPSHOT.jar <название_переменной_окружения>
+java -jar ./build/libs/ConsoleApp-1.0.jar <название_переменной_окружения>
 ```
