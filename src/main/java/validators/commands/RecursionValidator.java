@@ -3,31 +3,35 @@ package validators.commands;
 import validators.Errors;
 import validators.Validator;
 
+import java.util.List;
+
 /**
  * The type Recursion validator.
  */
 public class RecursionValidator extends Validator {
 
-    private final int countRecursion;
-    private final int MAX_RECURSION;
+    private final String nameFile;
+    private final List<String> historyFiles;
 
     /**
      * Instantiates a new Recursion validator.
      *
-     * @param countRecursion the count recursion
-     * @param MAX_RECURSION  the max count recursion
+     * @param nameFile     the nameFile
+     * @param historyFiles the historyFiles
      */
-    public RecursionValidator(int countRecursion, int MAX_RECURSION) {
-        this.countRecursion = countRecursion;
-        this.MAX_RECURSION = MAX_RECURSION;
+    public RecursionValidator(String nameFile, List<String> historyFiles) {
+        this.nameFile = nameFile;
+        this.historyFiles = historyFiles;
     }
 
-    private boolean isManyRecursion(){
-        return countRecursion > MAX_RECURSION;
+    private boolean isRecursion(){
+        System.out.println(historyFiles);
+        System.out.println(nameFile);
+        return historyFiles.contains(nameFile);
     }
 
     @Override
     public void addAllErrors(){
-        addError(this::isManyRecursion, Errors.MANYRECURSIONS);
+        addError(this::isRecursion, Errors.RECURSION);
     }
 }

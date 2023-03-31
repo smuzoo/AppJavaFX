@@ -29,7 +29,6 @@ public class ReaderManager extends Reader{
         if(request == null){
             setReader(new ReaderFromConsole());
             setNameReader(NameReader.READERCONSOLE);
-            request = reader.getNewLine();
         }
         return request;
     }

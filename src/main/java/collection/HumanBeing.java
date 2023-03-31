@@ -70,7 +70,6 @@ public class HumanBeing implements Comparable<HumanBeing>{
 
     /**
      * Instantiates a new Human being.
-     *
      */
     public HumanBeing(){
         this.creationDate = LocalDate.now();

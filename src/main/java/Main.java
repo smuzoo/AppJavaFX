@@ -8,6 +8,7 @@ import validators.file.NameFileValidator;
 
 /**
  * The main class to launch app.
+ *
  * @author Kozhinov Pavel and Dudar Ilia
  * @author Dudar Ilia
  * @version 1.0

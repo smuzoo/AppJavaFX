@@ -10,29 +10,42 @@ import validators.commands.ArgumentValidator;
 import validators.commands.RecursionValidator;
 import validators.file.FileValidatorToRead;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static colors.Colors.*;
 
 /**
  * The command Execute script.
  */
 public class ExecuteScript implements Command {
-    private final static int MAX_COUNT_RECURSION = 300;
-    private static int countRecursion = 0;
+    private List<String> historyFiles;
+
+    /**
+     * Instantiates a new Execute script.
+     *
+     * @param historyFiles the history files
+     */
+    public ExecuteScript(List<String> historyFiles) {
+        this.historyFiles = historyFiles;
+    }
 
     @Override
     public void execute(String FILE_PATH){
-        countRecursion++;
         ArgumentValidator argumentValidator = new ArgumentValidator(FILE_PATH);
         if(argumentValidator.isValid()){
             FileValidatorToRead fileValidatorToRead = new FileValidatorToRead(FILE_PATH);
             if(fileValidatorToRead.isValid()) {
-                RecursionValidator recursionValidator = new RecursionValidator(countRecursion, MAX_COUNT_RECURSION);
+                RecursionValidator recursionValidator = new RecursionValidator(FILE_PATH, historyFiles);
                 ReaderManager reader = new ReaderManager(new ReaderFromFile(FILE_PATH), NameReader.READERFILE);
-                CommandController commandController = new CommandController(reader);
-                while (reader.getNameReader() != NameReader.READERCONSOLE & recursionValidator.isValid()) {
+                CommandController commandController = new CommandController(reader, historyFiles);
+                while (reader.getNameReader() != NameReader.READERCONSOLE) {
+                    if(!recursionValidator.isValid()) break;
                     String request = reader.getNewLine();
+                    historyFiles.add(FILE_PATH);
                     commandController.executeCommand(request);
                 }
+                historyFiles.clear();
             }
 
         }

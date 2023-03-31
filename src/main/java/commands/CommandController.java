@@ -3,7 +3,9 @@ package commands;
 import commands.specific.*;
 import utils.readers.Reader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,6 +14,7 @@ import java.util.Map;
 public class CommandController {
     private final Map<String, Command> commands = new HashMap<>();
     private final Reader reader;
+    private List<String> historyFiles;
 
 
     /**
@@ -21,6 +24,18 @@ public class CommandController {
      */
     public CommandController(Reader reader) {
         this.reader = reader;
+        init();
+    }
+
+    /**
+     * Instantiates a new Command controller.
+     *
+     * @param reader       the reader
+     * @param historyFiles the history files
+     */
+    public CommandController(Reader reader, List<String> historyFiles) {
+        this.reader = reader;
+        this.historyFiles = historyFiles;
         init();
     }
 
@@ -56,7 +71,7 @@ public class CommandController {
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
         addCommand("save", new SaveCollection());
-        addCommand("execute_script", new ExecuteScript());
+        addCommand("execute_script", new ExecuteScript(new ArrayList<>()));
         addCommand("exit", new Exit());
 
     }

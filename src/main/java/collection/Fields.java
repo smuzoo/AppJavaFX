@@ -4,9 +4,9 @@ import validators.Errors;
 
 /**
  * Enum containing all fields of the HumanBeing class with 3 fields.
- *  * 1 - name
- *  * 2 - comment
- *  * 3 - queue in order (order)
+ * * 1 - name
+ * * 2 - comment
+ * * 3 - queue in order (order)
  */
 public enum Fields {
 
@@ -73,6 +73,7 @@ public enum Fields {
 
     /**
      * Method that returns by field order, Field @param order the order
+     *
      * @param order the order in fields
      * @return the fields
      */

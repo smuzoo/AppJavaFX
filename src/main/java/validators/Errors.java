@@ -58,7 +58,7 @@ public enum Errors {
     /**
      * Notcantransformtoint errors.
      */
-    NOTCANTRANSFORMTOINT("Данный аргумент не является числом"),
+    NOTCANTRANSFORMTOINT("Данный аргумент не является целым числом"),
     /**
      * Emptyfield errors.
      */
@@ -90,7 +90,7 @@ public enum Errors {
     /**
      * Manyrecursions errors.
      */
-    MANYRECURSIONS("Превышен лимит рекурсивного вызова команды"),
+    RECURSION("Обнаружена рекурсия"),
     /**
      * Nothastwocoordinates errors.
      */
