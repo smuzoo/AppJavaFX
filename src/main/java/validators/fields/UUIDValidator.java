@@ -1,5 +1,7 @@
 package validators.fields;
 
+import collection.HumanBeing;
+import collection.HumanBeingCollection;
 import validators.Errors;
 import validators.Validator;
 
@@ -35,6 +37,11 @@ public class UUIDValidator extends Validator {
             return true;
         }
         return false;
+    }
+
+    private boolean isUsed(){
+        return HumanBeingCollection.getHuman(UUID.fromString(id)) != null;
+
     }
 
     @Override

@@ -94,8 +94,11 @@ public enum Errors {
     /**
      * Nothastwocoordinates errors.
      */
-    NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y.");
-
+    NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y."),
+    /**
+     * Usedid errors.
+     */
+    USEDID("Данный id уже существует");
     /**
      * The Error.
      */
