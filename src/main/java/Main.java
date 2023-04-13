@@ -1,3 +1,5 @@
+import Database.Database;
+import authentication.Authentication;
 import collection.HumanBeingCollection;
 import commands.CommandController;
 import utils.FileConstant;
@@ -29,6 +31,7 @@ public class Main {
         fileValidatorToReadAndWrite.validateWithExit();
         FileConstant.setFilePath(FILE_PATH);
         HumanBeingCollection.readFile(FILE_PATH);
+        Authentication.auth();
         ReaderFromConsole reader = new ReaderFromConsole();
         CommandController commandController = new CommandController(reader);
         String request;

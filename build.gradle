@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id 'application'
 }
+
+mainClassName = 'Main'
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -17,15 +20,27 @@ repositories {
 
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.postgresql:postgresql:42.3.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-jar {
+application {
+    mainClassName = 'Main'
+}
+
+jar{
     manifest {
-        attributes 'Main-Class': 'Main'
+        attributes 'Main-Class': 'Main',
+                'Class-Path' : '.'
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }
+
 
 test {
     useJUnitPlatform()

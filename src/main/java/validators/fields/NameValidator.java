@@ -23,8 +23,11 @@ public class NameValidator extends Validator {
         return name.trim().equals("");
     }
 
+    private boolean isHaveSpace(){ return name.contains(" ");}
+
     @Override
     public void addAllErrors(){
         addError(this::isEmpty, Errors.EMPTYFIELD);
+        addError(this::isHaveSpace, Errors.ISHAVESPACE);
     }
 }

@@ -95,6 +95,10 @@ public enum Errors {
      * Nothastwocoordinates errors.
      */
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y."),
+
+    ISNOTEXISTENTOPTION("Данного варианта не существует"),
+
+    ISHAVESPACE("Данное поле не может содержать пробел"),
     /**
      * Usedid errors.
      */
