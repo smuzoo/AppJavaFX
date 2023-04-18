@@ -99,6 +99,8 @@ public enum Errors {
     ISNOTEXISTENTOPTION("Данного варианта не существует"),
 
     ISHAVESPACE("Данное поле не может содержать пробел"),
+
+    NOTCREATETHISUSER("Данный объект был создан другим пользователем, Вы не можете его модифицировать"),
     /**
      * Usedid errors.
      */

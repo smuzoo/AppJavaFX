@@ -1,12 +1,17 @@
 package collection;
 
+import authentication.User;
 import validators.fields.CoordinatesValidator;
 import validators.fields.ImpactSpeedValidator;
 import validators.fields.NameValidator;
+
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -16,7 +21,7 @@ import java.util.function.Predicate;
 public class HumanBeing implements Comparable<HumanBeing>{
     private final Map<Fields, Predicate<String>> notNullSetters = new LinkedHashMap<>(); // Все сеттеры, устанавливающие поля, которые не должны быть null
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>(); // Все сеттеры, устанавливающие поля, которые могут быть null
-    private UUID id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private final LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -26,7 +31,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     private WeaponType weaponType; //Поле может быть null
     private Mood mood; //Поле может быть null
     private Car car; //Поле может быть null
-
+    private String userLogin;
     {
         /**Adding all setters to Map*/
         addNotNullSetter(Fields.NAME, this::isSetName);
@@ -54,8 +59,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param mood         the mood
      * @param car          the car
      */
-    public HumanBeing(UUID id, String name, Coordinates coordinates, LocalDate creationDate, boolean realHero, boolean hasToothpick,
-                      Integer impactSpeed, WeaponType weaponType, Mood mood, Car car){
+    public HumanBeing(Long id, String name, Coordinates coordinates, LocalDate creationDate, boolean realHero, boolean hasToothpick,
+                      Integer impactSpeed, WeaponType weaponType, Mood mood, Car car, String userLogin){
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -66,6 +71,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.weaponType = weaponType;
         this.mood = mood;
         this.car = car;
+        this.userLogin = userLogin;
     }
 
     /**
@@ -73,6 +79,45 @@ public class HumanBeing implements Comparable<HumanBeing>{
      */
     public HumanBeing(){
         this.creationDate = LocalDate.now();
+        this.userLogin = User.getLogin();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public Timestamp getCreationDate() {
+        LocalDateTime localDateTime = creationDate.atStartOfDay();
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+        return Timestamp.valueOf(zonedDateTime.toLocalDateTime());
+    }
+
+    public boolean isRealHero() {
+        return realHero;
+    }
+
+    public boolean isHasToothpick() {
+        return hasToothpick;
+    }
+
+    public WeaponType getWeaponType() {
+        return weaponType;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public int getPower() {
+        return countPower();
     }
 
     /**
@@ -98,7 +143,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @param id the id
      */
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -138,6 +183,10 @@ public class HumanBeing implements Comparable<HumanBeing>{
     public void setHasToothpick(String hasToothpick) {
         if(hasToothpick.equals("1")) this.hasToothpick = true;
         else this.hasToothpick = Boolean.parseBoolean(hasToothpick);
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     /**
@@ -236,7 +285,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the id
      */
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

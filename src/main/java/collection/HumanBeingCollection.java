@@ -1,7 +1,10 @@
 package collection;
 
-import utils.readers.ReaderFromFileToCollection;
+import Database.Database;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -10,13 +13,14 @@ import java.util.*;
  */
 public class HumanBeingCollection {
 
-    private static Map<UUID, HumanBeing> humanBeingCollection;
-    private final static Date dateOfInitialization;
+    private static final Map<Long, HumanBeing> humanBeingCollection;
+    private static final Date dateOfInitialization;
     private static Date dateOfLastChange;
 
     static {
         dateOfInitialization = new Date();
         dateOfLastChange = new Date();
+        humanBeingCollection = new HashMap<>();
     }
 
     /**
@@ -24,9 +28,32 @@ public class HumanBeingCollection {
      *
      * @param FILE_PATH the file path
      */
-    public static void readFile(String FILE_PATH){
-        ReaderFromFileToCollection reader = new ReaderFromFileToCollection(FILE_PATH);
-        humanBeingCollection = reader.read();
+    public static void readFromDatabase(){
+        Database db = Database.getInstance();
+        ResultSet humanBeingObject = db.getHumanBeings();
+        try {
+            while(humanBeingObject.next()){
+                Long id = humanBeingObject.getLong(1);
+                String name = humanBeingObject.getString(2);
+                float x = humanBeingObject.getFloat(3);
+                Integer y = humanBeingObject.getInt(4);
+                LocalDate creationDate = humanBeingObject.getDate(5).toLocalDate();
+                boolean realhero = humanBeingObject.getBoolean(6);
+                boolean hastoothpick = humanBeingObject.getBoolean(7);
+                Integer impactSpeed = humanBeingObject.getInt(8);
+                WeaponType weaponType = WeaponType.getWeaponType(humanBeingObject.getString(9));
+                Mood mood = Mood.getMood(humanBeingObject.getString(10));
+                Car car = new Car(humanBeingObject.getBoolean(11));
+                String userLogin = humanBeingObject.getString(12);
+                add(new HumanBeing(id, name, new Coordinates(x, y), creationDate, realhero, hastoothpick, impactSpeed,
+                        weaponType, mood, car, userLogin));
+                db.closeConnection();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     /**
@@ -52,7 +79,7 @@ public class HumanBeingCollection {
      *
      * @param id the id
      */
-    public static void remove(UUID id){
+    public static void remove(Long id){
         dateOfLastChange = new Date();
         humanBeingCollection.remove(id);
     }
@@ -63,7 +90,7 @@ public class HumanBeingCollection {
      * @param id the id
      * @return the human being
      */
-    public static HumanBeing getHuman(UUID id){
+    public static HumanBeing getHuman(Long id){
         return humanBeingCollection.get(id);
     }
 
@@ -73,7 +100,7 @@ public class HumanBeingCollection {
      * @param id the id
      * @return the boolean
      */
-    public static boolean hasElement(UUID id) {return humanBeingCollection.get(id) != null;}
+    public static boolean hasElement(Long id) {return humanBeingCollection.get(id) != null;}
 
     /**
      * Get count HumanBeing collection long.
@@ -87,7 +114,7 @@ public class HumanBeingCollection {
      *
      * @return the set
      */
-    public static Set<Map.Entry<UUID, HumanBeing>> getEntrySet(){
+    public static Set<Map.Entry<Long, HumanBeing>> getEntrySet(){
         return humanBeingCollection.entrySet();
     }
 
@@ -114,7 +141,7 @@ public class HumanBeingCollection {
      *
      * @return the HumanBeing collection
      */
-    public static Map<UUID, HumanBeing> getHumanBeingCollection() {
+    public static Map<Long, HumanBeing> getHumanBeingCollection() {
         return humanBeingCollection;
     }
 

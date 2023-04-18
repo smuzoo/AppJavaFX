@@ -2,7 +2,6 @@ package validators.commands;
 
 import validators.Errors;
 import validators.Validator;
-import java.util.UUID;
 
 /**
  * The type Remove greater key validator.
@@ -35,20 +34,14 @@ public class RemoveGreaterKeyValidator extends Validator {
      *
      * @return the boolean
      */
-    protected boolean isNotCanTransformToUUID(){
-        String id = argument;
-        try{
-            UUID.fromString(id);
-        }
-        catch (IllegalArgumentException ex){
-            return true;
-        }
-        return false;
+    protected boolean isNotCanTransformToID(){
+        String regex = "^-?\\d+$";
+        return argument.matches(regex);
     }
 
     @Override
     protected void addAllErrors() {
         addError(this::isNotHasArgument, Errors.NOTHASARGUMENT);
-        addError(this::isNotCanTransformToUUID, Errors.NOTCANTRANSFORMTOUUID);
+        addError(this::isNotCanTransformToID, Errors.NOTCANTRANSFORMTOUUID);
     }
 }

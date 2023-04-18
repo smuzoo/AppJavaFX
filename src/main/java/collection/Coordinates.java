@@ -4,7 +4,7 @@ package collection;
  * The type Coordinates.
  */
 public class Coordinates {
-    private float x; //Значение поля должно быть больше -809
+    private float x; //Значение поля должно быть меньше -809
     private Integer y; //Поле не может быть null
 
     /**

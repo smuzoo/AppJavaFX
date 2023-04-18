@@ -17,10 +17,8 @@ public class CountGreaterThanImpactSpeed implements Command {
         ImpactSpeedValidator impactSpeedValidator = new ImpactSpeedValidator(argument);
         if(impactSpeedValidator.isValid()){
             Integer impactSpeed = Integer.parseInt(argument);
-            int count = 0;
-            for(HumanBeing human : HumanBeingCollection.getHumanBeings()){
-                if(human.getImpactSpeed() > impactSpeed) count++;
-            }
+            long count = HumanBeingCollection.getHumanBeings().stream().filter(human ->
+                    human.getImpactSpeed() > impactSpeed).count();
             System.out.println("Количество элементов HumanBeing, превышающих impactSpeed=" + impactSpeed +
                     " равен " + count);
         }

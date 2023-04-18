@@ -1,7 +1,10 @@
 package commands;
 
+import authentication.Authentication;
+import authentication.User;
 import commands.specific.*;
 import utils.readers.Reader;
+import validators.fields.NotEqualsValidator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +52,19 @@ public class CommandController {
         final String commandName = commandWithArgument.length > 0 ? commandWithArgument[0] : "";
         final String argument = commandWithArgument.length > 1 ? commandWithArgument[1] : "";
         Command command = getCommand(commandName);
-        if (command == null) System.out.println("У меня нет такой команды");
+        if (!User.isLogin()) {
+            String action;
+            System.out.println("У вас нет доступа к командам, т.к. вы не вошли в систему");
+            do {
+                System.out.println("Хотите войти в систему? (y/n/exit)");
+                action = reader.getNewLine();
+            }while (!(new NotEqualsValidator(action, "y", "n", "exit").isValid()));
+            if(action.equals("y")) Authentication.auth();
+            else if (action.equals("exit")) System.exit(0);
+
+        }
+        if (command == null) System.out.println("Неверная команда. Воспользуйтесь командой help " +
+                "для просмотра существующих команд");
         else {
             command.execute(argument);
         }
@@ -70,7 +85,6 @@ public class CommandController {
         addCommand("remove_greater", new RemoveGreaterHumanBeing(reader));
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
-        addCommand("save", new SaveCollection());
         addCommand("execute_script", new ExecuteScript(new ArrayList<>()));
         addCommand("exit", new Exit());
 

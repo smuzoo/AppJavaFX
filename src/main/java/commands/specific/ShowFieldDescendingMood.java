@@ -21,10 +21,7 @@ public class ShowFieldDescendingMood implements Command {
             else if (human1.getMood() == null & human2.getMood() == null) return 0;
             return human2.getMoodPower() - human1.getMoodPower();
         });
-        for(HumanBeing human : humanBeingSortedByMood){
-            if(human.getMood() == null) System.out.println("null");
-            else System.out.println(human.getMood());
-        }
+        humanBeingSortedByMood.forEach(human -> { System.out.println(human.getMood()); });
     }
 
     @Override

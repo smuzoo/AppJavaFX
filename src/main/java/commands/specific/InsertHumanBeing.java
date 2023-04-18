@@ -1,12 +1,15 @@
 package commands.specific;
 
+import Database.Database;
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import commands.Command;
 import utils.CreatorHumanBeingObject;
 import utils.readers.Reader;
-import validators.fields.UUIDValidator;
+import validators.fields.IDValidator;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 import static colors.Colors.*;
@@ -32,20 +35,34 @@ public class InsertHumanBeing implements Command {
     public void execute(String idArgument){
         CreatorHumanBeingObject creatorHumanBeingObject = new CreatorHumanBeingObject(reader);
         /* если id == null то UUID генерируется автоматически: не факт, что так должно быть, в ТЗ такого нет*/
-        UUID id = null;
+        Long id = null;
         if(idArgument.equals("null")){
-            id = UUID.randomUUID();
+            Database db = Database.getInstance();
+            ResultSet rs = db.getNewId("users_id_seq");
+            try {
+                rs.next();
+                id = rs.getLong(1);
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+            db.closeConnection();
+
         }else{
-            UUIDValidator uuidValidator = new UUIDValidator(idArgument);
-            if(uuidValidator.isValid()){
-                id = UUID.fromString(idArgument);
+            IDValidator idValidator = new IDValidator(idArgument);
+            if(idValidator.isValid()){
+                id = Long.parseLong(idArgument);
             }
         }
         if(id != null){
             HumanBeing human = creatorHumanBeingObject.create();
             human.setId(id);
-            HumanBeingCollection.add(human);
-            System.out.println("Элемент успешно добавлен в коллекцию");
+            Database db = Database.getInstance();
+            int update = db.addHumanBeingToDatabase("human_beings", human);
+            if(update > 0){
+                HumanBeingCollection.add(human);
+                System.out.println("Элемент успешно добавлен в коллекцию");
+            }
+            db.closeConnection();
         }
 
     }

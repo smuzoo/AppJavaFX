@@ -1,6 +1,5 @@
 package validators.fields;
 
-import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import validators.Errors;
 import validators.Validator;
@@ -10,7 +9,7 @@ import java.util.UUID;
 /**
  * The type Uuid validator.
  */
-public class UUIDValidator extends Validator {
+public class IDValidator extends Validator {
 
     /**
      * The Id.
@@ -22,7 +21,7 @@ public class UUIDValidator extends Validator {
      *
      * @param id the id
      */
-    public UUIDValidator(String id) {
+    public IDValidator(String id) {
         this.id = id;
     }
 
@@ -30,17 +29,13 @@ public class UUIDValidator extends Validator {
         return id.equals("");
     }
 
-    private boolean isNotCanTransformToUUID(){
-        try {
-            UUID.fromString(id);
-        }catch (IllegalArgumentException e){
-            return true;
-        }
-        return false;
+    protected boolean isNotCanTransformToUUID(){
+        String regex = "^-?\\d+$";
+        return id.matches(regex);
     }
 
     private boolean isUsed(){
-        return HumanBeingCollection.getHuman(UUID.fromString(id)) != null;
+        return HumanBeingCollection.hasElement(Long.parseLong(id));
 
     }
 
@@ -48,6 +43,7 @@ public class UUIDValidator extends Validator {
     public void addAllErrors(){
         addError(this::isEmpty, Errors.EMPTYFIELD);
         addError(this::isNotCanTransformToUUID, Errors.NOTCANTRASFORMTOUUID);
+        addError(this::isUsed, Errors.USEDID);
     }
 
 }

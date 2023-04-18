@@ -1,5 +1,6 @@
 package commands.specific;
 
+import Database.Database;
 import collection.HumanBeingCollection;
 import commands.Command;
 
@@ -12,8 +13,15 @@ public class ClearCollection implements Command {
 
     @Override
     public void execute(String ignore){
-        HumanBeingCollection.clear();
-        System.out.println("Коллекция успешно очищена");
+        Database db = Database.getInstance();
+        int update = db.truncateTable("human_beings");
+        if(update > 0){
+            HumanBeingCollection.clear();
+            System.out.println("Коллекция успешно очищена");
+        }else {
+            System.out.println("Коллекция пуста");
+        }
+        db.closeConnection();
     }
 
     @Override

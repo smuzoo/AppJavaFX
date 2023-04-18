@@ -1,5 +1,6 @@
 package commands.specific;
 
+import Database.Database;
 import collection.Fields;
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
@@ -7,8 +8,9 @@ import commands.Command;
 import utils.readers.Reader;
 import utils.UpdateHumanBeingObject;
 import validators.Errors;
-import validators.fields.ExistUUIDValidator;
-import validators.fields.UUIDValidator;
+import validators.fields.ExistIDValidator;
+import validators.fields.HumanForUserValidator;
+
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -33,29 +35,35 @@ public class UpdateHumanBeing implements Command {
 
     @Override
     public void execute(String idArgument){
-
-        UUIDValidator uuidValidator = new UUIDValidator(idArgument);
-        if(uuidValidator.isValid()){
-            UUID id = UUID.fromString(idArgument);
-            ExistUUIDValidator existUUIDValidator = new ExistUUIDValidator(id);
-            if(existUUIDValidator.isValid()){
+            ExistIDValidator existIDValidator = new ExistIDValidator(idArgument);
+            if(existIDValidator.isValid()){
+                Long id = Long.parseLong(idArgument);
                 HumanBeing human = HumanBeingCollection.getHuman(id);
-                printHuman(human);
-                printAllFields();
-                int[] numbersFields = getNumbersFields();
-                if(numbersFields != null){
-                    UpdateHumanBeingObject updateHumanBeing = new UpdateHumanBeingObject(reader);
-                    for(int numberField : numbersFields){
-                        Fields field = Fields.getForOrder(numberField);
-                        if(field != null){
-                            updateHumanBeing.update(human, field);
-                            System.out.println("поле было успешно изменено");
-                        }else break;
+                HumanForUserValidator hfuv = new HumanForUserValidator(human);
+                if(hfuv.isValid()){
+                    printHuman(human);
+                    printAllFields();
+                    int[] numbersFields = getNumbersFields();
+                    if(numbersFields != null){
+                        UpdateHumanBeingObject updateHumanBeing = new UpdateHumanBeingObject(reader);
+                        for(int numberField : numbersFields) {
+                            Fields field = Fields.getForOrder(numberField);
+                            if (field != null) {
+                                HumanBeing humanBeing = updateHumanBeing.update(human, field);
+                                Database db = Database.getInstance();
+                                db.deleteById("human_beings", humanBeing.getId());
+                                int update = db.addHumanBeingToDatabase("human_beings", humanBeing);
+                                if (update > 0) {
+                                    HumanBeingCollection.add(humanBeing);
+                                    System.out.println("поле было успешно изменено");
+                                }
+                            } else break;
+                    }
                     }
                 }
             }
         }
-    }
+
 
     private int[] getNumbersFields(){
         String[] numbersFields = reader.getNewLine().split(",");

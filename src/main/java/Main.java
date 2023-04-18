@@ -4,6 +4,7 @@ import collection.HumanBeingCollection;
 import commands.CommandController;
 import utils.FileConstant;
 import utils.readers.ReaderFromConsole;
+import utils.readers.ReaderFromFile;
 import validators.env.EnvValidator;
 import validators.file.FileValidatorToReadAndWrite;
 import validators.file.NameFileValidator;
@@ -22,15 +23,8 @@ public class Main {
      * @param args the input file collection
      */
     public static void main(String[] args) {
-        EnvValidator envValidator = new EnvValidator(args.length);
-        envValidator.validateWithExit();
-        final String FILE_PATH = System.getenv(args[0]);
-        NameFileValidator nameFileValidator = new NameFileValidator(FILE_PATH);
-        nameFileValidator.validateWithExit();
-        FileValidatorToReadAndWrite fileValidatorToReadAndWrite = new FileValidatorToReadAndWrite(FILE_PATH);
-        fileValidatorToReadAndWrite.validateWithExit();
-        FileConstant.setFilePath(FILE_PATH);
-        HumanBeingCollection.readFile(FILE_PATH);
+        HumanBeingCollection.readFromDatabase();
+        Authentication.setReader(new ReaderFromConsole());
         Authentication.auth();
         ReaderFromConsole reader = new ReaderFromConsole();
         CommandController commandController = new CommandController(reader);

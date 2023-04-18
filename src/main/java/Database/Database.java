@@ -1,6 +1,12 @@
 package Database;
 
+import collection.Car;
+import collection.HumanBeing;
+import collection.Mood;
+import collection.WeaponType;
+
 import java.sql.*;
+import java.time.LocalDate;
 
 public class Database {
     // Константы для подключения к базе данных
@@ -45,8 +51,8 @@ public class Database {
 
 
     public boolean isExistInDB(String table, String field, String valueField){
-        String sqlRequest = "SELECT * FROM ? WHERE ? = ?";
-        ResultSet rs = executePrepareStatement(sqlRequest, table, field, valueField);
+        String sqlRequest = "SELECT * FROM " + table + " WHERE " + field + " = ?";
+        ResultSet rs = executePrepareStatement(sqlRequest, valueField);
         if(rs == null) return false;
         try {
             return rs.next();
@@ -57,18 +63,62 @@ public class Database {
     }
 
     public void addUserToDB(String table, String login, String salt, String hash){
-        String sqlRequest = "INSERT INTO ? (login, salt, hash) VALUES (?, ?, ?)";
-        executePrepareStatement(sqlRequest, table, login, salt, hash);
+        String sqlRequest = "INSERT INTO " + table + " (login, salt, hash) VALUES (?, ?, ?)";
+        executePrepareStatement(sqlRequest, login, salt, hash);
     }
 
     public String getFieldByField(String table, String setField, String valueSetField, String getField){
-        String sqlRequest = "SELECT ? FROM ? WHERE ? = ?";
-        ResultSet rs = executePrepareStatement(sqlRequest, table, setField, valueSetField, getField);
+        String sqlRequest = "SELECT " + getField + " FROM " + table + " WHERE " + setField + " = ?";
+        ResultSet rs = executePrepareStatement(sqlRequest, valueSetField);
         try {
-            return rs.getString("salt");
+            rs.next();
+            return rs.getString(getField);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ResultSet getHumanBeings(){
+        String sqlRequest = "SELECT * FROM human_beings";
+        return executePrepareStatement(sqlRequest);
+    }
+
+    public ResultSet getNewId(String table){
+        String sqlRequest = "SELECT nextval (?)";
+        return executePrepareStatement(sqlRequest, table);
+    }
+
+    public int addHumanBeingToDatabase(String table, HumanBeing human){
+        return addNewHumanBeing(table, human.getId(), human.getName(), human.getCoordinates().getX(),
+                human.getCoordinates().getY(), human.getCreationDate(), human.isRealHero(), human.isHasToothpick(),
+                human.getImpactSpeed(), human.getWeaponType().toString(), human.getMood().toString(),
+                human.getCar().getStatus(), human.getUserLogin(), human.getPower());
+    }
+
+    private int addNewHumanBeing(String table, Long id, String name, float x, Integer y, Timestamp localDate,
+                                boolean realHero, boolean hasToothpick, Integer impactSpeed, String weaponType,
+                                String mood, boolean carCool, String userLogin, long power){
+        String sqlRequest = "INSERT INTO " + table + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement psmt = connection.prepareStatement(sqlRequest)) {
+        psmt.setLong(1, id);
+        psmt.setString(2, name);
+        psmt.setFloat(3, x);
+        psmt.setInt(4, y);
+        psmt.setTimestamp(5, localDate);
+        psmt.setBoolean(6, realHero);
+        psmt.setBoolean(7, hasToothpick);
+        psmt.setInt(8, impactSpeed);
+        psmt.setString(9, weaponType);
+        psmt.setString(10, mood);
+        psmt.setBoolean(11, carCool);
+        psmt.setString(12, userLogin);
+        psmt.setLong(13, power);
+        return psmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     public ResultSet executePrepareStatement(String sqlRequest, String... values){
@@ -79,8 +129,26 @@ public class Database {
             }
             return psmt.executeQuery();
         }catch (SQLException e) {
-            System.err.println("Ошибка выполнения запроса: " + e.getMessage());
-            return null;
+           return null;
+        }
+    }
+
+    public int truncateTable(String table){
+        String sqlRequest = "TRUNCATE TABLE " + table;
+        try(Statement smt = connection.createStatement()){
+            return smt.executeUpdate(sqlRequest);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int deleteById(String table, Long id){
+        String sqlRequest = "DROP TABLE FROM " + table + " WHERE id = ?";
+        try (PreparedStatement psmt = connection.prepareStatement(sqlRequest)) {
+            psmt.setLong(1, id);
+            return psmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -92,5 +160,6 @@ public class Database {
             System.err.println("Ошибка закрытия соединения с базой данных: " + e.getMessage());
         }
     }
+
 }
 

@@ -17,9 +17,7 @@ public class ShowHelp implements Command {
     public void execute(String ignore) {
         CommandController commandController = new CommandController(new ReaderFromConsole());
         Map<String, Command> commands = commandController.getCommands();
-        for(Command command : commands.values()){
-            System.out.println(command.description());
-        }
+        commands.values().forEach(command -> System.out.println(command.description()));
     }
 
     @Override

@@ -30,7 +30,7 @@ public class UpdateHumanBeingObject {
      * @param human the human
      * @param field the field
      */
-    public void update(HumanBeing human, Fields field) {
+    public HumanBeing update(HumanBeing human, Fields field) {
         Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
         System.out.println(field);
         String valueField = reader.getNewLine();
@@ -42,6 +42,7 @@ public class UpdateHumanBeingObject {
                 valueField = reader.getNewLine();
             }
         }
+        return human;
 
 
     }

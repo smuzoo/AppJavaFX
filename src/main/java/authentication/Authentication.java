@@ -20,16 +20,20 @@ public class Authentication {
     public static void auth() {
         String action;
         do{
-            System.out.println("Введите 1 если хотите зарегистрироваться, 2 если войти");
+            System.out.println("Введите 1 если хотите зарегистрироваться, 2 если войти, 3, если войти гостем, 4 если выйти");
             action = reader.getNewLine();
-        }while (!(new NotEqualsValidator(action, "1", "2").isValid()));
-
-        String login = get("имя пользователя");
-        String password = get("пароль");
-        switch (action){
-            case "1" -> register(login, password);
-            case "2" -> login(login, password);
+        }while (!(new NotEqualsValidator(action, "1", "2", "3", "4").isValid()));
+        if(action.equals("4")){
+            System.exit(0);
+        } else if (!action.equals("3")) {
+            String login = get("имя пользователя");
+            String password = get("пароль");
+            switch (action){
+                case "1" -> register(login, password);
+                case "2" -> login(login, password);
+            }
         }
+
     }
 
 
@@ -82,6 +86,7 @@ public class Authentication {
                     System.out.println("Вы успешно вошли в систему");
                 } else {
                     System.err.println("Вы ввели неправильный пароль для пользователя " + login);
+                    auth();
                 }
             } catch (NoSuchAlgorithmException ex) {
                 ex.printStackTrace();
@@ -115,6 +120,7 @@ public class Authentication {
         return sb.toString();
     }
 
-
-
+    public static void setReader(Reader reader) {
+        Authentication.reader = reader;
+    }
 }
