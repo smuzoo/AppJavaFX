@@ -24,9 +24,7 @@ public class HumanBeingCollection {
     }
 
     /**
-     * Read file.
-     *
-     * @param FILE_PATH the file path
+     * Read database.
      */
     public static void readFromDatabase(){
         Database db = Database.getInstance();
@@ -47,7 +45,6 @@ public class HumanBeingCollection {
                 String userLogin = humanBeingObject.getString(12);
                 add(new HumanBeing(id, name, new Coordinates(x, y), creationDate, realhero, hastoothpick, impactSpeed,
                         weaponType, mood, car, userLogin));
-                db.closeConnection();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

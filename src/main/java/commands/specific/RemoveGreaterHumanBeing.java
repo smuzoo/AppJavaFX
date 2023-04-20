@@ -48,7 +48,6 @@ public class RemoveGreaterHumanBeing implements Command {
         }else {
             System.out.println("Элементов больше заданного не существует");
         }
-            db.closeConnection();
 
     }
 

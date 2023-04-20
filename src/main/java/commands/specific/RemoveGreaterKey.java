@@ -39,7 +39,6 @@ public class RemoveGreaterKey implements Command {
             }else {
                 System.out.println("Элементов, с id больше заданного, не существует");
             }
-            db.closeConnection();
 
         }
 

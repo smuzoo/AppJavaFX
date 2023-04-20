@@ -5,11 +5,20 @@ import validators.Validator;
 
 import java.util.Arrays;
 
+/**
+ * The type Not equals validator.
+ */
 public class NotEqualsValidator extends Validator {
 
     private String[] needEquals;
     private String request;
 
+    /**
+     * Instantiates a new Not equals validator.
+     *
+     * @param request    the request
+     * @param needEquals the need equals
+     */
     public NotEqualsValidator(String request, String... needEquals){
         this.request = request;
         this.needEquals = needEquals;

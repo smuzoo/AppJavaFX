@@ -1,18 +1,28 @@
 package Database;
 
-import collection.Car;
 import collection.HumanBeing;
-import collection.Mood;
-import collection.WeaponType;
 
 import java.sql.*;
-import java.time.LocalDate;
 
+/**
+ * The type Database.
+ */
 public class Database {
-    // Константы для подключения к базе данных
-    DatabaseConfig config = new DatabaseConfig("localhost");
+    /**
+     * The Config.
+     */
+    DatabaseConfig config = new DatabaseConfig("helios");
+    /**
+     * The Url.
+     */
     String URL = config.getDatabaseUrl();
+    /**
+     * The User.
+     */
     String USER = config.getDatabaseUsername();
+    /**
+     * The Password.
+     */
     String PASSWORD = config.getDatabasePassword();
 
     // Переменная для хранения единственного экземпляра объекта Database
@@ -31,7 +41,12 @@ public class Database {
         }
     }
 
-    // Метод для получения единственного экземпляра объекта Database
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+// Метод для получения единственного экземпляра объекта Database
     public static synchronized Database getInstance() {
         if (instance == null) {
             instance = new Database();
@@ -39,17 +54,15 @@ public class Database {
         return instance;
     }
 
-    // Метод для выполнения запросов к базе данных
-    public void executeQuery(String query) {
-        try {
-            connection.createStatement().execute(query);
-        } catch (SQLException e) {
-            System.err.println("Ошибка выполнения запроса: " + e.getMessage());
-        }
-    }
 
-
-
+    /**
+     * Is exist in db boolean.
+     *
+     * @param table      the table
+     * @param field      the field
+     * @param valueField the value field
+     * @return the boolean
+     */
     public boolean isExistInDB(String table, String field, String valueField){
         String sqlRequest = "SELECT * FROM " + table + " WHERE " + field + " = ?";
         ResultSet rs = executePrepareStatement(sqlRequest, valueField);
@@ -62,11 +75,28 @@ public class Database {
         }
     }
 
+    /**
+     * Add user to db.
+     *
+     * @param table the table
+     * @param login the login
+     * @param salt  the salt
+     * @param hash  the hash
+     */
     public void addUserToDB(String table, String login, String salt, String hash){
         String sqlRequest = "INSERT INTO " + table + " (login, salt, hash) VALUES (?, ?, ?)";
         executePrepareStatement(sqlRequest, login, salt, hash);
     }
 
+    /**
+     * Get field by field string.
+     *
+     * @param table         the table
+     * @param setField      the set field
+     * @param valueSetField the value set field
+     * @param getField      the get field
+     * @return the string
+     */
     public String getFieldByField(String table, String setField, String valueSetField, String getField){
         String sqlRequest = "SELECT " + getField + " FROM " + table + " WHERE " + setField + " = ?";
         ResultSet rs = executePrepareStatement(sqlRequest, valueSetField);
@@ -78,27 +108,45 @@ public class Database {
         }
     }
 
+    /**
+     * Get human beings result set.
+     *
+     * @return the result set
+     */
     public ResultSet getHumanBeings(){
         String sqlRequest = "SELECT * FROM human_beings";
         return executePrepareStatement(sqlRequest);
     }
 
+    /**
+     * Get new id result set.
+     *
+     * @param table the table
+     * @return the result set
+     */
     public ResultSet getNewId(String table){
         String sqlRequest = "SELECT nextval (?)";
         return executePrepareStatement(sqlRequest, table);
     }
 
+    /**
+     * Add human being to database int.
+     *
+     * @param table the table
+     * @param human the human
+     * @return the int
+     */
     public int addHumanBeingToDatabase(String table, HumanBeing human){
         return addNewHumanBeing(table, human.getId(), human.getName(), human.getCoordinates().getX(),
                 human.getCoordinates().getY(), human.getCreationDate(), human.isRealHero(), human.isHasToothpick(),
-                human.getImpactSpeed(), human.getWeaponType().toString(), human.getMood().toString(),
-                human.getCar().getStatus(), human.getUserLogin(), human.getPower());
+                human.getImpactSpeed(), human.getStringWeaponType(), human.getStringMood(),
+                human.getCar().getStatus(), human.getUserLogin());
     }
 
     private int addNewHumanBeing(String table, Long id, String name, float x, Integer y, Timestamp localDate,
                                 boolean realHero, boolean hasToothpick, Integer impactSpeed, String weaponType,
-                                String mood, boolean carCool, String userLogin, long power){
-        String sqlRequest = "INSERT INTO " + table + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                                String mood, boolean carCool, String userLogin){
+        String sqlRequest = "INSERT INTO " + table + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement psmt = connection.prepareStatement(sqlRequest)) {
         psmt.setLong(1, id);
         psmt.setString(2, name);
@@ -112,7 +160,6 @@ public class Database {
         psmt.setString(10, mood);
         psmt.setBoolean(11, carCool);
         psmt.setString(12, userLogin);
-        psmt.setLong(13, power);
         return psmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -121,6 +168,13 @@ public class Database {
 
     }
 
+    /**
+     * Execute prepare statement result set.
+     *
+     * @param sqlRequest the sql request
+     * @param values     the values
+     * @return the result set
+     */
     public ResultSet executePrepareStatement(String sqlRequest, String... values){
         try {
             PreparedStatement psmt = connection.prepareStatement(sqlRequest);
@@ -133,6 +187,12 @@ public class Database {
         }
     }
 
+    /**
+     * Truncate table int.
+     *
+     * @param table the table
+     * @return the int
+     */
     public int truncateTable(String table){
         String sqlRequest = "TRUNCATE TABLE " + table;
         try(Statement smt = connection.createStatement()){
@@ -142,8 +202,15 @@ public class Database {
         }
     }
 
+    /**
+     * Delete by id int.
+     *
+     * @param table the table
+     * @param id    the id
+     * @return the int
+     */
     public int deleteById(String table, Long id){
-        String sqlRequest = "DROP TABLE FROM " + table + " WHERE id = ?";
+        String sqlRequest = "DELETE FROM " + table + " WHERE id = ?";
         try (PreparedStatement psmt = connection.prepareStatement(sqlRequest)) {
             psmt.setLong(1, id);
             return psmt.executeUpdate();
@@ -152,7 +219,9 @@ public class Database {
         }
     }
 
-    // Метод для закрытия соединения с базой данных
+    /**
+     * Close connection.
+     */
     public void closeConnection() {
         try {
             connection.close();

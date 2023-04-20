@@ -4,8 +4,6 @@ import collection.HumanBeingCollection;
 import validators.Errors;
 import validators.Validator;
 
-import java.util.UUID;
-
 /**
  * The type Uuid validator.
  */
@@ -29,9 +27,14 @@ public class IDValidator extends Validator {
         return id.equals("");
     }
 
-    protected boolean isNotCanTransformToUUID(){
-        String regex = "^-?\\d+$";
-        return id.matches(regex);
+    /**
+     * Is not can transform to id boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isNotCanTransformToID(){
+        String regex = "^-?[0-9]+$";
+        return !id.matches(regex);
     }
 
     private boolean isUsed(){
@@ -42,7 +45,7 @@ public class IDValidator extends Validator {
     @Override
     public void addAllErrors(){
         addError(this::isEmpty, Errors.EMPTYFIELD);
-        addError(this::isNotCanTransformToUUID, Errors.NOTCANTRASFORMTOUUID);
+        addError(this::isNotCanTransformToID, Errors.NOTCANTRANSFORMTOINT);
         addError(this::isUsed, Errors.USEDID);
     }
 

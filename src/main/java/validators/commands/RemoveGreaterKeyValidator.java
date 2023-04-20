@@ -36,7 +36,7 @@ public class RemoveGreaterKeyValidator extends Validator {
      */
     protected boolean isNotCanTransformToID(){
         String regex = "^-?\\d+$";
-        return argument.matches(regex);
+        return !argument.matches(regex);
     }
 
     @Override

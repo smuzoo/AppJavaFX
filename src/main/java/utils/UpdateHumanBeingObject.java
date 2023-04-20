@@ -29,6 +29,7 @@ public class UpdateHumanBeingObject {
      *
      * @param human the human
      * @param field the field
+     * @return the human being
      */
     public HumanBeing update(HumanBeing human, Fields field) {
         Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();

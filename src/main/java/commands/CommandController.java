@@ -31,18 +31,6 @@ public class CommandController {
     }
 
     /**
-     * Instantiates a new Command controller.
-     *
-     * @param reader       the reader
-     * @param historyFiles the history files
-     */
-    public CommandController(Reader reader, List<String> historyFiles) {
-        this.reader = reader;
-        this.historyFiles = historyFiles;
-        init();
-    }
-
-    /**
      * Execute command.
      *
      * @param commandText the command text
@@ -85,7 +73,7 @@ public class CommandController {
         addCommand("remove_greater", new RemoveGreaterHumanBeing(reader));
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
-        addCommand("execute_script", new ExecuteScript(new ArrayList<>()));
+        addCommand("execute_script", new ExecuteScript());
         addCommand("exit", new Exit());
 
     }

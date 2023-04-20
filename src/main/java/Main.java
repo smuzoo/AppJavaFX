@@ -1,5 +1,6 @@
 import Database.Database;
 import authentication.Authentication;
+import authentication.User;
 import collection.HumanBeingCollection;
 import commands.CommandController;
 import utils.FileConstant;
@@ -23,14 +24,20 @@ public class Main {
      * @param args the input file collection
      */
     public static void main(String[] args) {
-        HumanBeingCollection.readFromDatabase();
-        Authentication.setReader(new ReaderFromConsole());
-        Authentication.auth();
-        ReaderFromConsole reader = new ReaderFromConsole();
-        CommandController commandController = new CommandController(reader);
-        String request;
-        while(!((request = reader.getNewLine()).equals("exit"))){
-            commandController.executeCommand(request);
+        Database db = Database.getInstance();
+        try{
+            HumanBeingCollection.readFromDatabase();
+            Authentication.setReader(new ReaderFromConsole());
+            Authentication.auth();
+            ReaderFromConsole reader = new ReaderFromConsole();
+            CommandController commandController = new CommandController(reader);
+            String request;
+            while(!((request = reader.getNewLine()).equals("exit"))){
+                commandController.executeCommand(request);
+            }
+        }
+        finally {
+            db.closeConnection();
         }
 
     }

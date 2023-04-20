@@ -51,6 +51,7 @@ public class UpdateHumanBeing implements Command {
                             if (field != null) {
                                 HumanBeing humanBeing = updateHumanBeing.update(human, field);
                                 Database db = Database.getInstance();
+                                System.out.println(humanBeing.getId());
                                 db.deleteById("human_beings", humanBeing.getId());
                                 int update = db.addHumanBeingToDatabase("human_beings", humanBeing);
                                 if (update > 0) {

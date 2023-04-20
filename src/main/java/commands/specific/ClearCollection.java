@@ -14,15 +14,11 @@ public class ClearCollection implements Command {
     @Override
     public void execute(String ignore){
         Database db = Database.getInstance();
-        int update = db.truncateTable("human_beings");
-        if(update > 0){
-            HumanBeingCollection.clear();
-            System.out.println("Коллекция успешно очищена");
-        }else {
-            System.out.println("Коллекция пуста");
-        }
-        db.closeConnection();
+        db.truncateTable("human_beings");
+        HumanBeingCollection.clear();
+        System.out.println("Коллекция успешно очищена");
     }
+
 
     @Override
     public String description(){

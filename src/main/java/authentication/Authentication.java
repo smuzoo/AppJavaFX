@@ -11,16 +11,22 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * The type Authentication.
+ */
 public class Authentication {
 
     private static Reader reader;
 
     final private static String NAME_TABLE = "users";
 
+    /**
+     * Auth.
+     */
     public static void auth() {
         String action;
         do{
-            System.out.println("Введите 1 если хотите зарегистрироваться, 2 если войти, 3, если войти гостем, 4 если выйти");
+            System.out.println("Введите 1 если хотите зарегистрироваться, 2 если войти, 3 если войти гостем, 4 если выйти");
             action = reader.getNewLine();
         }while (!(new NotEqualsValidator(action, "1", "2", "3", "4").isValid()));
         if(action.equals("4")){
@@ -55,13 +61,9 @@ public class Authentication {
                         System.out.println("Вы были успешно зарегистрированы");
             }catch (NoSuchAlgorithmException ex){
                 ex.printStackTrace();
-            }finally {
-                db.closeConnection();
             }
 
         }
-        db.closeConnection();
-
 
 
     }
@@ -90,11 +92,8 @@ public class Authentication {
                 }
             } catch (NoSuchAlgorithmException ex) {
                 ex.printStackTrace();
-            } finally {
-                db.closeConnection();
             }
         }
-        db.closeConnection();
     }
 
 
@@ -120,6 +119,11 @@ public class Authentication {
         return sb.toString();
     }
 
+    /**
+     * Sets reader.
+     *
+     * @param reader the reader
+     */
     public static void setReader(Reader reader) {
         Authentication.reader = reader;
     }

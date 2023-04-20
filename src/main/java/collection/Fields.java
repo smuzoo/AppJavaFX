@@ -17,8 +17,8 @@ public enum Fields {
     /**
      * Coordinates fields.
      */
-    COORDINATES("координаты", "введите через запятую coordinate.x,coordinate.y (поля float и Integer соответственно" +
-            "поля не могут быть null, поле coordinate.x не должно превышать значение " + Fields.MAXIMUM_X, 2),
+    COORDINATES("координаты", "введите через запятую coordinate.x,coordinate.y (поля float и Integer соответственно, " +
+            "поля не могут быть null, поле coordinate.x не должно превышать значение " + Fields.MAXIMUM_X + ")", 2),
     /**
      * Impactspeed fields.
      */

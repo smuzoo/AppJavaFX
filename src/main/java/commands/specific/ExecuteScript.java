@@ -19,16 +19,7 @@ import static colors.Colors.*;
  * The command Execute script.
  */
 public class ExecuteScript implements Command {
-    private List<String> historyFiles;
 
-    /**
-     * Instantiates a new Execute script.
-     *
-     * @param historyFiles the history files
-     */
-    public ExecuteScript(List<String> historyFiles) {
-        this.historyFiles = historyFiles;
-    }
 
     @Override
     public void execute(String FILE_PATH){
@@ -36,16 +27,18 @@ public class ExecuteScript implements Command {
         if(argumentValidator.isValid()){
             FileValidatorToRead fileValidatorToRead = new FileValidatorToRead(FILE_PATH);
             if(fileValidatorToRead.isValid()) {
-                RecursionValidator recursionValidator = new RecursionValidator(FILE_PATH, historyFiles);
-                ReaderManager reader = new ReaderManager(new ReaderFromFile(FILE_PATH), NameReader.READERFILE);
-                CommandController commandController = new CommandController(reader, historyFiles);
-                while (reader.getNameReader() != NameReader.READERCONSOLE) {
-                    if(!recursionValidator.isValid()) break;
-                    String request = reader.getNewLine();
-                    historyFiles.add(FILE_PATH);
-                    commandController.executeCommand(request);
+                RecursionValidator recursionValidator = new RecursionValidator(FILE_PATH);
+                if(recursionValidator.isValid()) {
+                    ReaderManager reader = new ReaderManager(new ReaderFromFile(FILE_PATH), NameReader.READERFILE);
+                    CommandController commandController = new CommandController(reader);
+                    ExecuteScriptLogger.addFile(FILE_PATH);
+                    while (reader.getNameReader() != NameReader.READERCONSOLE) {
+                        String request = reader.getNewLine();
+                        commandController.executeCommand(request);
+                    }
+                    ExecuteScriptLogger.delete(FILE_PATH);
                 }
-                historyFiles.clear();
+
             }
 
         }

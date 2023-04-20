@@ -62,7 +62,6 @@ public class InsertHumanBeing implements Command {
                 HumanBeingCollection.add(human);
                 System.out.println("Элемент успешно добавлен в коллекцию");
             }
-            db.closeConnection();
         }
 
     }

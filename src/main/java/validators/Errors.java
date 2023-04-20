@@ -71,10 +71,7 @@ public enum Errors {
      * Biggerimpactspeed errors.
      */
     BIGGERIMPACTSPEED("Значение поля impactSpeed не может превышать " + Fields.MAXIMUM_IMPACT_SPEED),
-    /**
-     * Notcantrasformtouuid errors.
-     */
-    NOTCANTRASFORMTOUUID("Данное значение не корректно для UUID"),
+
     /**
      * Nothasfield errors.
      */
@@ -96,10 +93,19 @@ public enum Errors {
      */
     NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y."),
 
+    /**
+     * Isnotexistentoption errors.
+     */
     ISNOTEXISTENTOPTION("Данного варианта не существует"),
 
+    /**
+     * Ishavespace errors.
+     */
     ISHAVESPACE("Данное поле не может содержать пробел"),
 
+    /**
+     * Notcreatethisuser errors.
+     */
     NOTCREATETHISUSER("Данный объект был создан другим пользователем, Вы не можете его модифицировать"),
     /**
      * Usedid errors.

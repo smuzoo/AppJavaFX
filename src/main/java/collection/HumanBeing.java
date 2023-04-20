@@ -58,6 +58,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param weaponType   the weapon type
      * @param mood         the mood
      * @param car          the car
+     * @param userLogin    the user login
      */
     public HumanBeing(Long id, String name, Coordinates coordinates, LocalDate creationDate, boolean realHero, boolean hasToothpick,
                       Integer impactSpeed, WeaponType weaponType, Mood mood, Car car, String userLogin){
@@ -82,43 +83,90 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.userLogin = User.getLogin();
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets coordinates.
+     *
+     * @return the coordinates
+     */
     public Coordinates getCoordinates() {
         return coordinates;
     }
 
+    /**
+     * Gets creation date.
+     *
+     * @return the creation date
+     */
     public Timestamp getCreationDate() {
         LocalDateTime localDateTime = creationDate.atStartOfDay();
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
         return Timestamp.valueOf(zonedDateTime.toLocalDateTime());
     }
 
+    /**
+     * Is real hero boolean.
+     *
+     * @return the boolean
+     */
     public boolean isRealHero() {
         return realHero;
     }
 
+    /**
+     * Is has toothpick boolean.
+     *
+     * @return the boolean
+     */
     public boolean isHasToothpick() {
         return hasToothpick;
     }
 
+    /**
+     * Gets weapon type.
+     *
+     * @return the weapon type
+     */
     public WeaponType getWeaponType() {
         return weaponType;
     }
 
+    /**
+     * Get string weapon type string.
+     *
+     * @return the string
+     */
+    public String getStringWeaponType(){
+        return getWeaponType() == null ? "null" : getWeaponType().toString();
+    }
+
+
+    /**
+     * Gets car.
+     *
+     * @return the car
+     */
     public Car getCar() {
         return car;
     }
 
+    /**
+     * Gets user login.
+     *
+     * @return the user login
+     */
     public String getUserLogin() {
         return userLogin;
     }
 
-    public int getPower() {
-        return countPower();
-    }
 
     /**
      * Gets not null setters.
@@ -183,10 +231,6 @@ public class HumanBeing implements Comparable<HumanBeing>{
     public void setHasToothpick(String hasToothpick) {
         if(hasToothpick.equals("1")) this.hasToothpick = true;
         else this.hasToothpick = Boolean.parseBoolean(hasToothpick);
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
     }
 
     /**
@@ -295,7 +339,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @return the impact speed
      */
     public Integer getImpactSpeed() {
-        return impactSpeed;
+        return impactSpeed == null ? 0 : impactSpeed;
     }
 
     /**
@@ -306,6 +350,16 @@ public class HumanBeing implements Comparable<HumanBeing>{
     public Mood getMood(){
         return mood;
     }
+
+    /**
+     * Get string mood string.
+     *
+     * @return the string
+     */
+    public String getStringMood(){
+        return getMood() == null ? "null" : getMood().toString();
+    }
+
 
     /**
      * Gets mood power.
@@ -375,22 +429,21 @@ public class HumanBeing implements Comparable<HumanBeing>{
         return this.countPower() - human.countPower();
     }
 
+
     @Override
     public String toString() {
         return "HumanBeing{" +
-                "\n id=" + id +
-                ",\n name='" + name + '\'' +
-                ",\n coordinates.x=" + coordinates.getX() +
-                ",\n coordinates.y=" + coordinates.getY() +
-                ",\n creationDate=" + creationDate +
-                ",\n realHero=" + realHero +
-                ",\n hasToothpick=" + hasToothpick +
-                ",\n impactSpeed=" + impactSpeed +
-                ",\n weaponType=" + weaponType +
-                ",\n mood=" + mood +
-                ",\n car.cool=" + car.getStatus() +
-                "\n}";
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", coordinates=" + coordinates +
+                ", creationDate=" + creationDate +
+                ", realHero=" + realHero +
+                ", hasToothpick=" + hasToothpick +
+                ", impactSpeed=" + impactSpeed +
+                ", weaponType=" + weaponType +
+                ", mood=" + mood +
+                ", car=" + car +
+                ", userLogin='" + userLogin + '\'' +
+                '}';
     }
-
-
 }

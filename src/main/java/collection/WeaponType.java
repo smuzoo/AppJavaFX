@@ -36,7 +36,7 @@ public enum WeaponType {
      * @return the name
      */
     public String getName() {
-        return name;
+        return (name == null ? "null" : name);
     }
 
     /**
@@ -89,7 +89,7 @@ public enum WeaponType {
 
     @Override
     public String toString(){
-        return this.getName();
+        return getName();
     }
 
 }

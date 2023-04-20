@@ -26,9 +26,14 @@ public class ExistIDValidator extends Validator {
         return id.equals("");
     }
 
+    /**
+     * Is not can transform to uuid boolean.
+     *
+     * @return the boolean
+     */
     protected boolean isNotCanTransformToUUID(){
         String regex = "^-?\\d+$";
-        return id.matches(regex);
+        return !id.matches(regex);
     }
 
     private boolean isNotExistElement(){
@@ -38,7 +43,7 @@ public class ExistIDValidator extends Validator {
     @Override
     public void addAllErrors(){
         addError(this::isEmpty, Errors.EMPTYFIELD);
-        addError(this::isNotCanTransformToUUID, Errors.NOTCANTRASFORMTOUUID);
+        addError(this::isNotCanTransformToUUID, Errors.NOTCANTRANSFORMTOINT);
         addError(this::isNotExistElement, Errors.NOTHASELEMENT);
     }
 

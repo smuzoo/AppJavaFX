@@ -1,5 +1,6 @@
 package validators.commands;
 
+import commands.specific.ExecuteScriptLogger;
 import validators.Errors;
 import validators.Validator;
 
@@ -11,23 +12,18 @@ import java.util.List;
 public class RecursionValidator extends Validator {
 
     private final String nameFile;
-    private final List<String> historyFiles;
 
     /**
      * Instantiates a new Recursion validator.
      *
-     * @param nameFile     the nameFile
-     * @param historyFiles the historyFiles
+     * @param nameFile the name file
      */
-    public RecursionValidator(String nameFile, List<String> historyFiles) {
+    public RecursionValidator(String nameFile) {
         this.nameFile = nameFile;
-        this.historyFiles = historyFiles;
     }
 
     private boolean isRecursion(){
-        System.out.println(historyFiles);
-        System.out.println(nameFile);
-        return historyFiles.contains(nameFile);
+        return ExecuteScriptLogger.contains(nameFile);
     }
 
     @Override
