@@ -1,14 +1,9 @@
 import Database.Database;
 import authentication.Authentication;
-import authentication.User;
 import collection.HumanBeingCollection;
+import collection.ReaderFromDB;
 import commands.CommandController;
-import utils.FileConstant;
 import utils.readers.ReaderFromConsole;
-import utils.readers.ReaderFromFile;
-import validators.env.EnvValidator;
-import validators.file.FileValidatorToReadAndWrite;
-import validators.file.NameFileValidator;
 
 /**
  * The main class to launch app.
@@ -26,7 +21,8 @@ public class Main {
     public static void main(String[] args) {
         Database db = Database.getInstance();
         try{
-            HumanBeingCollection.readFromDatabase();
+            Thread readerDB = new Thread(new ReaderFromDB());
+            readerDB.start();
             Authentication.setReader(new ReaderFromConsole());
             Authentication.auth();
             ReaderFromConsole reader = new ReaderFromConsole();
