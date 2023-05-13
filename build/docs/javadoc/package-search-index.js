@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"authentication"},{"l":"collection"},{"l":"colors"},{"l":"commands"},{"l":"commands.specific"},{"l":"Database"},{"l":"utils"},{"l":"utils.readers"},{"l":"validators"},{"l":"validators.commands"},{"l":"validators.env"},{"l":"validators.fields"},{"l":"validators.file"}];updateSearchResults();

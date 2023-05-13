@@ -62,7 +62,7 @@ public enum Errors {
     /**
      * Emptyfield errors.
      */
-    EMPTYFIELD("Данное поле не может быть пустым"),
+    EMPTYFIELD("This field cannot be empty"),
     /**
      * Biggerx errors.
      */
@@ -110,6 +110,8 @@ public enum Errors {
     /**
      * Usedid errors.
      */
+    USEDLOGIN("This username already exists"),
+
     USEDID("Данный id уже существует");
     /**
      * The Error.
@@ -117,6 +119,10 @@ public enum Errors {
     final String error;
     Errors(String error){
         this.error = error;
+    }
+
+    public String getError() {
+        return error;
     }
 
     @Override

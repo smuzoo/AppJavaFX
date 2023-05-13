@@ -1,24 +1,17 @@
 import Database.Database;
-import authentication.Authentication;
+import application.Application;
 import collection.HumanBeingCollection;
-import collection.ReaderFromDB;
-import commands.CommandController;
-import utils.readers.ReaderFromConsole;
 
 /**
  * The main class to launch app.
  *
  * @author Kozhinov Pavel and Dudar Ilia
- * @author Dudar Ilia
  * @version 1.0
  */
 public class Main {
-    /**
-     * The main method.
-     *
-     * @param args the input file collection
-     */
+
     public static void main(String[] args) {
+        /*
         Database db = Database.getInstance();
         try{
             Thread readerDB = new Thread(new ReaderFromDB());
@@ -35,6 +28,10 @@ public class Main {
         finally {
             db.closeConnection();
         }
-
+*/
+        Database db = Database.getInstance();
+        HumanBeingCollection.readFromDatabase();
+        Application.open();
+        db.closeConnection();
     }
 }

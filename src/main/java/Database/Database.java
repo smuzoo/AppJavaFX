@@ -3,6 +3,7 @@ package Database;
 import collection.HumanBeing;
 
 import java.sql.*;
+import java.util.Objects;
 
 /**
  * The type Database.
@@ -11,7 +12,7 @@ public class Database {
     /**
      * The Config.
      */
-    DatabaseConfig config = new DatabaseConfig("helios");
+    DatabaseConfig config = new DatabaseConfig("localhost");
     /**
      * The Url.
      */
@@ -195,12 +196,16 @@ public class Database {
      */
     public int truncateTable(String table){
         String sqlRequest = "TRUNCATE TABLE " + table;
-        try(Statement smt = connection.createStatement()){
+        try{
+            Statement smt = connection.createStatement();
             return smt.executeUpdate(sqlRequest);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
+
 
     /**
      * Delete by id int.
