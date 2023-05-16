@@ -1,6 +1,8 @@
-package application;
+package application.tools;
 
 public enum Scenes {
+    ADDFORM("addElement"),
+    DELETEBYID("deleteElement"),
     LOGIN("login"),
     REGISTRATION("registration"),
     MAIN("main");
@@ -15,7 +17,7 @@ public enum Scenes {
         return "/" + getNameScene() + "/" + "main.fxml";
     }
 
-    public String getNameScene() {
+    private String getNameScene() {
         return nameScene;
     }
 }

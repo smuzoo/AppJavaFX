@@ -1,30 +1,55 @@
 package application.controllers;
 
-import application.HumanBeingInfo;
+import application.tools.AddModalSceneHandler;
+import application.tools.Scenes;
+import application.tools.ChangeSceneHandler;
+import application.tools.Column;
+import collection.HumanBeing;
+import collection.HumanBeingCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class MainController {
-    @FXML private TableView<HumanBeingInfo> tableView;
-    @FXML private TableColumn<HumanBeingInfo, Long> idColumn;
-    @FXML private TableColumn<HumanBeingInfo, String> nameColumn;
-    @FXML private TableColumn<HumanBeingInfo, String> usernameColumn;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    public void initialize() {
+
+public class MainController implements Initializable {
+    @FXML private TableView<HumanBeing> tableHumanBeingInfo;
+    @FXML private TableColumn<HumanBeing, Long> idColumn;
+    @FXML private TableColumn<HumanBeing, String> nameColumn;
+    @FXML private Button leaveButton;
+    @FXML private Button addButton;
+    @FXML private Button deleteByIdButton;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tableHumanBeingInfo.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        idColumn.setCellFactory(column -> new Column<>());
+        nameColumn.setCellFactory(column -> new Column<>());
+        tableHumanBeingInfo.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
 
-        ObservableList<HumanBeingInfo> data = FXCollections.observableArrayList(
-                new HumanBeingInfo(1L, "Alice", "alice123"),
-                new HumanBeingInfo(2L, "Bob", "bob456"),
-                new HumanBeingInfo(3L, "Charlie", "charlie789")
+
+
+
+        ObservableList<HumanBeing> data = FXCollections.observableArrayList(
+                HumanBeingCollection.getHumanBeings()
         );
 
-        tableView.setItems(data);
+        tableHumanBeingInfo.setItems(data);
+
+        addButton.setOnAction(new AddModalSceneHandler(Scenes.ADDFORM));
+
+        deleteByIdButton.setOnAction(new AddModalSceneHandler(Scenes.DELETEBYID));
+
+        leaveButton.setOnAction(new ChangeSceneHandler(Scenes.LOGIN));
+
     }
 }

@@ -80,7 +80,6 @@ public class HumanBeing implements Comparable<HumanBeing>{
      */
     public HumanBeing(){
         this.creationDate = LocalDate.now();
-        this.userLogin = User.getLogin();
     }
 
     /**
@@ -223,6 +222,14 @@ public class HumanBeing implements Comparable<HumanBeing>{
         else this.realHero = Boolean.parseBoolean(realHero);
     }
 
+    public void setRealHero(boolean realHero) {
+       this.realHero = realHero;
+    }
+
+    public void setHasToothpick(boolean hasToothpick) {
+        this.hasToothpick = hasToothpick;
+    }
+
     /**
      * Sets has toothpick.
      *
@@ -250,6 +257,9 @@ public class HumanBeing implements Comparable<HumanBeing>{
     public void setWeaponType(String weaponType) {
         this.weaponType = WeaponType.getWeaponType(weaponType);
     }
+    public void setWeaponType(WeaponType weaponType) {
+        this.weaponType = weaponType;
+    }
 
     /**
      * Sets mood.
@@ -260,6 +270,11 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.mood = Mood.getMood(mood);
     }
 
+
+    public void setMood(Mood mood) {
+        this.mood = mood;
+    }
+
     /**
      * Sets car.
      *
@@ -268,6 +283,14 @@ public class HumanBeing implements Comparable<HumanBeing>{
     public void setCar(String isCarCool) {
         boolean coolCar = Boolean.parseBoolean(isCarCool);
         this.car = new Car(coolCar);
+    }
+
+    public void setCar(boolean isCarCool) {
+        this.car = new Car(isCarCool);
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     /**

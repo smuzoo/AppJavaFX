@@ -20,7 +20,7 @@
       </ImageView>
       <AnchorPane layoutX="529.0" layoutY="-1.0" prefHeight="769.0" prefWidth="550.0" style="-fx-background-color: #696D73; -fx-background-radius: 40 0 0 40;">
          <children>
-            <Text fx:id="errorText" fill="#da1717" layoutY="280.0" text="Пользователя с таким логином или паролем не существует" textAlignment="CENTER" wrappingWidth="567.0" visible="false">
+            <Text fx:id="errorText" fill="#da1717" layoutY="259.0" text="A user with this login already exists" textAlignment="CENTER" visible="false" wrappingWidth="567.0">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
@@ -77,6 +77,16 @@
                   <Button fx:id="photoUser" mnemonicParsing="false" opacity="0.8" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #717780; -fx-background-image: url('images/plus.png'); -fx-background-size: cover; -fx-background-radius: 90;" />
                </children>
             </AnchorPane>
+            <Text fill="#fff6f6" layoutX="194.0" layoutY="726.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you have an account?">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Button fx:id="toLoginButton" contentDisplay="TEXT_ONLY" layoutX="234.0" layoutY="728.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="128.0" style="-fx-background-color: #696D73;" text="Log in" textFill="#47a89c">
+               <font>
+                  <Font name="System Italic" size="16.0" />
+               </font>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />
