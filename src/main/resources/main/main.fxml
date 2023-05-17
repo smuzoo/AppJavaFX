@@ -4,10 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('../login/images/Cover.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
@@ -89,9 +89,9 @@
          </children>
       </AnchorPane>
       <AnchorPane layoutX="322.0" layoutY="722.0" prefHeight="46.0" prefWidth="325.0" style="-fx-background-color: #210B2B;" />
-      <AnchorPane layoutX="182.0" layoutY="6.0" prefHeight="660.0" prefWidth="358.0">
+      <AnchorPane layoutX="323.0" layoutY="6.0" prefHeight="762.0" prefWidth="325.0">
          <children>
-            <TableView fx:id="tableHumanBeingInfo" layoutX="141.0" layoutY="-6.0" prefHeight="724.0" prefWidth="324.0">
+            <TableView fx:id="tableHumanBeingInfo" layoutX="-4.0" layoutY="-6.0" prefHeight="712.0" prefWidth="357.0">
                <columns>
                   <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="185.60003662109375" style="-fx-background-color: #462323;">
                      <graphic>
@@ -105,6 +105,18 @@
                   </TableColumn>
                </columns>
             </TableView>
+            <AnchorPane layoutX="-5.0" layoutY="700.0" prefHeight="62.0" prefWidth="358.0" style="-fx-background-color: #210B2B;">
+               <children>
+                  <Label layoutX="15.0" layoutY="9.0" text="Search:" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font></Label>
+                  <TextField alignment="CENTER" layoutX="117.0" layoutY="7.0" prefHeight="39.0" prefWidth="236.0" promptText="input text" style="-fx-background-radius: 40;">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

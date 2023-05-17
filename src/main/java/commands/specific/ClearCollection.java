@@ -14,7 +14,7 @@ public class ClearCollection implements Command {
     @Override
     public void execute(String ignore){
         Database db = Database.getInstance();
-        db.truncateTable("human_beings");
+        db.truncateTable("human_beings", "user_id_seq");
         HumanBeingCollection.clear();
         System.out.println("Коллекция успешно очищена");
     }

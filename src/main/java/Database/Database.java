@@ -194,8 +194,22 @@ public class Database {
      * @param table the table
      * @return the int
      */
-    public int truncateTable(String table){
+    private int truncateTable(String table){
         String sqlRequest = "TRUNCATE TABLE " + table;
+        try{
+            Statement smt = connection.createStatement();
+            return smt.executeUpdate(sqlRequest);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int truncateTable(String table1, String table2){
+       return truncateTable(table1) + alterSequence(table2);
+    }
+
+    private int alterSequence(String table){
+        String sqlRequest = "ALTER SEQUENCE users_id_seq RESTART WITH 1";
         try{
             Statement smt = connection.createStatement();
             return smt.executeUpdate(sqlRequest);

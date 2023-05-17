@@ -29,7 +29,7 @@ abstract public class Validator {
      *
      * @return the errors
      */
-    protected Errors validateAll(){
+    public Errors validateAll(){
         addAllErrors();
         for(IsValidating method : validatesMethods.keySet()){
             if(method.isNotValidate()){

@@ -112,6 +112,8 @@ public enum Errors {
      */
     USEDLOGIN("This username already exists"),
 
+    UNKNOWNERROR("Unknown error"),
+
     USEDID("Данный id уже существует");
     /**
      * The Error.

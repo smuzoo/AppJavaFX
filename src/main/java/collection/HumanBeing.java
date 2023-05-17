@@ -80,6 +80,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      */
     public HumanBeing(){
         this.creationDate = LocalDate.now();
+        this.userLogin = User.getLogin();
     }
 
     /**
