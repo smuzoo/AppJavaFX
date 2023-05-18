@@ -27,6 +27,7 @@ public class ChangeSceneHandler implements EventHandler<ActionEvent> {
             throw new RuntimeException(e);
         }
         Scene menuScene = new Scene(menuParent);
+        menuScene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setScene(menuScene);
         primaryStage.show();

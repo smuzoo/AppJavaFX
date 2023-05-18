@@ -40,7 +40,7 @@ public class CoordinatesValidator extends Validator {
     }
 
     private boolean isBiggerX(){
-        return Float.parseFloat(x) > -809f;
+        return Float.parseFloat(x) >= -809f;
     }
 
 

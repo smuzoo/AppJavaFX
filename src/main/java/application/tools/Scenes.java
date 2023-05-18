@@ -7,7 +7,7 @@ public enum Scenes {
     REGISTRATION("registration"),
     MAIN("main");
 
-    private String nameScene;
+    private final String nameScene;
 
     Scenes(String nameScene) {
         this.nameScene = nameScene;

@@ -1,6 +1,6 @@
 package application.controllers;
 
-import commands.Command;
+import application.tools.ModalController;
 import commands.specific.InsertHumanBeing;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ import validators.Errors;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddElementController implements Initializable {
+public class AddElementController implements Initializable, ModalController {
     private Stage modalStage;
 
     private final ObservableList<String> BOOLEAN_TYPES = FXCollections
@@ -54,25 +54,26 @@ public class AddElementController implements Initializable {
         moodChoice.setValue(MOOD_TYPES.get(0));
         moodChoice.setItems(MOOD_TYPES);
 
-
-        String name = nameField.getText();
-        String coordinates = coordinatesField.getText();
-        String impactSpeed = impactSpeedField.getText();
-        String realHero = realHeroChoice.getValue();
-        String hasToothPick = hasToothPickChoice.getValue();
-        String weaponType = weaponTypeChoice.getValue();
-        String mood = moodChoice.getValue();
-        String carCool = carChoice.getValue();
-
         submitButton.setOnAction(event -> {
+            String name = nameField.getText();
+            String coordinates = coordinatesField.getText();
+            String impactSpeed = impactSpeedField.getText();
+            String realHero = realHeroChoice.getValue();
+            String hasToothPick = hasToothPickChoice.getValue();
+            String weaponType = weaponTypeChoice.getValue();
+            String mood = moodChoice.getValue();
+            String carCool = carChoice.getValue();
             InsertHumanBeing insertHumanBeing = new InsertHumanBeing(new ReaderFromConsole());
             Errors error = insertHumanBeing.execute(name, coordinates, impactSpeed, realHero, hasToothPick,
                     weaponType, mood, carCool);
             if(error == Errors.NOTHAVEERRORS){
                 errorText.setText("Object was successfully added");
-                errorText.setStyle("-fx-text-fill: green");
+                errorText.setStyle("-fx-fill: green");
 
-            }else errorText.setText(error.getError());
+            }else {
+                errorText.setText(error.getError());
+                errorText.setStyle("-fx-fill: red");
+            }
             errorText.setVisible(true);
         });
 

@@ -7,27 +7,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="DeleteElementWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="271.0" style="-fx-background-color: #3E0E1A; -fx-background-radius: 40; -fx-opacity: 0.8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.DeleteByIdController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="271.0" style="-fx-background-color: #3E0E1A; -fx-background-radius: 40; -fx-opacity: 0.8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.DeleteByIdController">
    <children>
-      <Label layoutX="79.0" layoutY="14.0" text="Enter Id:" textFill="WHITE">
+      <Label layoutX="75.0" layoutY="36.0" text="Enter Id:" textFill="WHITE">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <TextField fx:id="DeleteElementField" alignment="CENTER" layoutX="100.0" layoutY="77.0" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 10;">
+      <TextField fx:id="deleteElementField" alignment="CENTER" layoutX="101.0" layoutY="80.0" prefHeight="36.0" prefWidth="70.0" style="-fx-background-radius: 10;">
          <font>
             <Font size="17.0" />
          </font>
       </TextField>
-      <Button fx:id="SubmitButton" layoutX="84.0" layoutY="130.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="SUBMIT" textAlignment="CENTER" textFill="#fffbfb" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="submitButton" layoutX="71.0" layoutY="125.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="133.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="SUBMIT" textAlignment="CENTER" textFill="#fffbfb" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Text fx:id="errorText" fill="RED" layoutX="29.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="217.734375">
+      <Text fx:id="errorText" fill="RED" layoutX="29.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="217.734375">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="8.0" />
          </font>
       </Text>
+      <Button fx:id="closeButton" layoutX="212.0" layoutY="7.0" prefHeight="34.0" prefWidth="34.0" styleClass="close-button" />
    </children>
 </AnchorPane>

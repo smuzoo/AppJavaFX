@@ -1,15 +1,0 @@
-HumanBeing{
-
- id=2547,
- name='David',
- coordinates.x=-1194.3367,
- coordinates.y=-2141774564,
- creationDate=2023-05-17,
- realHero=false,
- hasToothpick=false,
- impactSpeed=207,
- weaponType=SHOTGUN,
- mood=APATHY,
- car.cool=false,
- userLogin=admin
-}

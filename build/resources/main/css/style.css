@@ -4,12 +4,17 @@
     -fx-background-image: url('../addElement/images/closeButton.png');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
-    -fx-transition: all 0.1s;
     -fx-background-position: center;
 
 }
 
-.close-button:hover {
+.button{
+    -fx-transition: all 1s;
+}
+
+.button:hover {
     -fx-scale-x: 1.2;
     -fx-scale-y: 1.2;
+    -fx-cursor: pointer;
 }
+

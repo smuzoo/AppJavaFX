@@ -1,6 +1,6 @@
 package application.controllers;
 
-import application.tools.AddModalSceneHandler;
+import application.tools.ModalSceneHandler;
 import application.tools.Scenes;
 import application.tools.ChangeSceneHandler;
 import application.tools.Column;
@@ -8,12 +8,15 @@ import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.Region;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,9 +48,25 @@ public class MainController implements Initializable {
 
         tableHumanBeingInfo.setItems(data);
 
-        addButton.setOnAction(new AddModalSceneHandler(Scenes.ADDFORM));
+        addButton.setOnAction(event -> {
+            Region root = (Region) addButton.getScene().getRoot();
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.ADDFORM, root);
+            handler.handle(event);
+            tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
+                    HumanBeingCollection.getHumanBeings()
+            ));
+            tableHumanBeingInfo.refresh();
+        });
 
-        deleteByIdButton.setOnAction(new AddModalSceneHandler(Scenes.DELETEBYID));
+        deleteByIdButton.setOnAction(event -> {
+            Region root = (Region) deleteByIdButton.getScene().getRoot();
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.DELETEBYID, root);
+            handler.handle(event);
+            tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
+                    HumanBeingCollection.getHumanBeings()
+            ));
+            tableHumanBeingInfo.refresh();
+        });
 
         leaveButton.setOnAction(new ChangeSceneHandler(Scenes.LOGIN));
 

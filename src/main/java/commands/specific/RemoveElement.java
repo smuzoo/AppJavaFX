@@ -3,6 +3,7 @@ package commands.specific;
 import Database.Database;
 import collection.HumanBeingCollection;
 import commands.Command;
+import validators.Errors;
 import validators.commands.RemoveElementValidator;
 import validators.fields.HumanForUserValidator;
 
@@ -31,6 +32,29 @@ public class RemoveElement implements Command {
 
         }
     }
+
+    public Errors isExecute(String argument){
+        RemoveElementValidator removeElementValidator = new RemoveElementValidator(argument);
+        Errors error = removeElementValidator.validateAll();
+        if(error == Errors.NOTHAVEERRORS){
+            Long id = Long.parseLong(argument);
+            HumanForUserValidator hsev = new HumanForUserValidator(HumanBeingCollection.getHuman(id));
+            error = hsev.validateAll();
+            if(error == Errors.NOTHAVEERRORS){
+                Database db = Database.getInstance();
+                int update = db.deleteById("human_beings", id);
+                if(update > 0){
+                    HumanBeingCollection.remove(id);
+                    System.out.println("Элемент был успешно удалён");
+                    return error;
+                }
+            }
+
+
+        }
+        return error;
+    }
+
 
     @Override
     public String description(){

@@ -5,6 +5,7 @@ import application.tools.ChangeSceneHandler;
 import authentication.Authentication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -38,6 +39,7 @@ public class RegistrationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         errorText.setVisible(false);
+
         registrationButton.setOnAction(event -> {
             String login = loginField.getText();
             String password = passwordField.getText();
