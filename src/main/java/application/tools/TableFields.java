@@ -18,15 +18,15 @@ public class TableFields {
         final ObservableList<String> WEAPON_TYPES = CheckboxesConstants.getWeaponTypes();
         final ObservableList<String> MOOD_TYPES = CheckboxesConstants.getMoodTypes();
         ChoiceBox<String> choiceBoxIsRealHero = new ChoiceBox<>(BOOLEAN_TYPES);
-        choiceBoxIsRealHero.setValue(BOOLEAN_TYPES.get(0));
+        choiceBoxIsRealHero.setValue(String.valueOf(humanBeing.isRealHero()));
         ChoiceBox<String> choiceBoxIsToothPick = new ChoiceBox<>(BOOLEAN_TYPES);
-        choiceBoxIsToothPick.setValue(BOOLEAN_TYPES.get(0));
+        choiceBoxIsToothPick.setValue(String.valueOf(humanBeing.isHasToothpick()));
         ChoiceBox<String> choiceBoxIsCarCool = new ChoiceBox<>(BOOLEAN_TYPES);
-        choiceBoxIsCarCool.setValue(BOOLEAN_TYPES.get(0));
+        choiceBoxIsCarCool.setValue(String.valueOf(humanBeing.getCar().getStatus()));
         ChoiceBox<String> choiceBoxWeaponTypes = new ChoiceBox<>(WEAPON_TYPES);
-        choiceBoxWeaponTypes.setValue(WEAPON_TYPES.get(0));
+        choiceBoxWeaponTypes.setValue(humanBeing.getStringWeaponType());
         ChoiceBox<String> choiceBoxMoodTypes = new ChoiceBox<>(MOOD_TYPES);
-        choiceBoxMoodTypes.setValue(MOOD_TYPES.get(0));
+        choiceBoxMoodTypes.setValue(humanBeing.getStringMood());
         return FXCollections.observableArrayList(
                 new HumanBeingInfo("Name", humanBeing.getName(), new TextField()),
                 new HumanBeingInfo("Coordinates",

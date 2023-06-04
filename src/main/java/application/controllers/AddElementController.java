@@ -60,8 +60,6 @@ public class AddElementController implements Initializable, ModalController {
             String mood = moodChoice.getValue();
             String carCool = carChoice.getValue();
             InsertHumanBeing insertHumanBeing = new InsertHumanBeing(new ReaderFromConsole());
-            System.out.println("Mood: " + mood);
-            System.out.println("WeaponType: " + weaponType);
             Errors error = insertHumanBeing.execute(name, coordinates, impactSpeed, realHero, hasToothPick,
                     weaponType, mood, carCool);
             if(error == Errors.NOTHAVEERRORS){

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="HumanBeingGeneratorLauncher" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-06-04T19:53:37" hostname="pavel-virtual-machine" time="0.664">
+  <properties/>
+  <testcase name="testGenerateRandomHumanBeingInDb()" classname="HumanBeingGeneratorLauncher" time="0.638"/>
+  <testcase name="testGenerateRandomHumanBeing()" classname="HumanBeingGeneratorLauncher" time="0.024"/>
+  <system-out><![CDATA[HumanBeing{
+ id=223,
+ name='Jane',
+ coordinates.x=-1482.1073,
+ coordinates.y=477393764,
+ creationDate=2023-06-04,
+ realHero=true,
+ hasToothpick=true,
+ impactSpeed=470,
+ weaponType=hammer,
+ mood=rage,
+ car.cool=true,
+ userLogin=admin
+}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

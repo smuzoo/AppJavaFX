@@ -29,11 +29,11 @@ public class ExecuteScript implements Command {
             if(fileValidatorToRead.isValid()) {
                 RecursionValidator recursionValidator = new RecursionValidator(FILE_PATH);
                 if(recursionValidator.isValid()) {
-                    ReaderManager reader = new ReaderManager(new ReaderFromFile(FILE_PATH), NameReader.READERFILE);
+                    Reader reader = new ReaderFromFile(FILE_PATH);
                     CommandController commandController = new CommandController(reader);
                     ExecuteScriptLogger.addFile(FILE_PATH);
-                    while (reader.getNameReader() != NameReader.READERCONSOLE) {
-                        String request = reader.getNewLine();
+                    String request;
+                    while ((request = reader.getNewLine()) != null) {
                         commandController.executeCommand(request);
                     }
                     ExecuteScriptLogger.delete(FILE_PATH);

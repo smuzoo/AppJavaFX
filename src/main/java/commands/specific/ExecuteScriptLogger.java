@@ -1,5 +1,6 @@
 package commands.specific;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  */
 public class ExecuteScriptLogger {
 
-    private static List<String> historyFiles;
+    private static final List<String> historyFiles = new ArrayList<>();
 
     /**
      * Add file.

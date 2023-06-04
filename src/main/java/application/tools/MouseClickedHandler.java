@@ -6,12 +6,11 @@ import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import collection.HumanBeingInfo;
 import commands.specific.RemoveElement;
+import commands.specific.Update;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -25,11 +24,14 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
     private final AnchorPane paneTableField;
     private final Button deleteButton;
     private final Text errorText;
+    private final Button updateTableFieldButton;
+    private final TableColumn<HumanBeingInfo, Control> editColumn;
 
     public MouseClickedHandler(TableCell<HumanBeing, String> cell, TableView<HumanBeing> tableView,
                                TableView<HumanBeingInfo> humanBeingFieldInformation,
                                TableView<HumanBeingInfo> humanBeingInformationEdit, AnchorPane paneTableField,
-                               Button deleteButton, Text errorText) {
+                               Button deleteButton, Text errorText, Button updateTableFieldButton,
+                               TableColumn<HumanBeingInfo, Control> editColumn) {
         this.cell = cell;
         this.tableView = tableView;
         this.humanBeingFieldInformation = humanBeingFieldInformation;
@@ -37,6 +39,8 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
         this.paneTableField = paneTableField;
         this.deleteButton = deleteButton;
         this.errorText = errorText;
+        this.updateTableFieldButton = updateTableFieldButton;
+        this.editColumn = editColumn;
     }
     @Override
     public void handle(MouseEvent event) {
@@ -67,6 +71,49 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
                     }else {
                         errorText.setText(error.getError());
                         errorText.setVisible(true);
+                    }
+                });
+                updateTableFieldButton.setOnAction(e -> {
+                   ObservableList<HumanBeingInfo> itemsMainTable = humanBeingInformationEdit.getItems();
+                    boolean isUpdated = true;
+                    Update update = new Update(humanBeing);
+                    for(int i = 0; i < itemsMainTable.size(); i++){
+                        Control cell = editColumn.getCellObservableValue(i).getValue();
+                        if(cell instanceof TextField text){
+                            String textValue = text.getText();
+                            if(!textValue.isEmpty()){
+                                Errors error = update.updateHuman(i, textValue);
+                                if(error != Errors.NOTHAVEERRORS){
+                                    errorText.setText(error.getError());
+                                    errorText.setVisible(true);
+                                    isUpdated = false;
+                                    break;
+                                }
+                            }
+                        } else if (cell instanceof ChoiceBox) {
+                            ChoiceBox<String> choiceBox = (ChoiceBox<String>) cell;
+                            String value = choiceBox.getValue();
+                            if(!value.equals("null")){
+                                Errors error = update.updateHuman(i, value);
+                                if(error != Errors.NOTHAVEERRORS){
+                                    errorText.setText(error.getError());
+                                    errorText.setVisible(true);
+                                    isUpdated = false;
+                                    break;
+                                }
+
+                            }
+
+                        }
+                    }
+                    if(isUpdated){
+                        update.updateCollection();
+                        tableView.setItems(FXCollections.observableArrayList(
+                                HumanBeingCollection.getHumanBeings()
+                        ));
+                        tableView.refresh();
+                        paneTableField.setVisible(false);
+                        MainController.setDoubleClickedOnField(false);
                     }
                 });
             } else {

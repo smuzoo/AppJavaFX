@@ -80,7 +80,7 @@ public class CommandController {
         return commands;
     }
 
-    private Command getCommand(String commandName) {
+    public Command getCommand(String commandName) {
         return commands.get(commandName);
     }
 

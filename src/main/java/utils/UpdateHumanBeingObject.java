@@ -38,7 +38,7 @@ public class UpdateHumanBeingObject {
         Predicate<String> notNullSetter = notNullSetters.get(field);
         if(notNullSetter == null) updateNullSetter(human, field, valueField);
         else {
-            while(!notNullSetters.get(field).test(valueField)){
+            if(!notNullSetters.get(field).test(valueField)){
                 System.out.println(field);
                 valueField = reader.getNewLine();
             }
@@ -59,4 +59,5 @@ public class UpdateHumanBeingObject {
         Map<Fields, Consumer<String>> setters = human.getSetters();
         setters.get(field).accept(valueField);
     }
+
 }

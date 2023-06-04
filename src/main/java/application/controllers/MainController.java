@@ -4,6 +4,9 @@ import application.tools.*;
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import collection.HumanBeingInfo;
+import commands.Command;
+import commands.CommandController;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +16,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.util.Duration;
+import utils.readers.ReaderFromConsole;
 
-import java.beans.EventHandler;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 
@@ -41,7 +47,7 @@ public class MainController implements Initializable {
     @FXML
     private TableView<HumanBeingInfo> humanBeingInformationEdit;
     @FXML
-    private TableColumn<HumanBeingInfo, Void> editColumn;
+    private TableColumn<HumanBeingInfo, Control> editColumn;
     @FXML
     private TableColumn<HumanBeingInfo, String> valueFieldUpdate;
     @FXML
@@ -56,8 +62,15 @@ public class MainController implements Initializable {
     private Button closeTableFieldButton;
     @FXML
     private AnchorPane paneTableField;
+    @FXML
+    private Button executeScriptButton;
+    @FXML
+    private TextField searchField;
 
     private static boolean doubleClickedOnField = false;
+
+    private final Duration searchDelay = Duration.seconds(0.5);
+    private javafx.animation.Timeline searchTimeline;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +98,8 @@ public class MainController implements Initializable {
                     cell.setOnMouseEntered(new MouseEnteredHandler(cell, tableHumanBeingInfo, humanBeingFieldInformation,
                             humanBeingInformationEdit, paneTableField));
                     cell.setOnMouseClicked(new MouseClickedHandler(cell, tableHumanBeingInfo, humanBeingFieldInformation,
-                            humanBeingInformationEdit, paneTableField, deleteTableFieldButton, errorTextTableField));
+                            humanBeingInformationEdit, paneTableField, deleteTableFieldButton, errorTextTableField,
+                            updateTableFieldButton, editColumn));
                     cell.setOnMouseExited(event -> {
                         if(!doubleClickedOnField){
                             humanBeingFieldInformation.setVisible(false);
@@ -97,36 +111,28 @@ public class MainController implements Initializable {
                 }
         );
 
+
+
         errorTextTableField.setVisible(false);
         closeTableFieldButton.setOnAction(event -> {
             paneTableField.setVisible(false);
             doubleClickedOnField = false;
         });
 
-        ObservableList<HumanBeing> data = FXCollections.observableArrayList(
-                HumanBeingCollection.getHumanBeings()
-        );
-
-        tableHumanBeingInfo.setItems(data);
+        updateTable(HumanBeingCollection.getHumanBeings());
 
         addButton.setOnAction(event -> {
             Region root = (Region) addButton.getScene().getRoot();
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.ADDFORM, root);
             handler.handle(event);
-            tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
-                    HumanBeingCollection.getHumanBeings()
-            ));
-            tableHumanBeingInfo.refresh();
+            updateTable(HumanBeingCollection.getHumanBeings());
         });
 
         deleteByIdButton.setOnAction(event -> {
             Region root = (Region) deleteByIdButton.getScene().getRoot();
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.DELETEBYID, root);
             handler.handle(event);
-            tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
-                    HumanBeingCollection.getHumanBeings()
-            ));
-            tableHumanBeingInfo.refresh();
+            updateTable(HumanBeingCollection.getHumanBeings());
         });
 
         leaveButton.setOnAction(event -> {
@@ -135,6 +141,41 @@ public class MainController implements Initializable {
             changeSceneHandler.handle(event);
         });
 
+        executeScriptButton.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose a script file");
+            CommandController commandController = new CommandController(new ReaderFromConsole());
+            Command executeScript = commandController.getCommand("execute_script");
+            executeScript.execute(fileChooser.showOpenDialog(tableHumanBeingInfo.getScene().getWindow()).getAbsolutePath());
+        });
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (searchTimeline != null) {
+                searchTimeline.stop();
+            }
+
+            // Запускаем таймлайн с задержкой
+            searchTimeline = new javafx.animation.Timeline();
+            searchTimeline.getKeyFrames().add(
+                    new javafx.animation.KeyFrame(searchDelay, event -> performSearch(newValue))
+            );
+            searchTimeline.play();
+        });
+
+
+
+    }
+
+    private void performSearch(String searchTerm) {
+        // Очищаем предыдущий результат поиска
+        tableHumanBeingInfo.getItems().clear();
+
+        // Выполняем поиск и добавляем найденные элементы в таблицу
+        for (HumanBeing humanBeing : HumanBeingCollection.getHumanBeings()) {
+            if (String.valueOf(humanBeing.getId()).contains(searchTerm) || humanBeing.getName().contains(searchTerm)) {
+                tableHumanBeingInfo.getItems().add(humanBeing);
+            }
+        }
     }
 
     public static boolean isDoubleClickedOnField() {
@@ -144,4 +185,11 @@ public class MainController implements Initializable {
     public static void setDoubleClickedOnField(boolean doubleClickedOnField) {
         MainController.doubleClickedOnField = doubleClickedOnField;
     }
+    public void updateTable(Collection<HumanBeing> data){
+        tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
+                data
+        ));
+        tableHumanBeingInfo.refresh();
+    }
+
 }

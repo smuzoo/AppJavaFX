@@ -126,7 +126,7 @@
                      <font>
                         <Font size="26.0" />
                      </font></Label>
-                  <TextField alignment="CENTER" layoutX="117.0" layoutY="7.0" prefHeight="39.0" prefWidth="236.0" promptText="input text" style="-fx-background-radius: 40;">
+                  <TextField fx:id="searchField" alignment="CENTER" layoutX="117.0" layoutY="7.0" prefHeight="39.0" prefWidth="236.0" promptText="input text" style="-fx-background-radius: 40;">
                      <font>
                         <Font size="20.0" />
                      </font></TextField>
@@ -166,14 +166,14 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="122.0" text="ValueField" textAlignment="CENTER" textFill="white" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="editColumn" prefWidth="146.0" style="-fx-background-color: #462323;">
+                  <TableColumn fx:id="editColumn" prefWidth="145.0" style="-fx-background-color: #462323;">
                      <graphic>
-                        <Label prefHeight="16.0" prefWidth="150.0" text="Update" textFill="white" />
+                        <Label prefHeight="16.0" prefWidth="145.0" text="Update" textFill="white" />
                      </graphic>
                   </TableColumn>
                </columns>
             </TableView>
-            <Button fx:id="updateTableFIeldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="332.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="UPDATE" textAlignment="CENTER" textFill="#fffbfb">
+            <Button fx:id="updateTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="332.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="UPDATE" textAlignment="CENTER" textFill="#fffbfb">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -188,7 +188,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Text fx:id="errorTextTableField" fill="RED" layoutX="-1.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="380.0" />
+            <Text fx:id="errorTextTableField" fill="RED" layoutX="-1.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" wrappingWidth="380.0" />
          </children>
       </AnchorPane>
    </children>
