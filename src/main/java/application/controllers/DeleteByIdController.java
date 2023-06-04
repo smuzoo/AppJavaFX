@@ -33,8 +33,7 @@ public class DeleteByIdController implements Initializable, ModalController {
             RemoveElement removeElement = new RemoveElement();
             Errors error = removeElement.isExecute(id);
             if(error == Errors.NOTHAVEERRORS){
-                errorText.setText("Object was successfully deleted");
-                errorText.setStyle("-fx-fill: green");
+                modalStage.close();
             }else{
                 errorText.setText(error.getError());
                 errorText.setStyle("-fx-fill: red");

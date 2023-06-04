@@ -18,3 +18,21 @@
     -fx-cursor: pointer;
 }
 
+.choice-box {
+    -fx-background-color: white;
+    -fx-min-width: 100px;
+    -fx-alignment: center;
+}
+
+.choice-box .text {
+    -fx-alignment: center;
+}
+
+.text-field {
+    -fx-min-width: 100px;
+    -fx-background-radius: 40;
+}
+
+.text-field  .text {
+    -fx-text-alignment: center;
+}

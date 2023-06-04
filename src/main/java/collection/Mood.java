@@ -7,19 +7,19 @@ public enum Mood {
     /**
      * Longing mood.
      */
-    LONGING("LONGING", "1", 0),
+    LONGING("longing", "1", 0),
     /**
      * Gloom mood.
      */
-    GLOOM("GLOOM", "2", 1),
+    GLOOM("gloom", "2", 1),
     /**
      * Apathy mood.
      */
-    APATHY("APATHY", "3", 2),
+    APATHY("apathy", "3", 2),
     /**
      * Rage mood.
      */
-    RAGE("RAGE", "4", 50);
+    RAGE("rage", "4", 50);
 
         private final String name, order;
         private final int power;

@@ -9,15 +9,15 @@ public enum WeaponType {
     /**
      * Hammer weapon type.
      */
-    HAMMER("HAMMER", "1", 10),
+    HAMMER("hammer", "1", 10),
     /**
      * Pistol weapon type.
      */
-    PISTOL("PISTOL", "2", 45),
+    PISTOL("pistol", "2", 45),
     /**
      * Shotgun weapon type.
      */
-    SHOTGUN("SHOTGUN", "3", 80);
+    SHOTGUN("shotgun", "3", 80);
 
     private final String name, order;
 

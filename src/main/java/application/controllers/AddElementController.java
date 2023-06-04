@@ -1,8 +1,8 @@
 package application.controllers;
 
+import application.tools.CheckboxesConstants;
 import application.tools.ModalController;
 import commands.specific.InsertHumanBeing;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,13 +20,9 @@ import java.util.ResourceBundle;
 public class AddElementController implements Initializable, ModalController {
     private Stage modalStage;
 
-    private final ObservableList<String> BOOLEAN_TYPES = FXCollections
-            .observableArrayList("false", "true");
-    private final ObservableList<String> WEAPON_TYPES = FXCollections
-            .observableArrayList("null", "hammer", "pistol", "shotgun");
-    private final ObservableList<String> MOOD_TYPES = FXCollections
-            .observableArrayList("null", "longing", "gloom", "apathy", "rage");
-
+    private final ObservableList<String> BOOLEAN_TYPES = CheckboxesConstants.getBooleanTypes();
+    private final ObservableList<String> WEAPON_TYPES = CheckboxesConstants.getWeaponTypes();
+    private final ObservableList<String> MOOD_TYPES = CheckboxesConstants.getMoodTypes();
     @FXML private ChoiceBox<String> realHeroChoice;
     @FXML private ChoiceBox<String> hasToothPickChoice;
     @FXML private ChoiceBox<String> weaponTypeChoice;
@@ -64,11 +60,12 @@ public class AddElementController implements Initializable, ModalController {
             String mood = moodChoice.getValue();
             String carCool = carChoice.getValue();
             InsertHumanBeing insertHumanBeing = new InsertHumanBeing(new ReaderFromConsole());
+            System.out.println("Mood: " + mood);
+            System.out.println("WeaponType: " + weaponType);
             Errors error = insertHumanBeing.execute(name, coordinates, impactSpeed, realHero, hasToothPick,
                     weaponType, mood, carCool);
             if(error == Errors.NOTHAVEERRORS){
-                errorText.setText("Object was successfully added");
-                errorText.setStyle("-fx-fill: green");
+                modalStage.close();
 
             }else {
                 errorText.setText(error.getError());

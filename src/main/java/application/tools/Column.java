@@ -1,12 +1,9 @@
 package application.tools;
 
-import collection.HumanBeing;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
-public class Column<T> extends TableCell<HumanBeing, T> {
+public class Column<S, T> extends TableCell<S, T> {
 
     private final Pane hoverPane = new Pane();
 

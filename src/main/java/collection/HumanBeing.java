@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -110,6 +111,12 @@ public class HumanBeing implements Comparable<HumanBeing>{
         LocalDateTime localDateTime = creationDate.atStartOfDay();
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
         return Timestamp.valueOf(zonedDateTime.toLocalDateTime());
+    }
+
+    public String getStringCreationDate() {
+        LocalDateTime localDateTime = creationDate.atStartOfDay();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return localDateTime.format(formatter);
     }
 
     /**
