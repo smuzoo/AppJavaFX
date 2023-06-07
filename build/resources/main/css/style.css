@@ -36,3 +36,21 @@
 .text-field  .text {
     -fx-text-alignment: center;
 }
+
+.menu-item:focused {
+    -fx-background-color: rgb(0, 188, 212);
+}
+
+.menu-item {
+    -fx-pref-width: 196;
+    -fx-padding: 10;
+}
+
+.context-menu {
+    -fx-border-color: rgb(0, 144, 163);
+    -fx-padding: 0;
+    -fx-border-width: 2;
+}
+.menu-item:hover {
+    -fx-background-color: rgb(0, 125, 255);
+}
