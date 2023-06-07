@@ -66,6 +66,8 @@ public class MainController implements Initializable {
     private Button executeScriptButton;
     @FXML
     private TextField searchField;
+    @FXML
+    private Button mapButton;
 
     private static boolean doubleClickedOnField = false;
 
@@ -162,7 +164,7 @@ public class MainController implements Initializable {
             searchTimeline.play();
         });
 
-
+        mapButton.setOnAction(new ChangeSceneHandler(Scenes.MAP));
 
     }
 

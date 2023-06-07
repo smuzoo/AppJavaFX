@@ -5,6 +5,7 @@ public enum Scenes {
     DELETEBYID("deleteElement"),
     LOGIN("login"),
     REGISTRATION("registration"),
+    MAP("map"),
     MAIN("main");
 
     private final String nameScene;
