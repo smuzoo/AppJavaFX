@@ -7,6 +7,8 @@ public class Coordinates {
     private float x; //Значение поля должно быть меньше -809
     private Integer y; //Поле не может быть null
 
+    private double moveY;
+
     /**
      * Instantiates a new Coordinates.
      *
@@ -16,6 +18,15 @@ public class Coordinates {
     public Coordinates(float x, Integer y){
         this.x = x;
         this.y = y;
+        this.moveY = y;
+    }
+
+    public double getMoveY() {
+        return moveY;
+    }
+
+    public void setMoveY(double moveY) {
+        this.moveY = moveY;
     }
 
     /**

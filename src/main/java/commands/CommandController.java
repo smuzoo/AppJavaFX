@@ -1,12 +1,8 @@
 package commands;
 
-import authentication.Authentication;
-import authentication.User;
 import commands.specific.*;
 import utils.readers.Reader;
-import validators.fields.NotEqualsValidator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,14 +52,13 @@ public class CommandController {
         addCommand("remove_key", new RemoveElement());
         addCommand("remove_greater_key", new RemoveGreaterKey());
         addCommand("count_greater_than_impact_speed", new CountGreaterThanImpactSpeed());
-        addCommand("filter_less_than_impact_speed", new ShowLessThanImpactSpeed());
+        addCommand("filter_less_than_impact_speed", new CountLessThanImpactSpeed());
         addCommand("print_field_descending_mood", new ShowFieldDescendingMood());
         addCommand("insert", new InsertHumanBeing(reader));
         addCommand("remove_greater", new RemoveGreaterHumanBeing(reader));
         addCommand("remove_lower", new RemoveLowerHumanBeing(reader));
         addCommand("update", new UpdateHumanBeing(reader));
         addCommand("execute_script", new ExecuteScript());
-        addCommand("exit", new Exit());
 
     }
 

@@ -46,7 +46,6 @@ public class RemoveElement implements Command {
                 if(update > 0){
                     HumanBeingCollection.remove(id);
                     System.out.println("Элемент был успешно удалён");
-                    return error;
                 }
             }
 
@@ -58,6 +57,6 @@ public class RemoveElement implements Command {
 
     @Override
     public String description(){
-        return BLUE + "remove_key" + PURPLE + " null" + RESET + " : удалить элемент из коллекции по его ключу";
+        return "remove_key" + " null" + " : удалить элемент из коллекции по его ключу";
     }
 }

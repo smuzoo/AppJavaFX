@@ -52,7 +52,7 @@ public class InsertHumanBeing implements Command {
 
     @Override
     public String description() {
-        return BLUE + "insert" + PURPLE + " null {element}" + RESET + " : добавить новый элемент с заданным ключом";
+        return "insert" + " null {element}" + " : добавить новый элемент с заданным ключом";
     }
 
 

@@ -26,6 +26,6 @@ public class ShowFieldDescendingMood implements Command {
 
     @Override
     public String description(){
-        return BLUE + "print_field_descending_mood" + RESET + " : вывести значения поля mood всех элементов в порядке убывания";
+        return "print_field_descending_mood" + " : вывести значения поля mood всех элементов в порядке убывания";
     }
 }

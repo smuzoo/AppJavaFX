@@ -1,15 +1,15 @@
 HumanBeing{
 
- id=1031,
- name='John',
- coordinates.x=-995.87726,
- coordinates.y=231921002,
- creationDate=2023-06-07,
+ id=1503,
+ name='Emily',
+ coordinates.x=-3.3762596E38,
+ coordinates.y=1991316384,
+ creationDate=2023-06-08,
  realHero=false,
  hasToothpick=false,
- impactSpeed=385,
- weaponType=pistol,
- mood=apathy,
+ impactSpeed=81,
+ weaponType=hammer,
+ mood=rage,
  car.cool=false,
  userLogin=admin
-}
+}

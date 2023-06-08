@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('../login/images/Cover.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('../login/images/Cover.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -54,21 +46,28 @@
                   <Font name="System Italic" size="21.0" />
                </font>
             </Button>
-            <Label layoutX="74.0" layoutY="187.0" text="Nickname" textFill="WHITE">
+            <Label fx:id="nickname" layoutX="74.0" layoutY="187.0" text="Nickname" textFill="WHITE">
                <font>
                   <Font size="34.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="15.0" text="Language:" textFill="#47a89c">
+            <Label fx:id="languageLabel" layoutX="15.0" layoutY="15.0" text="Language:" textFill="#47a89c">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="15.0" style="-fx-underline: true;" text="English" textFill="#47a89c">
+            <MenuButton fx:id="currentLanguageMenu" layoutX="88.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="MenuButton" textFill="#47a89c">
+               <items>
+                  <MenuItem fx:id="ruLanguage" mnemonicParsing="false" text="Russian" />
+                  <MenuItem fx:id="itLanguage" mnemonicParsing="false" text="French" />
+                  <MenuItem fx:id="dutLanguage" mnemonicParsing="false" text="Dutch" />
+                  <MenuItem fx:id="spainLanguage" mnemonicParsing="false" text="Spanish" />
+               </items>
                <font>
-                  <Font name="System Italic" size="19.0" />
+                  <Font size="18.0" />
                </font>
-            </Label>
+            </MenuButton>
+
             <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="20.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon-logout.png" />
@@ -84,18 +83,17 @@
                   <Image url="@images/icon-delete.png" />
                </image>
             </ImageView>
-            <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="526.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #A8788A;" text="Commands" textFill="#cfcfcf">
+            <MenuButton fx:id="commands" alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="526.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #A8788A;" text="Commands" textFill="#cfcfcf">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Count greater than impact speed " />
-                <MenuItem mnemonicParsing="false" text="Clear collection" />
-                  <MenuItem mnemonicParsing="false" text="Remove greater key" />
-                  <MenuItem mnemonicParsing="false" text="Remove greater human being" />
-                  <MenuItem mnemonicParsing="false" text="Remove lower human being" />
-                  <MenuItem mnemonicParsing="false" text="Show collection" />
-                  <MenuItem mnemonicParsing="false" text="Show field descending mood" />
-                  <MenuItem mnemonicParsing="false" text="Show info" />
-                  <MenuItem mnemonicParsing="false" text="Show less than impact speed" />
-                  <MenuItem mnemonicParsing="false" text="Help" />
+                  <MenuItem fx:id="countGreaterSpeedButton" mnemonicParsing="false" text="Count greater than impact speed " />
+
+                 <MenuItem fx:id="showLessSpeedButton" mnemonicParsing="false" text="Show less than impact speed" />
+                <MenuItem fx:id="clearButton" mnemonicParsing="false" text="Clear collection" />
+                  <MenuItem fx:id="removeGreaterKeyButton" mnemonicParsing="false" text="Remove greater key" />
+                  <MenuItem fx:id="removeGreaterHumanButton" mnemonicParsing="false" text="Remove greater human being" />
+                  <MenuItem fx:id="removeLowerHumanButton" mnemonicParsing="false" text="Remove lower human being" />
+                 <MenuItem fx:id="showInfoButton" mnemonicParsing="false" text="Show info" />
+                  <MenuItem fx:id="helpButton" mnemonicParsing="false" text="Help" />
               </items>
                <font>
                   <Font size="20.0" />
@@ -115,14 +113,14 @@
                   </TableColumn>
                   <TableColumn fx:id="nameColumn" prefWidth="168.79998779296875" style="-fx-background-color: #462323;">
                      <graphic>
-                        <Label text="Name" textFill="white" />
+                        <Label fx:id="nameLabel" text="Name" textFill="white" />
                      </graphic>
                   </TableColumn>
                </columns>
             </TableView>
             <AnchorPane layoutX="-4.0" layoutY="705.0" prefHeight="57.0" prefWidth="358.0" style="-fx-background-color: #210B2B;">
                <children>
-                  <Label layoutX="15.0" layoutY="10.0" text="Search:" textFill="WHITE">
+                  <Label fx:id="searchLabel" layoutX="15.0" layoutY="10.0" text="Search:" textFill="WHITE">
                      <font>
                         <Font size="26.0" />
                      </font></Label>

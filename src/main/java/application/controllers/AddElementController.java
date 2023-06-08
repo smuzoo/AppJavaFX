@@ -8,9 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import l10n_i18n.CurrentLanguage;
 import utils.readers.ReaderFromConsole;
 import validators.Errors;
 
@@ -34,6 +36,24 @@ public class AddElementController implements Initializable, ModalController {
     @FXML private TextField coordinatesField;
     @FXML private Text errorText;
     @FXML private Button closeButton;
+
+    @FXML private Label createObject;
+
+    @FXML private Label nameLabel;
+
+    @FXML private Label realHeroLabel;
+
+    @FXML private Label hasToothPickLabel;
+
+    @FXML private Label impactSpeedLabel;
+
+    @FXML private Label carCoolLabel;
+
+    @FXML private Label moodLabel;
+
+    @FXML private Label weaponTypeLabel;
+
+    @FXML private Label coordinatesLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,6 +93,21 @@ public class AddElementController implements Initializable, ModalController {
         });
 
         closeButton.setOnAction(event -> modalStage.close());
+        setLanguages();
+    }
+
+    public void setLanguages(){
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        createObject.setText(currentLanguage.getString("createObject"));
+        nameLabel.setText(currentLanguage.getString("name"));
+        coordinatesLabel.setText(currentLanguage.getString("coordinates"));
+        realHeroLabel.setText(currentLanguage.getString("isRealHero"));
+        hasToothPickLabel.setText(currentLanguage.getString("hasToothPick"));
+        weaponTypeLabel.setText(currentLanguage.getString("weaponType"));
+        moodLabel.setText(currentLanguage.getString("mood"));
+        carCoolLabel.setText(currentLanguage.getString("carCool"));
+        impactSpeedLabel.setText(currentLanguage.getString("impactSpeed"));
+        submitButton.setText(currentLanguage.getString("createButton"));
     }
 
     public void setModalStage(Stage modalStage) {

@@ -95,7 +95,7 @@ public class UpdateHumanBeing implements Command {
 
     @Override
     public String description(){
-        return BLUE + "update" + PURPLE + " id {element}" + RESET + " : обновить значение элемента коллекции, id которого равен заданному";
+        return "update" + " id {element}" + " : обновить значение элемента коллекции, id которого равен заданному";
     }
 
 }

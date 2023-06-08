@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import l10n_i18n.CurrentLanguage;
 
 import java.net.URL;
 import java.util.*;
@@ -29,12 +30,12 @@ public class MapController implements Initializable {
     @FXML
     private Button closeMapButton;
     private static final double RADIUS = 10;
-    private static final double SCREEN_WIDTH = 1080;
-    private static final double SCREEN_HEIGHT = 768;
+    private static final float SCREEN_WIDTH = 1080;
+    private static final Integer SCREEN_HEIGHT = 768;
 
     private float oldX;
 
-    private Integer oldY;
+    private double oldY;
 
     private HumanBeing draggedHumanBeing;
 
@@ -50,7 +51,9 @@ public class MapController implements Initializable {
                 color = generateRandomColor();
                 colorsUsers.put(userLogin, color);
             }
-            Circle circle = new Circle(human.getCoordinates().getX(), human.getCoordinates().getY(), RADIUS);
+            Circle circle = new Circle(normalizeX(human.getCoordinates().getX()),
+                    normalizeY(human.getCoordinates().getY()), RADIUS);
+            circle.setFill(color);
             circle.setUserData(human);
             circle.setOnMousePressed(this::onMousePressed);
             circle.setOnMouseDragged(this::onMouseDragged);
@@ -58,20 +61,18 @@ public class MapController implements Initializable {
             mapPane.getChildren().add(circle);
         }
         mapPane.setOnMouseMoved(event -> {
-            coordinateLabel.setText("X: " + (event.getX()) + ", Y: " + (event.getY()));
+            coordinateLabel.setText("X: " + denormalizeX((float) event.getX()) + ", Y: " + denormalizeY(event.getY()));
         });
 
-        mapPane.getChildren().add(coordinateLabel);
-
         closeMapButton.setOnAction(new ChangeSceneHandler(Scenes.MAIN));
-
+        setLanguage();
     }
     private void onMousePressed(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             Circle circle = (Circle) event.getSource();
             draggedHumanBeing = (HumanBeing) circle.getUserData();
-            oldX = draggedHumanBeing.getCoordinates().getX();
-            oldY = draggedHumanBeing.getCoordinates().getY();
+            oldX = normalizeX(draggedHumanBeing.getCoordinates().getX());
+            oldY = normalizeY(draggedHumanBeing.getCoordinates().getY());
         }
     }
 
@@ -79,10 +80,10 @@ public class MapController implements Initializable {
         if (draggedHumanBeing != null) {
             if(!draggedHumanBeing.getUserLogin().equals(User.getLogin())){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Невозможно редактировать объект");
+                alert.setTitle(CurrentLanguage.getCurrentLanguage().getString("impossible edit object"));
                 alert.setHeaderText(null);
-                alert.setContentText("Вы не можете редактировать данный объект, так как не вы его создали.");
-                ButtonType okButton = new ButtonType("OK");
+                alert.setContentText(CurrentLanguage.getCurrentLanguage().getString("not created this user"));
+                ButtonType okButton = new ButtonType(CurrentLanguage.getCurrentLanguage().getString("ok"));
                 alert.getButtonTypes().setAll(okButton);
                 alert.showAndWait();
             }
@@ -99,13 +100,13 @@ public class MapController implements Initializable {
                 circle.setCenterX(newX);
                 circle.setCenterY(newY);
 
-                draggedHumanBeing.getCoordinates().setX((float) newX);
-                draggedHumanBeing.getCoordinates().setY((int) newY);
+                draggedHumanBeing.getCoordinates().setX(denormalizeX((float) newX));
+                draggedHumanBeing.getCoordinates().setY((int) denormalizeY(newY));
 
             }
               }
 
-        coordinateLabel.setText("X: " + (event.getX()) + ", Y: " + (event.getY()));
+        coordinateLabel.setText("X: " + denormalizeX((float) event.getX()) + ", Y: " + denormalizeY(event.getY()));
     }
 
     private void onMouseReleased(MouseEvent event) {
@@ -116,8 +117,6 @@ public class MapController implements Initializable {
             double newX = event.getX();
             double newY = event.getY();
             if(newX != oldX && newY != oldY) {
-                System.out.println("New " + newY + " " + newX);
-                System.out.println("Old " + oldY + " " + oldX);
                 // Проверка и корректировка координат, чтобы не выйти за границы экрана
                 newX = Math.max(RADIUS, Math.min(SCREEN_WIDTH - RADIUS, newX));
                 newY = Math.max(RADIUS, Math.min(SCREEN_HEIGHT - RADIUS, newY));
@@ -126,13 +125,13 @@ public class MapController implements Initializable {
 
                 // Создание модального окна для подтверждения изменения координат
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Подтверждение изменения координат");
+                alert.setTitle(CurrentLanguage.getCurrentLanguage().getString("confirm coordinate changes"));
                 alert.setHeaderText(null);
-                alert.setContentText("Хотите изменить координаты объекта?");
+                alert.setContentText(CurrentLanguage.getCurrentLanguage().getString("want change coordinates"));
 
                 // Установка кнопок "Да" и "Нет"
-                ButtonType buttonYes = new ButtonType("Да");
-                ButtonType buttonNo = new ButtonType("Нет");
+                ButtonType buttonYes = new ButtonType(CurrentLanguage.getCurrentLanguage().getString("yes"));
+                ButtonType buttonNo = new ButtonType(CurrentLanguage.getCurrentLanguage().getString("no"));
 
                 alert.getButtonTypes().setAll(buttonYes, buttonNo);
 
@@ -143,19 +142,26 @@ public class MapController implements Initializable {
                     // Если пользователь нажал "Да", изменяем координаты объекта
                     circle.setCenterX(newX);
                     circle.setCenterY(newY);
-                    draggedHumanBeing.getCoordinates().setX((float) newX);
-                    draggedHumanBeing.getCoordinates().setY((int) newY);
+                    draggedHumanBeing.getCoordinates().setX(denormalizeX((float) newX));
+                    draggedHumanBeing.getCoordinates().setY((int) denormalizeY(newY));
                 } else {
                     // Если пользователь нажал "Нет", возвращаем объект на исходную позицию
                     circle.setCenterX(oldX);
                     circle.setCenterY(oldY);
-                    draggedHumanBeing.getCoordinates().setX(oldX);
-                    draggedHumanBeing.getCoordinates().setY(oldY);
+                    draggedHumanBeing.getCoordinates().setX(denormalizeX(oldX));
+                    draggedHumanBeing.getCoordinates().setY((int) denormalizeY(oldY));
                 }
             }
             draggedHumanBeing = null;
 
         }
+
+
+    }
+
+    private void setLanguage(){
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        closeMapButton.setText(currentLanguage.getString("to table"));
 
     }
     private Color generateRandomColor() {
@@ -166,5 +172,31 @@ public class MapController implements Initializable {
 
         return new Color(red, green, blue, 1.0);
     }
+
+    private float normalizeX(float x){
+        float minValue = -Float.MAX_VALUE;
+        float maxValue = -809f;
+        return ((x - minValue) / (maxValue - minValue)) * SCREEN_WIDTH;
+    }
+    private double normalizeY(double y){
+        double minValue = Integer.MIN_VALUE;
+        double maxValue = Integer.MAX_VALUE;
+        double res =  (y - minValue) /   (maxValue - minValue);
+        return res*SCREEN_HEIGHT;
+    }
+    private float denormalizeX(float normalizedX) {
+        float minValue = -Float.MAX_VALUE;
+        float maxValue = -809f;
+        float denormalizedX = normalizedX / SCREEN_WIDTH * (maxValue - minValue) + minValue;
+        return denormalizedX;
+    }
+
+    private double denormalizeY(double normalizedY) {
+        double minValue = Integer.MIN_VALUE;
+        double maxValue = Integer.MAX_VALUE;
+        double denormalizedY = normalizedY / SCREEN_HEIGHT * (maxValue - minValue) + minValue;
+        return denormalizedY;
+    }
+
 
 }

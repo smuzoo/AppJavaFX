@@ -46,7 +46,7 @@ public class ExecuteScript implements Command {
 
     @Override
     public String description(){
-        return BLUE + "execute_script " + PURPLE + "file_name" + RESET + " : считать и исполнить скрипт из указанного файла. В скрипте содержатся" +
+        return "execute_script " + "file_name" + " : считать и исполнить скрипт из указанного файла. В скрипте содержатся" +
                 " команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.";
     }
 }

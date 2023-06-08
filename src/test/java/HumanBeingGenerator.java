@@ -68,8 +68,12 @@ public class HumanBeingGenerator {
 
     private static Coordinates generateRandomCoordinates() {
 
-        // Генерация случайного значения для x
-        float x = (float) ((1 + Math.random()) * -809.0);
+
+        float minValue = -Float.MAX_VALUE;
+        float maxValue = -809f;
+
+        float x = minValue + random.nextFloat() * (maxValue - minValue);
+
 
         // Генерация случайного значения для y
         Integer y = random.nextInt();

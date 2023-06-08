@@ -1,27 +1,31 @@
 package application.controllers;
 
 import application.tools.*;
+import authentication.User;
 import collection.HumanBeing;
 import collection.HumanBeingCollection;
 import collection.HumanBeingInfo;
 import commands.Command;
 import commands.CommandController;
-import javafx.animation.Timeline;
+import commands.specific.ShowHelp;
+import commands.specific.ShowInfo;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import l10n_i18n.CurrentLanguage;
+import l10n_i18n.Languages;
 import utils.readers.ReaderFromConsole;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -68,6 +72,42 @@ public class MainController implements Initializable {
     private TextField searchField;
     @FXML
     private Button mapButton;
+    @FXML
+    private MenuItem clearButton;
+    @FXML
+    private MenuItem helpButton;
+    @FXML
+    private MenuItem showInfoButton;
+    @FXML
+    private MenuItem countGreaterSpeedButton;
+
+    @FXML private MenuButton currentLanguageMenu;
+
+    @FXML private MenuItem ruLanguage;
+
+    @FXML private MenuItem itLanguage;
+
+    @FXML private MenuItem dutLanguage;
+
+    @FXML private MenuItem spainLanguage;
+
+    @FXML private Label languageLabel;
+
+    @FXML private Label nickname;
+
+    @FXML private MenuButton commands;
+
+    @FXML private MenuItem removeGreaterKeyButton;
+
+    @FXML private MenuItem removeGreaterHumanButton;
+
+    @FXML private MenuItem removeLowerHumanButton;
+
+    @FXML private MenuItem showLessSpeedButton;
+
+    @FXML private Label searchLabel;
+
+    @FXML private Label nameLabel;
 
     private static boolean doubleClickedOnField = false;
 
@@ -113,7 +153,7 @@ public class MainController implements Initializable {
                 }
         );
 
-
+        nickname.setText(User.getLogin());
 
         errorTextTableField.setVisible(false);
         closeTableFieldButton.setOnAction(event -> {
@@ -124,14 +164,14 @@ public class MainController implements Initializable {
         updateTable(HumanBeingCollection.getHumanBeings());
 
         addButton.setOnAction(event -> {
-            Region root = (Region) addButton.getScene().getRoot();
+            Scene root = addButton.getScene();
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.ADDFORM, root);
             handler.handle(event);
             updateTable(HumanBeingCollection.getHumanBeings());
         });
 
         deleteByIdButton.setOnAction(event -> {
-            Region root = (Region) deleteByIdButton.getScene().getRoot();
+            Scene root = deleteByIdButton.getScene();
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.DELETEBYID, root);
             handler.handle(event);
             updateTable(HumanBeingCollection.getHumanBeings());
@@ -145,7 +185,7 @@ public class MainController implements Initializable {
 
         executeScriptButton.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choose a script file");
+            fileChooser.setTitle(CurrentLanguage.getCurrentLanguage().getString("choose script"));
             CommandController commandController = new CommandController(new ReaderFromConsole());
             Command executeScript = commandController.getCommand("execute_script");
             executeScript.execute(fileChooser.showOpenDialog(tableHumanBeingInfo.getScene().getWindow()).getAbsolutePath());
@@ -166,7 +206,112 @@ public class MainController implements Initializable {
 
         mapButton.setOnAction(new ChangeSceneHandler(Scenes.MAP));
 
+        clearButton.setOnAction(event -> {
+            if(User.getLogin().equals("admin")) {
+                Command clearCommand = new CommandController(new ReaderFromConsole()).getCommand("clear");
+                clearCommand.execute("");
+                updateTable(HumanBeingCollection.getHumanBeings());
+            }else showAlert(CurrentLanguage.getCurrentLanguage().getString("impossible clear"),
+                    CurrentLanguage.getCurrentLanguage().getString("not admin"));
+        });
+
+        helpButton.setOnAction(event -> {
+            showAlert(CurrentLanguage.getCurrentLanguage().getString("info about commands"),
+                    CurrentLanguage.getCurrentLanguage().getString("info for commands"));
+        });
+
+        showInfoButton.setOnAction(event -> {
+            ShowInfo info = new ShowInfo();
+            String result = info.execute();
+            showAlert(CurrentLanguage.getCurrentLanguage().getString("info about collection"),
+                    CurrentLanguage.getCurrentLanguage().getString("info"));
+        });
+
+
+        countGreaterSpeedButton.setOnAction(event -> {
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.COUNTGREATERIMPACTSPEED,
+                    addButton.getScene());
+            handler.handle(event);
+        });
+        removeGreaterKeyButton.setOnAction(event -> {
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.DELETEGREATERKEY,
+                    addButton.getScene());
+            handler.handle(event);
+            updateTable(HumanBeingCollection.getHumanBeings());
+        });
+        showLessSpeedButton.setOnAction(event -> {
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.SHOWLESSSPEED,
+                    addButton.getScene());
+            handler.handle(event);
+        });
+
+        removeLowerHumanButton.setOnAction(event -> {
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.REMOVELOWERHUMAN, addButton.getScene());
+            handler.handle(event);
+            updateTable(HumanBeingCollection.getHumanBeings());
+        });
+
+        removeGreaterHumanButton.setOnAction(event -> {
+            ModalSceneHandler handler = new ModalSceneHandler(Scenes.REMOVEGREATERHUMAN, addButton.getScene());
+            handler.handle(event);
+            updateTable(HumanBeingCollection.getHumanBeings());
+        });
+
+        ruLanguage.setOnAction(event -> {
+            CurrentLanguage.setCurrentLanguage(Languages.ru);
+            CurrentLanguage.setCurrentLanguageString("ru");
+            setLanguage();
+        });
+        itLanguage.setOnAction(event -> {
+            CurrentLanguage.setCurrentLanguage(Languages.it);
+            CurrentLanguage.setCurrentLanguageString("it");
+            setLanguage();
+        });
+        dutLanguage.setOnAction(event -> {
+            CurrentLanguage.setCurrentLanguage(Languages.du);
+            CurrentLanguage.setCurrentLanguageString("du");
+            setLanguage();
+        });
+        spainLanguage.setOnAction(event -> {
+            CurrentLanguage.setCurrentLanguage(Languages.sp);
+            CurrentLanguage.setCurrentLanguageString("sp");
+
+            setLanguage();
+        });
+        setLanguage();
     }
+
+
+    private void setLanguage(){
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        currentLanguageMenu.setText(currentLanguage.getString(CurrentLanguage.getCurrentLanguageString()));
+        ruLanguage.setText(currentLanguage.getString("ru"));
+        itLanguage.setText(currentLanguage.getString("it"));
+        dutLanguage.setText(currentLanguage.getString("du"));
+        spainLanguage.setText(currentLanguage.getString("sp"));
+        languageLabel.setText(currentLanguage.getString("language"));
+        mapButton.setText(currentLanguage.getString("mapButton"));
+        deleteByIdButton.setText(currentLanguage.getString("deleteByIdButton"));
+        executeScriptButton.setText(currentLanguage.getString("executeScriptButton"));
+        addButton.setText(currentLanguage.getString("addButton"));
+        leaveButton.setText(currentLanguage.getString("leaveButton"));
+        commands.setText(currentLanguage.getString("commands"));
+        countGreaterSpeedButton.setText(currentLanguage.getString("countGreaterSpeedButton"));
+        clearButton.setText(currentLanguage.getString("clearButton"));
+        removeGreaterKeyButton.setText(currentLanguage.getString("removeGreaterKeyButton"));
+        removeGreaterHumanButton.setText(currentLanguage.getString("removeGreaterHumanButton"));
+        removeLowerHumanButton.setText(currentLanguage.getString("removeLowerHumanButton"));
+        showInfoButton.setText(currentLanguage.getString("showInfoButton"));
+        showLessSpeedButton.setText(currentLanguage.getString("showLessSpeedButton"));
+        helpButton.setText(currentLanguage.getString("helpButton"));
+        searchLabel.setText(currentLanguage.getString("searchLabel"));
+        searchField.setPromptText(currentLanguage.getString("searchField"));
+        updateTableFieldButton.setText(currentLanguage.getString("updateTableFieldButton"));
+        deleteTableFieldButton.setText(currentLanguage.getString("deleteTableFieldButton"));
+        closeTableFieldButton.setText(currentLanguage.getString("closeTableFieldButton"));
+        nameLabel.setText(currentLanguage.getString("name"));
+    }
+
 
     private void performSearch(String searchTerm) {
         // Очищаем предыдущий результат поиска
@@ -192,6 +337,17 @@ public class MainController implements Initializable {
                 data
         ));
         tableHumanBeingInfo.refresh();
+    }
+
+    private void showAlert(String title, String result){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(result);
+        ButtonType okButton = new ButtonType(CurrentLanguage.getCurrentLanguage().getString("ok"));
+        alert.setResizable(true);
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
     }
 
 }

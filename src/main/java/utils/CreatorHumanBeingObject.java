@@ -5,6 +5,10 @@ import collection.HumanBeing;
 import javafx.util.Pair;
 import utils.readers.Reader;
 import validators.Errors;
+import validators.Validator;
+import validators.fields.CoordinatesValidator;
+import validators.fields.ImpactSpeedValidator;
+import validators.fields.NameValidator;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -18,6 +22,7 @@ public class CreatorHumanBeingObject {
 
     private final Reader reader;
 
+    private Errors error;
     /**
      * Instantiates a new Creator human being object.
      *
@@ -53,6 +58,7 @@ public class CreatorHumanBeingObject {
     }
 
     public HumanBeing create(String... fields){
+        error = validate(fields[0], fields[1], fields[2]);
         HumanBeing humanBeing = new HumanBeing();
         List<Predicate<String>> notNullSetters = new ArrayList<>(humanBeing.getNotNullSetters().values());
         List<Consumer<String>> setters = new ArrayList<>(humanBeing.getSetters().values());
@@ -67,5 +73,21 @@ public class CreatorHumanBeingObject {
         return humanBeing;
     }
 
+    private Errors validate(String name, String coordinates, String impactSpeed) {
+        List<Validator> validators = new ArrayList<>();
+        validators.add(new NameValidator(name));
+        validators.add(new CoordinatesValidator(coordinates.split(",")));
+        validators.add(new ImpactSpeedValidator(impactSpeed));
+        Errors error = Errors.NOTHAVEERRORS;
+        for (Validator validator : validators) {
+            error = validator.validateAll();
+            if (error != Errors.NOTHAVEERRORS) return error;
+        }
+        return error;
 
+    }
+
+    public Errors getError() {
+        return error;
+    }
 }

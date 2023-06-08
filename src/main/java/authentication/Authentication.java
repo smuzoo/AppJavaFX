@@ -23,7 +23,7 @@ public class Authentication {
 
     public static Errors register(String login, String password) {
         Database db = Database.getInstance();
-        if (login.isEmpty() || password.isEmpty()) return Errors.EMPTYFIELD;
+        if (login.isBlank() || password.isBlank()) return Errors.EMPTYFIELD;
         else if (db.isExistInDB(NAME_TABLE, "login", login)) {
             System.err.println("Данное имя пользователя уже существует");
             return Errors.USEDLOGIN;

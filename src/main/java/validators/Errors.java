@@ -1,6 +1,7 @@
 package validators;
 
 import collection.Fields;
+import l10n_i18n.CurrentLanguage;
 
 import static colors.Colors.*;
 
@@ -26,15 +27,15 @@ public enum Errors {
     /**
      * Notexistfile errors.
      */
-    NOTEXISTFILE("Данный файл не существует, передайте в переменную окружения существующий файл"),
+    NOTEXISTFILE("not exist file"),
     /**
      * Notcanreadfile errors.
      */
-    NOTCANREADFILE("Данный файл не имеет права доступа на чтение файла, разрешите доступ для чтения файла"),
+    NOTCANREADFILE("not can read file"),
     /**
      * Notcanwritefile errors.
      */
-    NOTCANWRITEFILE("Данный файл не имеет права доступа на запись данных в файл, разрешите доступ для записи в файл"),
+    NOTCANWRITEFILE("not can write file"),
     /**
      * Notcsvfile errors.
      */
@@ -42,7 +43,7 @@ public enum Errors {
     /**
      * Nothaveerrors errors.
      */
-    NOTHAVEERRORS("Ошибок не было найдено"),
+    NOTHAVEERRORS("not have errors"),
     /**
      * Nothasargument errors.
      */
@@ -54,32 +55,32 @@ public enum Errors {
     /**
      * Nothaselement errors.
      */
-    NOTHASELEMENT("Элемента с таким ключом не существует в коллекции"),
+    NOTHASELEMENT("not has element"),
     /**
      * Notcantransformtoint errors.
      */
-    NOTCANTRANSFORMTOINT("Данный аргумент не является целым числом"),
+    NOTCANTRANSFORMTOINT("not int"),
     /**
      * Emptyfield errors.
      */
-    EMPTYFIELD("This field cannot be empty"),
+    EMPTYFIELD("empty field"),
     /**
      * Biggerx errors.
      */
-    BIGGERX("Значение поля coordinate.x не может превышать " + Fields.MAXIMUM_X),
+    BIGGERX("bigger x"),
     /**
      * Biggerimpactspeed errors.
      */
-    BIGGERIMPACTSPEED("Значение поля impactSpeed не может превышать " + Fields.MAXIMUM_IMPACT_SPEED),
+    BIGGERIMPACTSPEED("bigger impactSpeed"),
 
     /**
      * Nothasfield errors.
      */
-    NOTHASFIELD("Номера с таким полем не существует"),
+    NOTHASFIELD("not has field"),
     /**
      * Impossiblereadfile errors.
      */
-    IMPOSSIBLEREADFILE("Невозможно прочитать файл"),
+    IMPOSSIBLEREADFILE("impossible read file"),
     /**
      * Impossiblewritetofile errors.
      */
@@ -87,34 +88,34 @@ public enum Errors {
     /**
      * Manyrecursions errors.
      */
-    RECURSION("Обнаружена рекурсия"),
+    RECURSION("recursion"),
     /**
      * Nothastwocoordinates errors.
      */
-    NOTHASTWOCOORDINATES("Не было введено 2 координаты x и y."),
+    NOTHASTWOCOORDINATES("not has two coords"),
 
     /**
      * Isnotexistentoption errors.
      */
-    ISNOTEXISTENTOPTION("Данного варианта не существует"),
+    ISNOTEXISTENTOPTION("not exist option"),
 
     /**
      * Ishavespace errors.
      */
-    ISHAVESPACE("Данное поле не может содержать пробел"),
+    ISHAVESPACE("not space"),
 
     /**
      * Notcreatethisuser errors.
      */
-    NOTCREATETHISUSER("Данный объект был создан другим пользователем, Вы не можете его модифицировать"),
+    NOTCREATETHISUSER("not create this user"),
     /**
      * Usedid errors.
      */
-    USEDLOGIN("This username already exists"),
+    USEDLOGIN("used login"),
 
-    UNKNOWNERROR("Unknown error"),
+    UNKNOWNERROR("unknown error"),
 
-    USEDID("Данный id уже существует");
+    USEDID("exist id");
     /**
      * The Error.
      */
@@ -124,6 +125,10 @@ public enum Errors {
     }
 
     public String getError() {
+        return CurrentLanguage.getCurrentLanguage().getString(getNameError());
+    }
+
+    public String getNameError(){
         return error;
     }
 

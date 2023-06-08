@@ -51,8 +51,23 @@ public class RemoveGreaterHumanBeing implements Command {
 
     }
 
+    public void remove(HumanBeing human){
+        Set<Map.Entry<Long, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
+        Set<Map.Entry<Long, HumanBeing>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
+                humanInCollection.getValue().compareTo(human) < 0 &&
+                        new HumanForUserValidator(humanInCollection.getValue()).isValid()).collect(Collectors.toSet());
+        Database db = Database.getInstance();
+        long sumUpdate = 0;
+
+        for (Map.Entry<Long, HumanBeing> humanBeing : humanBeingFilter) {
+            sumUpdate += db.deleteById("human_beings", humanBeing.getKey());
+        }if(sumUpdate > 0){
+            humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getValue().compareTo(human) < 0);
+        }
+    }
+
     @Override
     public String description(){
-        return BLUE + "remove_greater" + PURPLE + " {element}" + RESET + " : удалить из коллекции все элементы, превышающие заданный";
+        return "remove_greater" + " {element}" + " : удалить из коллекции все элементы, превышающие заданный";
     }
 }

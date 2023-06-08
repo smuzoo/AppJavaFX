@@ -17,9 +17,9 @@ import java.io.IOException;
 public class ModalSceneHandler implements EventHandler<ActionEvent> {
 
     private final Scenes modalWindow;
-    private final Region lastScene;
+    private final Scene lastScene;
 
-    public ModalSceneHandler(Scenes modalWindow, Region lastScene){
+    public ModalSceneHandler(Scenes modalWindow, Scene lastScene){
         this.modalWindow = modalWindow;
         this.lastScene = lastScene;
     }
@@ -29,7 +29,7 @@ public class ModalSceneHandler implements EventHandler<ActionEvent> {
         Stage modalStage = new Stage();
         modalStage.initModality(Modality.APPLICATION_MODAL);
         modalStage.initStyle(StageStyle.TRANSPARENT);
-        modalStage.initOwner(((javafx.scene.control.Button) event.getSource()).getScene().getWindow()); // Установка родительского окна
+        modalStage.initOwner(lastScene.getWindow()); // Установка родительского окна
 
         // Загрузка FXML для модального окна
         FXMLLoader loader = new FXMLLoader(getClass().getResource(modalWindow.getPathToScene()));
@@ -51,9 +51,10 @@ public class ModalSceneHandler implements EventHandler<ActionEvent> {
         // Установка сцены для модального окна и отображение его
         modalStage.setScene(modalScene);
         BoxBlur blurEffect = new BoxBlur(10, 10, 3);
-        lastScene.setEffect(blurEffect);
+        Region scene = (Region) lastScene.getRoot();
+        scene.setEffect(blurEffect);
         modalStage.showAndWait();
-        lastScene.setEffect(null);
+        scene.setEffect(null);
     }
 
 }

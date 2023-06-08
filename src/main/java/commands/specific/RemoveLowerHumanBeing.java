@@ -55,9 +55,24 @@ public class RemoveLowerHumanBeing implements Command {
 
     }
 
+    public void remove(HumanBeing human){
+        Set<Map.Entry<Long, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
+        Set<Map.Entry<Long, HumanBeing>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
+                humanInCollection.getValue().compareTo(human) > 0 &&
+                        new HumanForUserValidator(humanInCollection.getValue()).isValid()).collect(Collectors.toSet());
+        Database db = Database.getInstance();
+        long sumUpdate = 0;
+
+        for (Map.Entry<Long, HumanBeing> humanBeing : humanBeingFilter) {
+            sumUpdate += db.deleteById("human_beings", humanBeing.getKey());
+        }if(sumUpdate > 0){
+            humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getValue().compareTo(human) > 0);
+        }
+    }
+
 
     @Override
     public String description(){
-        return BLUE + "remove_lower" + PURPLE + " {element}" + RESET + " : удалить из коллекции все элементы, меньшие, чем заданный";
+        return "remove_lower" + " {element}" + " : удалить из коллекции все элементы, меньшие, чем заданный";
     }
 }

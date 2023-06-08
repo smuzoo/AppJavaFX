@@ -5,6 +5,9 @@ import collection.HumanBeingInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import l10n_i18n.CurrentLanguage;
+
+import java.util.ResourceBundle;
 
 public class TableFields {
     private final HumanBeing humanBeing;
@@ -27,25 +30,28 @@ public class TableFields {
         choiceBoxWeaponTypes.setValue(humanBeing.getStringWeaponType());
         ChoiceBox<String> choiceBoxMoodTypes = new ChoiceBox<>(MOOD_TYPES);
         choiceBoxMoodTypes.setValue(humanBeing.getStringMood());
+
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+
         return FXCollections.observableArrayList(
-                new HumanBeingInfo("Name", humanBeing.getName(), new TextField()),
-                new HumanBeingInfo("Coordinates",
+                new HumanBeingInfo(currentLanguage.getString("name"), humanBeing.getName(), new TextField()),
+                new HumanBeingInfo(currentLanguage.getString("coordinates"),
                         humanBeing.getCoordinates().getX() + "," +
                                 humanBeing.getCoordinates().getY(), new TextField()),
-                new HumanBeingInfo("ImpactSpeed", String.valueOf(humanBeing.getImpactSpeed()),
+                new HumanBeingInfo(currentLanguage.getString("impactSpeed"), String.valueOf(humanBeing.getImpactSpeed()),
                         new TextField()),
-                new HumanBeingInfo("Is real hero", String.valueOf(humanBeing.isRealHero()),
+                new HumanBeingInfo(currentLanguage.getString("isRealHero"), String.valueOf(humanBeing.isRealHero()),
                         choiceBoxIsRealHero),
-                new HumanBeingInfo("Has tooth pick", String.valueOf(humanBeing.isHasToothpick()),
+                new HumanBeingInfo(currentLanguage.getString("hasToothPick"), String.valueOf(humanBeing.isHasToothpick()),
                         choiceBoxIsToothPick),
-                new HumanBeingInfo("Weapon Type", String.valueOf(humanBeing.getWeaponType()),
+                new HumanBeingInfo(currentLanguage.getString("weaponType"), String.valueOf(humanBeing.getWeaponType()),
                         choiceBoxWeaponTypes),
-                new HumanBeingInfo("Mood", String.valueOf(humanBeing.getMood()),
+                new HumanBeingInfo(currentLanguage.getString("mood"), String.valueOf(humanBeing.getMood()),
                         choiceBoxMoodTypes),
-                new HumanBeingInfo("Car cool", String.valueOf(humanBeing.getCar().getStatus()),
+                new HumanBeingInfo(currentLanguage.getString("carCool"), String.valueOf(humanBeing.getCar().getStatus()),
                         choiceBoxIsCarCool),
-                new HumanBeingInfo("Creation date", humanBeing.getStringCreationDate(), new Label()),
-                new HumanBeingInfo("User login", humanBeing.getUserLogin(), new Label())
+                new HumanBeingInfo(currentLanguage.getString("creation date"), humanBeing.getStringCreationDate(), new Label()),
+                new HumanBeingInfo(currentLanguage.getString("user login"), humanBeing.getUserLogin(), new Label())
         );
     }
 

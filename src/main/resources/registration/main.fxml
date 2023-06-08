@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('images/background.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('images/background.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RegistrationController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,7 +25,7 @@
                   <Font size="27.0" />
                </font>
             </TextField>
-            <Label alignment="CENTER" layoutX="53.0" layoutY="181.0" prefHeight="64.0" prefWidth="456.0" text="Create new account" textFill="WHITE">
+            <Label fx:id="createAccountLabel" alignment="CENTER" layoutX="53.0" layoutY="181.0" prefHeight="64.0" prefWidth="456.0" text="Create new account" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="36.0" />
                </font>
@@ -77,20 +72,36 @@
                   <Button fx:id="photoUser" mnemonicParsing="false" opacity="0.8" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #717780; -fx-background-image: url('images/plus.png'); -fx-background-size: cover; -fx-background-radius: 90;" />
                </children>
             </AnchorPane>
-            <Text fill="#fff6f6" layoutX="194.0" layoutY="726.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you have an account?">
+            <Text fx:id="haveAccountText" fill="#fff6f6" layoutX="-1.0" layoutY="726.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you have an account?" textAlignment="CENTER" wrappingWidth="567.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Button fx:id="toLoginButton" contentDisplay="TEXT_ONLY" layoutX="234.0" layoutY="728.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="128.0" style="-fx-background-color: #696D73;" text="Log in" textFill="#47a89c">
+            <Button fx:id="toLoginButton" contentDisplay="TEXT_ONLY" layoutX="-2.0" layoutY="728.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="567.0" style="-fx-background-color: transparent;" text="Log in" textFill="#47a89c">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
             </Button>
+            <MenuButton fx:id="currentLanguageMenu" layoutX="89.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="MenuButton" textFill="#47a89c">
+              <items>
+                 <MenuItem fx:id="ruLanguage" mnemonicParsing="false" text="Russian" />
+                 <MenuItem fx:id="itLanguage" mnemonicParsing="false" text="French" />
+                 <MenuItem fx:id="dutLanguage" mnemonicParsing="false" text="Dutch" />
+                 <MenuItem fx:id="spainLanguage" mnemonicParsing="false" text="Spanish" />
+              </items>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MenuButton>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </AnchorPane>
+      <Label fx:id="languageLabel" layoutX="547.0" layoutY="15.0" text="Language:" textFill="#47a89c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

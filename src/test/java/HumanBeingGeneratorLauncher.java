@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class HumanBeingGeneratorLauncher {
 
-    private final int COUNT_NEW_HUMAN_BEING_OBJECTS = 100;
+    private final int COUNT_NEW_HUMAN_BEING_OBJECTS = 500;
     @Test
     public void testGenerateRandomHumanBeing() {
         HumanBeing humanBeing = HumanBeingGenerator.generateRandomHumanBeing();

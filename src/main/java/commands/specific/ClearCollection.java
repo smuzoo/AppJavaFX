@@ -22,6 +22,6 @@ public class ClearCollection implements Command {
 
     @Override
     public String description(){
-        return BLUE + "clear" + RESET + " : очистить коллекцию";
+        return "clear" + " : очистить коллекцию";
     }
 }
