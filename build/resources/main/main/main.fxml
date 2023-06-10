@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('../login/images/Cover.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('../login/images/Cover.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -14,29 +22,29 @@
       </ImageView>
       <AnchorPane prefHeight="768.0" prefWidth="324.0" style="-fx-background-color: #2A1135;">
          <children>
-            <AnchorPane layoutX="83.0" layoutY="57.0" prefHeight="114.0" prefWidth="114.0" style="-fx-background-radius: 90; -fx-background-color: #D6D6D6; -fx-background-image: url('/login/images/Frame5.png'); -fx-background-size: cover; -fx-border-width: 0;" />
+            <AnchorPane layoutX="93.0" layoutY="58.0" prefHeight="114.0" prefWidth="114.0" style="-fx-background-radius: 90; -fx-background-color: #D6D6D6; -fx-background-image: url('/login/images/Frame5.png'); -fx-background-size: cover; -fx-border-width: 0;" />
             <Button layoutX="108.0" layoutY="16.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="58.0" text="Button" />
-            <Button fx:id="mapButton" layoutX="65.0" layoutY="392.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="179.0" style="-fx-background-color: #A8788A;" text="map" textFill="#cfcfcf">
+            <Button fx:id="mapButton" layoutX="65.0" layoutY="392.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #A8788A;" text="map" textFill="#cfcfcf">
                <font>
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button fx:id="deleteByIdButton" layoutX="65.0" layoutY="274.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="179.0" style="-fx-background-color: #A8788A;" text="Delete by id" textFill="#cfcfcf">
+            <Button fx:id="deleteByIdButton" layoutX="65.0" layoutY="274.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #A8788A;" text="Delete by id" textFill="#cfcfcf">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button fx:id="executeScriptButton" layoutX="65.0" layoutY="334.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="179.0" style="-fx-background-color: #A8788A;" text="Execute script" textFill="#cfcfcf">
+            <Button fx:id="executeScriptButton" layoutX="65.0" layoutY="334.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #A8788A;" text="Execute script" textFill="#cfcfcf">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
-            <Button fx:id="addButton" layoutX="66.0" layoutY="453.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="179.0" style="-fx-background-color: #A8788A;" text="Add new" textFill="#cfcfcf">
+            <Button fx:id="addButton" layoutX="66.0" layoutY="453.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #A8788A;" text="Add new" textFill="#cfcfcf">
                <font>
                   <Font size="21.0" />
                </font>
             </Button>
-            <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="14.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="4.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Component3.png" />
                </image>
@@ -46,7 +54,7 @@
                   <Font name="System Italic" size="21.0" />
                </font>
             </Button>
-            <Label fx:id="nickname" layoutX="74.0" layoutY="187.0" text="Nickname" textFill="WHITE">
+            <Label fx:id="nickname" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="187.0" prefHeight="50.0" prefWidth="324.0" text="Nickname" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="34.0" />
                </font>
@@ -73,27 +81,27 @@
                   <Image url="@images/icon-logout.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="14.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="4.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon-folder.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="46.0" layoutX="13.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="46.0" layoutX="4.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon-delete.png" />
                </image>
             </ImageView>
-            <MenuButton fx:id="commands" alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="526.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #A8788A;" text="Commands" textFill="#cfcfcf">
+            <MenuButton fx:id="commands" alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="526.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="222.0" style="-fx-background-color: #A8788A;" text="Commands" textFill="#cfcfcf">
               <items>
-                  <MenuItem fx:id="countGreaterSpeedButton" mnemonicParsing="false" text="Count greater than impact speed " />
+                  <MenuItem fx:id="countGreaterSpeedButton" mnemonicParsing="false" text="Count greater than impact speed " styleClass="menu-commands" />
 
-                 <MenuItem fx:id="showLessSpeedButton" mnemonicParsing="false" text="Show less than impact speed" />
-                <MenuItem fx:id="clearButton" mnemonicParsing="false" text="Clear collection" />
-                  <MenuItem fx:id="removeGreaterKeyButton" mnemonicParsing="false" text="Remove greater key" />
-                  <MenuItem fx:id="removeGreaterHumanButton" mnemonicParsing="false" text="Remove greater human being" />
-                  <MenuItem fx:id="removeLowerHumanButton" mnemonicParsing="false" text="Remove lower human being" />
-                 <MenuItem fx:id="showInfoButton" mnemonicParsing="false" text="Show info" />
-                  <MenuItem fx:id="helpButton" mnemonicParsing="false" text="Help" />
+                 <MenuItem fx:id="showLessSpeedButton" mnemonicParsing="false" text="Show less than impact speed" styleClass="menu-commands"/>
+                <MenuItem fx:id="clearButton" mnemonicParsing="false" text="Clear collection" styleClass="menu-commands"/>
+                  <MenuItem fx:id="removeGreaterKeyButton" mnemonicParsing="false" text="Remove greater key" styleClass="menu-commands" />
+                  <MenuItem fx:id="removeGreaterHumanButton" mnemonicParsing="false" text="Remove greater human being" styleClass="menu-commands"/>
+                  <MenuItem fx:id="removeLowerHumanButton" mnemonicParsing="false" text="Remove lower human being" styleClass="menu-commands"/>
+                 <MenuItem fx:id="showInfoButton" mnemonicParsing="false" text="Show info" styleClass="menu-commands"/>
+                  <MenuItem fx:id="helpButton" mnemonicParsing="false" text="Help" styleClass="menu-commands" />
               </items>
                <font>
                   <Font size="20.0" />
@@ -171,12 +179,12 @@
                   </TableColumn>
                </columns>
             </TableView>
-            <Button fx:id="updateTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="332.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="UPDATE" textAlignment="CENTER" textFill="#fffbfb">
+            <Button fx:id="updateTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="-3.0" layoutY="332.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="UPDATE" textAlignment="CENTER" textFill="#fffbfb">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="deleteTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="332.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #c42b14;" text="DELETE" textAlignment="CENTER" textFill="#fffbfb">
+            <Button fx:id="deleteTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="332.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #c42b14;" text="DELETE" textAlignment="CENTER" textFill="#fffbfb">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

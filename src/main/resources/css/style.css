@@ -37,14 +37,15 @@
     -fx-text-alignment: center;
 }
 
-.menu-item:focused {
-    -fx-background-color:  #A8788A;
+.menu-button  .menu-item:focused {
+    -fx-background-color:  #b48698;
 }
 
-.menu-button .menu-item {
-    -fx-background-color: #A8788A;
+
+.menu-button  .menu-item {
+    -fx-background-color: #dca2b8;
 }
 
-.context-menu {
-    -fx-background-color: #A8788A;
+.menu-button .context-menu {
+    -fx-background-color:  #dca2b8;
 }

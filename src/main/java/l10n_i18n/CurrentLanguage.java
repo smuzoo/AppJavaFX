@@ -1,11 +1,12 @@
 package l10n_i18n;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CurrentLanguage {
     private static ResourceBundle currentLanguage = Languages.ru;
 
-    private static String currentLanguageString = "ru";
+    private static String currentLanguageString = Locale.getDefault().toString().split("_")[0];
 
     public static String getCurrentLanguageString() {
         return currentLanguageString;

@@ -42,7 +42,7 @@ public class HumanBeingGenerator {
         humanBeing.setCar(generateRandomBoolean());
 
         // Генерация случайного значения для userLogin
-        humanBeing.setUserLogin("admin");
+        humanBeing.setUserLogin("Marat");
 
         return humanBeing;
     }
@@ -71,8 +71,8 @@ public class HumanBeingGenerator {
 
         float minValue = -Float.MAX_VALUE;
         float maxValue = -809f;
-
-        float x = minValue + random.nextFloat() * (maxValue - minValue);
+        double rand = Math.random();
+        float x = (float) (minValue + rand * (maxValue - minValue));
 
 
         // Генерация случайного значения для y

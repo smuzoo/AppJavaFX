@@ -3,6 +3,7 @@ package application;
 import application.tools.Scenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         stage.setTitle("HumanBeingApp");
+        stage.getIcons().add(new Image(getClass().getResource("/images/Icon.png").toExternalForm()));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setMaximized(false);

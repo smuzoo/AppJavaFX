@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HumanBeingGeneratorLauncher" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-06-08T06:47:29" hostname="SKHOME22" time="0.688">
+<testsuite name="HumanBeingGeneratorLauncher" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-06-08T13:16:58" hostname="SKHOME22" time="0.145">
   <properties/>
-  <testcase name="testGenerateRandomHumanBeingInDb()" classname="HumanBeingGeneratorLauncher" time="0.654"/>
-  <testcase name="testGenerateRandomHumanBeing()" classname="HumanBeingGeneratorLauncher" time="0.033"/>
+  <testcase name="testGenerateRandomHumanBeingInDb()" classname="HumanBeingGeneratorLauncher" time="0.13"/>
+  <testcase name="testGenerateRandomHumanBeing()" classname="HumanBeingGeneratorLauncher" time="0.014"/>
   <system-out><![CDATA[HumanBeing{
- id=1503,
- name='Emily',
- coordinates.x=-3.3762596E38,
- coordinates.y=1991316384,
+ id=102,
+ name='John',
+ coordinates.x=-1.3722329E38,
+ coordinates.y=-2129819619,
  creationDate=2023-06-08,
  realHero=false,
  hasToothpick=false,
- impactSpeed=81,
- weaponType=hammer,
- mood=rage,
+ impactSpeed=355,
+ weaponType=shotgun,
+ mood=apathy,
  car.cool=false,
- userLogin=admin
+ userLogin=Marat
 }
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -2,6 +2,7 @@ package l10n_i18n;
 
 import collection.HumanBeingCollection;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ListResourceBundle;
 
 public class GUILabels_it extends ListResourceBundle {
@@ -63,7 +64,7 @@ public class GUILabels_it extends ListResourceBundle {
     {"deleteTableFieldButton", "Elimina"},
     {"closeTableFieldButton", "Chiudi"},
     {"name", "Nome"},
-    {"coordinates", "Coordinate"},
+    {"coordinates", "Coordinate(x,y)"},
     {"impactSpeed", "Velocità"},
     {"isRealHero", "Eroe vero"},
     {"hasToothPick", "Ha lo stuzz icadenti"},
@@ -107,7 +108,8 @@ public class GUILabels_it extends ListResourceBundle {
                     {"count", "Calcolare"},
                     {"enter speed", "Inserire la velocità"},
                     {"impossible clear", "Non è possibile svuotare la collezione"},
-                    {"not admin", "Solo un amministratore può svuotare l'intera collezione"}
+                    {"not admin", "Solo un amministratore può svuotare l'intera collezione"},
+                    {"dataFormat", "dd/MM/yyyy"}
             };
     public Object[][] getContents() {
         return contents;

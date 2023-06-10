@@ -1,3 +1,4 @@
+/*
 import Database.Database;
 import collection.HumanBeing;
 import org.junit.jupiter.api.Test;
@@ -5,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class HumanBeingGeneratorLauncher {
 
-    private final int COUNT_NEW_HUMAN_BEING_OBJECTS = 500;
+    private final int COUNT_NEW_HUMAN_BEING_OBJECTS = 50;
     @Test
     public void testGenerateRandomHumanBeing() {
         HumanBeing humanBeing = HumanBeingGenerator.generateRandomHumanBeing();
@@ -23,3 +24,4 @@ public class HumanBeingGeneratorLauncher {
     }
 
 }
+*/

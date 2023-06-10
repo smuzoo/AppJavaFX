@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import l10n_i18n.CurrentLanguage;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class TableFields {
@@ -32,12 +33,20 @@ public class TableFields {
         choiceBoxMoodTypes.setValue(humanBeing.getStringMood());
 
         ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        String x = String.valueOf(humanBeing.getCoordinates().getX());
+        String y = String.valueOf(humanBeing.getCoordinates().getY());
+
+
+        if(CurrentLanguage.getCurrentLanguageString().equals("sp")){
+            x = x.replace(".", ",");
+            y = y.replace(".", ",");
+        }
 
         return FXCollections.observableArrayList(
                 new HumanBeingInfo(currentLanguage.getString("name"), humanBeing.getName(), new TextField()),
                 new HumanBeingInfo(currentLanguage.getString("coordinates"),
-                        humanBeing.getCoordinates().getX() + "," +
-                                humanBeing.getCoordinates().getY(), new TextField()),
+                        x + ";" +
+                                y, new TextField()),
                 new HumanBeingInfo(currentLanguage.getString("impactSpeed"), String.valueOf(humanBeing.getImpactSpeed()),
                         new TextField()),
                 new HumanBeingInfo(currentLanguage.getString("isRealHero"), String.valueOf(humanBeing.isRealHero()),
@@ -50,7 +59,7 @@ public class TableFields {
                         choiceBoxMoodTypes),
                 new HumanBeingInfo(currentLanguage.getString("carCool"), String.valueOf(humanBeing.getCar().getStatus()),
                         choiceBoxIsCarCool),
-                new HumanBeingInfo(currentLanguage.getString("creation date"), humanBeing.getStringCreationDate(), new Label()),
+                new HumanBeingInfo(currentLanguage.getString("creation date"), humanBeing.getCreationDayDate().format(DateTimeFormatter.ofPattern(currentLanguage.getString("dataFormat"))), new Label()),
                 new HumanBeingInfo(currentLanguage.getString("user login"), humanBeing.getUserLogin(), new Label())
         );
     }

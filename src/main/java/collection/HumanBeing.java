@@ -119,6 +119,10 @@ public class HumanBeing implements Comparable<HumanBeing>{
         return localDateTime.format(formatter);
     }
 
+    public LocalDateTime getCreationDayDate(){
+        return creationDate.atStartOfDay();
+    }
+
     /**
      * Is real hero boolean.
      *

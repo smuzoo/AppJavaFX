@@ -1,7 +1,6 @@
 package l10n_i18n;
 
 import collection.HumanBeingCollection;
-
 import java.util.ListResourceBundle;
 
 public class GUILabels_ru extends ListResourceBundle {
@@ -62,7 +61,7 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"deleteTableFieldButton", "Удалить"},
                     {"closeTableFieldButton", "Закрыть"},
                     {"name", "Имя"},
-                    {"coordinates", "Координаты"},
+                    {"coordinates", "Координаты(x,y)"},
                     {"impactSpeed", "Скорость"},
                     {"isRealHero", "Настоящий герой"},
                     {"hasToothPick", "Ковыряется в зубах"},
@@ -106,7 +105,8 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"count", "Посчитать"},
                     {"enter speed", "Введите скорость"},
                     {"impossible clear", "Невозможно очистить коллекцию"},
-                    {"not admin", "Всю коллекцию может очистить только админ"}
+                    {"not admin", "Всю коллекцию может очистить только админ"},
+                    {"dataFormat", "dd.MM.yyyy"}
 
 
 
