@@ -7,7 +7,7 @@ public class Languages {
 
     public static final ResourceBundle ru = ResourceBundle.getBundle("l10n_i18n.GUILabels", new Locale("ru", "RU"));
 
-    public static final ResourceBundle it = ResourceBundle.getBundle("l10n_i18n.GUILabels", Locale.ITALIAN);
+    public static final ResourceBundle it = ResourceBundle.getBundle("l10n_i18n.GUILabels", new Locale("en", "EN"));
 
     public static final ResourceBundle du = ResourceBundle.getBundle("l10n_i18n.GUILabels", new Locale("du", "DU"));
 

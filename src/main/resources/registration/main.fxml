@@ -1,88 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('images/background.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('images/background.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RegistrationController">
    <children>
-      <ImageView fitHeight="768.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/background.jpg" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="529.0" layoutY="-1.0" prefHeight="769.0" prefWidth="550.0" style="-fx-background-color: #696D73; -fx-background-radius: 40 0 0 40;">
+      <AnchorPane prefHeight="950.0" prefWidth="1375.0" style="-fx-background-color: fbfcfc;">
          <children>
-            <Text fx:id="errorText" fill="#da1717" layoutY="259.0" text="A user with this login already exists" textAlignment="CENTER" visible="false" wrappingWidth="567.0">
+            <Text fx:id="errorText" fill="#da1717" layoutX="100.0" layoutY="255.0" text="A user with this login already exists" textAlignment="CENTER" visible="false" wrappingWidth="609.6666870117188">
                <font>
-                  <Font name="System Bold Italic" size="14.0" />
+                  <Font name="System Bold Italic" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="loginField" layoutX="178.0" layoutY="469.0" prefHeight="48.0" prefWidth="246.0" promptText="login" style="-fx-background-color: #2B2828; -fx-background-radius: 0; -fx-text-fill: #47a89c;">
+            <TextField fx:id="loginField" layoutX="100.0" layoutY="300.0" prefHeight="50.0" prefWidth="615.0" promptText="login" style="-fx-background-color: ecf0f1; -fx-background-radius: 0; -fx-text-fill: #7749f8;">
                <font>
                   <Font size="27.0" />
                </font>
             </TextField>
-            <Label fx:id="createAccountLabel" alignment="CENTER" layoutX="53.0" layoutY="181.0" prefHeight="64.0" prefWidth="456.0" text="Create new account" textFill="WHITE">
+            <Label fx:id="createAccountLabel" alignment="CENTER" layoutX="762.0" layoutY="294.0" prefHeight="64.0" prefWidth="613.0" text="Create new account" textFill="#fcfcfc">
                <font>
                   <Font name="System Italic" size="36.0" />
                </font>
             </Label>
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="224.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/symbol.png" />
-               </image>
-            </ImageView>
-            <AnchorPane layoutX="122.0" layoutY="470.0" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #717780; -fx-background-image: url('images/loginicon.png'); -fx-background-size: cover;">
-               <children>
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/loginicon.png" />
-                     </image>
-                  </ImageView>
-               </children></AnchorPane>
-            <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="563.0" prefHeight="57.0" prefWidth="246.0" promptText="password" style="-fx-background-color: #2B2828; -fx-background-radius: 0; -fx-text-fill: #47a89c;">
+            <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="370.0" prefHeight="50.0" prefWidth="615.0" promptText="password" style="-fx-background-color: ecf0f1; -fx-background-radius: 0; -fx-text-fill: #47a89c;">
                <font>
                   <Font size="27.0" />
                </font>
             </PasswordField>
-            <AnchorPane layoutX="124.0" layoutY="563.0" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #717780;">
-               <children>
-                  <ImageView fitHeight="61.0" fitWidth="41.0" layoutX="6.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/lock.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <Button fx:id="registrationButton" layoutX="205.0" layoutY="654.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="188.0" style="-fx-background-color: #3C3B3B;" text="Create" textFill="#47a89c">
+            <Button fx:id="registrationButton" layoutX="100.0" layoutY="450.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="188.0" style="-fx-background-color: #7749f8;" text="Create" textFill="#fbfcfc">
                <font>
                   <Font size="26.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="208.0" layoutY="279.0" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #717780; -fx-background-image: url('images/loginicon.png'); -fx-background-size: cover; -fx-background-radius: 90;">
+            <AnchorPane layoutX="780.0" layoutY="492.0" prefHeight="86.0" prefWidth="141.0" style="-fx-background-color: fbfcfc; -fx-background-image: url('images/loginicon.png'); -fx-background-size: cover; -fx-background-radius: 90;">
                <children>
-                  <ImageView fitHeight="140.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/plus.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="photoUser" mnemonicParsing="false" opacity="0.8" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #717780; -fx-background-image: url('images/plus.png'); -fx-background-size: cover; -fx-background-radius: 90;" />
+                  <Button fx:id="photoUser" layoutY="20.0" mnemonicParsing="false" opacity="0.8" prefHeight="120.0" prefWidth="141.0" style="-fx-background-color: fbfcfc; -fx-background-image: url('images/plus.png'); -fx-background-size: cover; -fx-background-radius: 90;" />
                </children>
             </AnchorPane>
-            <Text fx:id="haveAccountText" fill="#fff6f6" layoutX="-1.0" layoutY="726.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you have an account?" textAlignment="CENTER" wrappingWidth="567.0">
+            <Text fx:id="haveAccountText" fill="#fff6f6" layoutX="132.0" layoutY="635.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you have an account?" textAlignment="CENTER" wrappingWidth="567.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Button fx:id="toLoginButton" contentDisplay="TEXT_ONLY" layoutX="-2.0" layoutY="728.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="567.0" style="-fx-background-color: transparent;" text="Log in" textFill="#47a89c">
+            <Button fx:id="toLoginButton" contentDisplay="TEXT_ONLY" layoutX="310.0" layoutY="450.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="404.0" style="-fx-background-color: EBE5FC;" text="Log in" textFill="#7749f8">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
             </Button>
-            <MenuButton fx:id="currentLanguageMenu" layoutX="89.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="MenuButton" textFill="#47a89c">
+            <MenuButton fx:id="currentLanguageMenu" layoutX="125.0" layoutY="730.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="MenuButton" textFill="#7749f8">
               <items>
                  <MenuItem fx:id="ruLanguage" mnemonicParsing="false" text="Russian" />
                  <MenuItem fx:id="itLanguage" mnemonicParsing="false" text="French" />
@@ -93,15 +69,29 @@
                   <Font size="18.0" />
                </font>
             </MenuButton>
+            <Label fx:id="languageLabel" layoutX="40.0" layoutY="735.0" text="Language:" textFill="#7749f8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="516.0" fitWidth="479.0" layoutX="595.0" layoutY="445.0">
+               <image>
+                  <Image url="@images/2.png" />
+               </image>
+            </ImageView>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </AnchorPane>
-      <Label fx:id="languageLabel" layoutX="547.0" layoutY="15.0" text="Language:" textFill="#47a89c">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <FlowPane alignment="TOP_CENTER" prefHeight="160.0" prefWidth="1080.0" style="-fx-background-color: ffffff;">
+         <children>
+            <Label fx:id="languageLabel1" prefHeight="159.0" prefWidth="798.0" text="Vehicle Collection" textFill="#7749f8">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
    </children>
 </AnchorPane>

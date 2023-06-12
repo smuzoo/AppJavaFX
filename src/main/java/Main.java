@@ -16,10 +16,6 @@ public class Main {
     public static void main(String[] args) {
         Database db = Database.getInstance();
         HumanBeingCollection.readFromDatabase();
-        ShowInfo showInfo = new ShowInfo();
-        showInfo.execute("");
-        ShowHelp showHelp = new ShowHelp();
-        showHelp.execute("");
         Application.open();
         db.closeConnection();
     }

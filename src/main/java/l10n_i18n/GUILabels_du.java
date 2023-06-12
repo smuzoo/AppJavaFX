@@ -20,7 +20,7 @@ public class GUILabels_du extends ListResourceBundle {
                     {"invalidAuth", "Ongeldige gebruikersnaam of wachtwoord"},
                     {"ru", "Russisch"},
                     {"sp", "Spaans"},
-                    {"it", "Italiaans"},
+                    {"it", "Engelsk"},
                     {"du", "Nederlands"},
                     {"language", "Taal:"},
                     {"not exist file", "Dit bestand bestaat niet"},

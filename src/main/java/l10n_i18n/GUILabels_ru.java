@@ -11,14 +11,14 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"loginField", "логин"},
                     {"passwordField", "пароль"},
                     {"loginButton", "Войти"},
-                    {"dontHaveAccountText", "Нет аккаунта?"},
+                    {"dontHaveAccountText", "Ещё нет аккаунта?"},
                     {"haveAccountText", "Уже есть аккаунт?"},
                     {"createAccountButton", "Создайте"},
                     {"createButton", "Создать"},
                     {"invalidAuth", "Неверное имя пользователя или пароль"},
                     {"ru", "Русский"},
                     {"sp", "Испанский"},
-                    {"it", "Итальянский"},
+                    {"it", "Английский"},
                     {"du", "Нидерландский"},
                     {"language", "Язык:"},
                     {"not exist file", "Данный файл не существует"},
@@ -29,7 +29,7 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"not int", "Данный аргумент не является целым числом"},
                     {"empty field", "Данное поле не может быть пустым"},
                     {"bigger x", "Значение поля coordinate.x не может превышать -809.0"},
-                    {"bigger impactSpeed", "Значение поля impactSpeed не может превышать 496"},
+                    {"bigger enginePower", "Значение поля impactSpeed не может превышать 496"},
                     {"not has field", "Номера с таким полем не существует"},
                     {"impossible read file", "Невозможно прочитать файл"},
                     {"recursion", "Обнаружена рекурсия"},
@@ -62,12 +62,12 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"closeTableFieldButton", "Закрыть"},
                     {"name", "Имя"},
                     {"coordinates", "Координаты(x,y)"},
-                    {"impactSpeed", "Скорость"},
-                    {"isRealHero", "Настоящий герой"},
-                    {"hasToothPick", "Ковыряется в зубах"},
-                    {"weaponType", "Тип оружия"},
-                    {"mood", "Муд"},
-                    {"carCool", "Крутая машина"},
+                    {"impactSpeed", "Сила двигателя"},
+                    {"isRealHero", "Нитро"},
+                    {"hasToothPick", "Полный привод"},
+                    {"weaponType", "Тип транспорта"},
+                    {"mood", "Тип топлива"},
+                    {"carCool", "Иномарка"},
                     {"creation date", "Дата создания"},
                     {"user login", "Имя пользователя"},
                     {"to table", "К таблице"},
@@ -83,29 +83,25 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"choose script", "Выберите скрипт"},
                     {"info about commands", "Информация о командах"},
                     {"info about collection", "Информация о коллекции"},
-                    {"info", "Коллекция HashMap<java.util.UUID, HumanBeing>\n" +
+                    {"info", "Коллекция HashMap<java.util.UUID, Velicles>\n" +
                             "Дата создания коллекции:" + HumanBeingCollection.getDateOfInitialization() + "\n" +
                             "Дата последнего изменения коллекции: " + HumanBeingCollection.getDateOfLastChange() + "\n" +
                             "Количество элементов в коллекции: " + HumanBeingCollection.getCountHumanBeingCollection()},
-                    {"info for commands", "filter_less_than_impact_speed impactSpeed : вывести элементы, значение поля impactSpeed которых меньше заданного\n" +
+                    {"info for commands", "filter_less_than_engine_power enginePower : вывести элементы, значение поля enginePower которых меньше заданного\n" +
                             "remove_greater_key null : удалить из коллекции все элементы, ключ которых превышает заданный\n" +
                             "execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.       \n" +
-                            "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении\n" +
                             "clear : очистить коллекцию\n" +
-                            "insert null {element} : добавить новый элемент с заданным ключом\n" +
-                            "update id {element} : обновить значение элемента коллекции, id которого равен заданному\n" +
                             "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный\n" +
                             "remove_lower {element} : удалить из коллекции все элементы, меньшие, чем заданный\n" +
-                            "print_field_descending_mood : вывести значения поля mood всех элементов в порядке убывания\n" +
+                            "print_field_descending_fuelType : вывести значения поля fuelType всех элементов в порядке убывания\n" +
                             "help : вывести справку по доступным командам\n" +
-                            "count_greater_than_impact_speed impactSpeed : вывести количество элементов, значение поля impactSpeed которых больше заданного\n" +
-                            "remove_key null : удалить элемент из коллекции по его ключу\n" +
+                            "count_greater_than_engine_power enginePower  вывести количество элементов, значение поля impactSpeed которых больше заданного\n" +
                             "info :  вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)\n"
                     },
                     {"count", "Посчитать"},
                     {"enter speed", "Введите скорость"},
                     {"impossible clear", "Невозможно очистить коллекцию"},
-                    {"not admin", "Всю коллекцию может очистить только админ"},
+                    {"not admin", "Только у админа есть право очищать всю коллекцию"},
                     {"dataFormat", "dd.MM.yyyy"}
 
 

@@ -20,7 +20,7 @@ public class GUILabels_sp extends ListResourceBundle {
                     {"invalidAuth", "Nombre de usuario o contraseña incorrectos"},
                     {"ru", "Ruso"},
                     {"sp", "Español"},
-                    {"it", "Italiano"},
+                    {"it", "Inglese"},
                     {"du", "Holandés"},
                     {"language", "Idioma:"},
                     {"not exist file", "Este archivo no existe"},

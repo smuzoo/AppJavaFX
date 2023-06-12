@@ -14,7 +14,7 @@ public class Application extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Scenes.LOGIN.getPathToScene()));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-        stage.setTitle("HumanBeingApp");
+        stage.setTitle("VehicleApp");
         stage.getIcons().add(new Image(getClass().getResource("/images/Icon.png").toExternalForm()));
         stage.setScene(scene);
         stage.setResizable(false);
