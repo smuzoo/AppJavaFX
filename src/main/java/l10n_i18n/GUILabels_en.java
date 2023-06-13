@@ -103,7 +103,10 @@ public class GUILabels_en extends ListResourceBundle {
                     {"enter speed", "Enter speed"},
                     {"impossible clear", "Unable to clear the collection"},
                     {"not admin", "Only the admin has the right to clear the entire collection"},
-                    {"dataFormat", "MM.dd.yyyy"}
+                    {"dataFormat", "MM.dd.yyyy"},
+                    {"error", "Wrong!"},
+                    {"not update", "Cannot update this object"},
+                    {"not this user", "You cannot update values of objects that you did not create"},
             };
     public Object[][] getContents() {
         return contents;

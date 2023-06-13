@@ -26,8 +26,6 @@
         @FXML
         private AnchorPane mapPane;
         @FXML
-        private Label coordinateLabel;
-        @FXML
         private Button closeMapButton;
         private static final double RADIUS = 10;
         private static final float SCREEN_WIDTH = 1080;
@@ -60,9 +58,7 @@
                 circle.setOnMouseReleased(this::onMouseReleased);
                 mapPane.getChildren().add(circle);
             }
-            mapPane.setOnMouseMoved(event -> {
-                coordinateLabel.setText("X: " + denormalizeX((float) event.getX()) + ", Y: " + denormalizeY(event.getY()));
-            });
+
 
             closeMapButton.setOnAction(new ChangeSceneHandler(Scenes.MAIN));
             setLanguage();
@@ -106,8 +102,7 @@
                 }
                   }
 
-            coordinateLabel.setText("X: " + denormalizeX((float) event.getX()) + ", Y: " + denormalizeY(event.getY()));
-        }
+            }
 
         private void onMouseReleased(MouseEvent event) {
             if (draggedVehicle != null && User.getLogin().equals(draggedVehicle.getUserLogin())) {

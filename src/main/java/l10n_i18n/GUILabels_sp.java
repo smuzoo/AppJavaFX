@@ -107,7 +107,12 @@ public class GUILabels_sp extends ListResourceBundle {
                     {"enter speed", "Introducir velocidad"},
                     {"impossible clear", "No es posible limpiar la colección"},
                     {"not admin", "Solo un administrador puede limpiar toda la colección"},
-                    {"dataFormat", "dd/MM/yyyy"}
+                    {"dataFormat", "dd/MM/yyyy"},
+                    {"error", "Error!"},
+                    {"not update", "No se puede actualizar este objeto"},
+                    {"not this user", "No se pueden actualizar valores de objetos que no se hayan creado"},
+
+
 
             };
     public Object[][] getContents() {

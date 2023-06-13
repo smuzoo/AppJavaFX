@@ -1,29 +1,36 @@
 package application.controllers;
 
 import application.tools.*;
+import authentication.Authentication;
 import authentication.User;
-import collection.Vehicle;
-import collection.VehicleCollection;
-import collection.VehicleInfo;
+import collection.*;
 import commands.Command;
 import commands.CommandController;
 import commands.specific.ShowInfo;
+import commands.specific.Update;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import javafx.util.converter.FloatStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import l10n_i18n.CurrentLanguage;
 import l10n_i18n.Languages;
 import utils.readers.ReaderFromConsole;
+import validators.Errors;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -40,20 +47,19 @@ public class MainController implements Initializable {
     private Button addButton;
     @FXML
     private Button deleteByIdButton;
+
+
     @FXML
-    private TableView<VehicleInfo> humanBeingFieldInformation;
+    private TableColumn<Vehicle, Float> xColumn;
     @FXML
-    private TableColumn<VehicleInfo, String> nameField;
-    @FXML
-    private TableColumn<VehicleInfo, String> valueField;
-    @FXML
-    private TableView<VehicleInfo> humanBeingInformationEdit;
-    @FXML
-    private TableColumn<VehicleInfo, Control> editColumn;
-    @FXML
-    private TableColumn<VehicleInfo, String> valueFieldUpdate;
-    @FXML
-    private TableColumn<VehicleInfo, String> nameFieldUpdate;
+    private TableColumn<Vehicle, Integer> yColumn;
+
+    @FXML private TableColumn<Vehicle, Integer> powerEngineColumn;
+    @FXML private TableColumn<Vehicle, String> transportTypeColumn;
+
+    @FXML private TableColumn<Vehicle, String> fuelTypeColumn;
+
+
     @FXML
     private Text errorTextTableField;
     @FXML
@@ -63,13 +69,14 @@ public class MainController implements Initializable {
     @FXML
     private Button closeTableFieldButton;
     @FXML
-    private AnchorPane paneTableField;
-    @FXML
     private Button executeScriptButton;
     @FXML
     private TextField searchField;
     @FXML
     private Button mapButton;
+
+    @FXML
+    private AnchorPane paneTableField;
     @FXML
     private MenuItem clearButton;
     @FXML
@@ -114,50 +121,191 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableHumanBeingInfo.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableHumanBeingInfo.setEditable(true);
         tableHumanBeingInfo.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
-        humanBeingInformationEdit.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
-        editColumn.setCellFactory(column -> new EditTableColumn<>());
-        editColumn.setCellValueFactory(new PropertyValueFactory<>("updateField"));
-        paneTableField.setVisible(false);
-        nameField.setCellValueFactory(new PropertyValueFactory<>("nameField"));
-        valueField.setCellValueFactory(new PropertyValueFactory<>("valueField"));
-        nameFieldUpdate.setCellValueFactory(new PropertyValueFactory<>("nameField"));
-        valueFieldUpdate.setCellValueFactory(new PropertyValueFactory<>("valueField"));
-        nameField.setCellFactory(column -> new Column<>());
-        valueField.setCellFactory(column -> new Column<>());
-        nameFieldUpdate.setCellFactory(column -> new Column<>());
-        valueFieldUpdate.setCellFactory(column -> new Column<>());
-        humanBeingFieldInformation.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent; -fx-background-radius: 0 0 20 20;");
-        humanBeingFieldInformation.setVisible(false);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        idColumn.setCellFactory(column -> new Column<>());
-        nameColumn.setCellFactory(column -> {
-                    TableCell<Vehicle, String> cell = new Column<>();
-                    cell.setOnMouseEntered(new MouseEnteredHandler(cell, tableHumanBeingInfo, humanBeingFieldInformation,
-                            humanBeingInformationEdit, paneTableField));
-                    cell.setOnMouseClicked(new MouseClickedHandler(cell, tableHumanBeingInfo, humanBeingFieldInformation,
-                            humanBeingInformationEdit, paneTableField, deleteTableFieldButton, errorTextTableField,
-                            updateTableFieldButton, editColumn));
-                    cell.setOnMouseExited(event -> {
-                        if(!doubleClickedOnField){
-                            humanBeingFieldInformation.setVisible(false);
-                            paneTableField.setVisible(false);
-                        }
-                    });
-
-                    return cell;
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameColumn.setOnEditCommit(event -> {
+            Vehicle selectedVehicle = event.getRowValue();
+            if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
+                try {
+                    String newValue = event.getNewValue();
+                    Update updateCommand = new Update(selectedVehicle);
+                    Errors error = updateCommand.updateHuman(0, newValue);
+                    if(error != Errors.NOTHAVEERRORS){
+                        showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
+                        tableHumanBeingInfo.refresh();
+                    }else {
+                        updateCommand.updateCollection();
+                        updateTable(VehicleCollection.getVehicles());
+                    }
+                }catch (NullPointerException nullPointerException){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
+                    tableHumanBeingInfo.refresh();
                 }
-        );
+            }else {
+                showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
+                        CurrentLanguage.getCurrentLanguage().getString("not this user"));
+
+                tableHumanBeingInfo.refresh();
+            }
+        });
+
+        xColumn.setCellValueFactory(new PropertyValueFactory<>("x"));
+        xColumn.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+        xColumn.setOnEditCommit(event -> {
+            Vehicle selectedVehicle = event.getRowValue();
+            if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
+                try {
+                    float newValue = event.getNewValue();
+                    Update updateCommand = new Update(selectedVehicle);
+                    Errors error = updateCommand.updateX(String.valueOf(newValue));
+                    if (error != Errors.NOTHAVEERRORS) {
+                        showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
+                        tableHumanBeingInfo.refresh();
+                    } else {
+                        updateCommand.updateCollection();
+                        updateTable(VehicleCollection.getVehicles());
+                    }
+                } catch (NullPointerException nullPointerException) {
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
+                    tableHumanBeingInfo.refresh();
+                } catch (NumberFormatException  numberFormatException) {
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), Errors.NOTCANTRANSFORMTOINT.getError());
+                    tableHumanBeingInfo.refresh();
+                }
+
+            }else {
+                showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
+                        CurrentLanguage.getCurrentLanguage().getString("not this user"));
+
+                tableHumanBeingInfo.refresh();
+            }
+        });
+
+        yColumn.setCellValueFactory(new PropertyValueFactory<>("y"));
+        yColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        yColumn.setOnEditCommit(event -> {
+            Vehicle selectedVehicle = event.getRowValue();
+            if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
+                try {
+                    float newValue = event.getNewValue();
+                    Update updateCommand = new Update(selectedVehicle);
+                    Errors error = updateCommand.updateY(String.valueOf(newValue));
+                    if(error != Errors.NOTHAVEERRORS){
+                        showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
+                        tableHumanBeingInfo.refresh();
+
+                    }else {
+                        updateCommand.updateCollection();
+                        updateTable(VehicleCollection.getVehicles());
+                    }
+
+                }catch (NullPointerException nullPointerException){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
+                    tableHumanBeingInfo.refresh();
+                }
+                catch (NumberFormatException   numberFormatException){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), Errors.NOTCANTRANSFORMTOINT.getError());
+                    tableHumanBeingInfo.refresh();
+                }
+            }else {
+                showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
+                        CurrentLanguage.getCurrentLanguage().getString("not this user"));
+
+                tableHumanBeingInfo.refresh();
+            }
+        });
+        powerEngineColumn.setCellValueFactory(new PropertyValueFactory<>("impactSpeed"));
+        powerEngineColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        powerEngineColumn.setOnEditCommit(event -> {
+            Vehicle selectedVehicle = event.getRowValue();
+            if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
+                try {
+                    Integer newValue = event.getNewValue();
+                    Update updateCommand = new Update(selectedVehicle);
+                    Errors error = updateCommand.updateHuman(2, String.valueOf(newValue));
+                    if(error != Errors.NOTHAVEERRORS){
+                        showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
+                        tableHumanBeingInfo.refresh();
+
+                    }else {
+                        updateCommand.updateCollection();
+                        updateTable(VehicleCollection.getVehicles());
+                    }
+
+                }catch (NullPointerException nullPointerException){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
+                    tableHumanBeingInfo.refresh();
+                }
+                catch (NumberFormatException   numberFormatException){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), Errors.NOTCANTRANSFORMTOINT.getError());
+                    tableHumanBeingInfo.refresh();
+                }
+            }else {
+                showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
+                        CurrentLanguage.getCurrentLanguage().getString("not this user"));
+
+                tableHumanBeingInfo.refresh();
+            }
+        });
+
+        transportTypeColumn.setCellValueFactory(new PropertyValueFactory<>("vehicleType"));
+        transportTypeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(CheckboxesConstants.getWeaponTypes()));
+        transportTypeColumn.setOnEditCommit(event -> {
+            Vehicle selectedVehicle = event.getRowValue();
+            if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
+                String newValue = event.getNewValue().toLowerCase();
+                Update updateCommand = new Update(selectedVehicle );
+                Errors error = updateCommand.updateHuman(5, newValue);
+                if(error != Errors.NOTHAVEERRORS){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
+                    tableHumanBeingInfo.refresh();
+
+                }else {
+                    updateCommand.updateCollection();
+                    updateTable(VehicleCollection.getVehicles());
+                }
+            }
+            else {
+                showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
+                        CurrentLanguage.getCurrentLanguage().getString("not this user"));
+
+                tableHumanBeingInfo.refresh();
+            }
+        });
+
+        fuelTypeColumn.setCellValueFactory(new PropertyValueFactory<>("fuelType"));
+        fuelTypeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(CheckboxesConstants.getMoodTypes()));
+        fuelTypeColumn.setOnEditCommit(event -> {
+            Vehicle selectedVehicle = event.getRowValue();
+            if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
+                String newValue = event.getNewValue().toLowerCase().toLowerCase();
+                System.out.println("New value: " + newValue);
+                Update updateCommand = new Update(selectedVehicle);
+                Errors error = updateCommand.updateHuman(6, newValue);
+                if(error != Errors.NOTHAVEERRORS){
+                    showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
+                    tableHumanBeingInfo.refresh();
+
+                }else {
+                    updateCommand.updateCollection();
+                    updateTable(VehicleCollection.getVehicles());
+                }
+            }
+            else {
+                showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
+                        CurrentLanguage.getCurrentLanguage().getString("not this user"));
+
+                tableHumanBeingInfo.refresh();
+            }
+        });
 
         nickname.setText(User.getLogin());
 
         errorTextTableField.setVisible(false);
-        closeTableFieldButton.setOnAction(event -> {
-            paneTableField.setVisible(false);
-            doubleClickedOnField = false;
-        });
+
 
         updateTable(VehicleCollection.getVehicles());
 

@@ -103,7 +103,10 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"enter speed", "Введите скорость"},
                     {"impossible clear", "Невозможно очистить коллекцию"},
                     {"not admin", "Только у админа есть право очищать всю коллекцию"},
-                    {"dataFormat", "dd.MM.yyyy"}
+                    {"dataFormat", "dd.MM.yyyy"},
+                    {"error", "Ошибка!"},
+                    {"not update", "Нельзя обновить данный объект"},
+                    {"not this user", "Вы не можете обновлять значения объектов, которые создали не вы"},
 
 
 

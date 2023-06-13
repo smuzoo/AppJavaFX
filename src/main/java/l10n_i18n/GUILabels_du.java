@@ -107,7 +107,10 @@ public class GUILabels_du extends ListResourceBundle {
                     {"enter speed", "Snelheid invoeren"},
                     {"impossible clear", "Het is niet mogelijk om de collectie te wissen"},
                     {"not admin", "Alleen een beheerder kan de hele collectie wissen"},
-                    {"dataFormat", "dd-MM-yyyy"}
+                    {"dataFormat", "dd-MM-yyyy"},
+                    {"error", "Fout!"},
+                    {"not update", "Kan dit object niet bijwerken"},
+                    {"not this user", "U kunt geen waarden bijwerken van objecten die u niet hebt gemaakt"},
 
             };
     public Object[][] getContents() {

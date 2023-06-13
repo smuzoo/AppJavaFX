@@ -36,63 +36,43 @@
          </image>
       </ImageView>
       <AnchorPane layoutX="24.0" layoutY="29.0" prefHeight="114.0" prefWidth="114.0" style="-fx-background-radius: 90; -fx-background-color: #D6D6D6; -fx-background-size: cover; -fx-border-width: 0;" />
-      <AnchorPane layoutX="360.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane layoutX="94.0" layoutY="14.0" prefHeight="762.0" prefWidth="354.0">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 0 0 20 20;">
-               <children>
-                  <TableView fx:id="humanBeingFieldInformation" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="307.0" prefWidth="366.0" style="-fx-background-color: EBE5FC; -fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 40 40;">
-                     <columns>
-                        <TableColumn fx:id="nameField" prefWidth="173.0" style="-fx-background-color: #7749f8;">
-                           <graphic>
-                              <Label prefHeight="16.0" prefWidth="87.0" text="NameField" textFill="white" />
-                           </graphic>
-                        </TableColumn>
-                        <TableColumn fx:id="valueField" prefWidth="191.0" style="-fx-background-color: #7749f8;">
-                           <graphic>
-                              <Label text="ValueField" textFill="white" />
-                           </graphic>
-                        </TableColumn>
-                     </columns>
-                  </TableView>
-                  <AnchorPane fx:id="paneTableField" prefHeight="200.0" prefWidth="114.0" style="-fx-background-radius: 0 0 20 20;">
-                     <children>
-                        <TableView fx:id="humanBeingInformationEdit" layoutX="-14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="534.0" prefWidth="735.0" style="-fx-background-color: EBE5FC;">
-                           <columns>
-                              <TableColumn fx:id="nameFieldUpdate" prefWidth="271.0" style="-fx-background-color: #7749f8;">
-                                 <graphic>
-                                    <Label prefHeight="16.0" prefWidth="129.0" text="NameField" textFill="white" />
-                                 </graphic>
-                              </TableColumn>
-                              <TableColumn fx:id="valueFieldUpdate" prefWidth="294.0" style="-fx-background-color: #7749f8;">
-                                 <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="122.0" text="ValueField" textAlignment="CENTER" textFill="white" />
-                                 </graphic>
-                              </TableColumn>
-                              <TableColumn fx:id="editColumn" prefWidth="169.0" style="-fx-background-color: #7749f8;">
-                                 <graphic>
-                                    <Label prefHeight="16.0" prefWidth="145.0" text="Update" textFill="white" />
-                                 </graphic>
-                              </TableColumn>
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="6.0" prefHeight="762.0" prefWidth="354.0">
-         <children>
-            <TableView fx:id="tableHumanBeingInfo" layoutX="-3.0" layoutY="155.0" prefHeight="535.0" prefWidth="353.0">
+            <TableView fx:id="tableHumanBeingInfo" layoutX="-1.0" layoutY="155.0" prefHeight="380.0" prefWidth="908.0">
                <columns>
-                  <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="185.60003662109375" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="107.99996638298035" style="-fx-background-color: #7749f8;">
                      <graphic>
                         <Label text="ID" textFill="white" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="nameColumn" prefWidth="168.79998779296875" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="nameColumn" prefWidth="115.99996948242188" style="-fx-background-color: #7749f8;">
                      <graphic>
                         <Label fx:id="nameLabel" text="Name" textFill="white" />
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn prefWidth="175.99993896484375" style="-fx-background-color: #7749f8;" fx:id="xColumn">
+                     <graphic>
+                        <Label prefHeight="17.0" prefWidth="165.0" text="Coordinate x" textFill="WHITE" />
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="yColumn" prefWidth="148.00003051757812" style="-fx-background-color: #7749f8;" text="Coordinate Y">
+                     <graphic>
+                        <Label prefHeight="17.0" prefWidth="165.0" text="Coordinate y" textFill="WHITE" />
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="powerEngineColumn" prefWidth="106.39996337890625" style="-fx-background-color: #7749f8;">
+                     <graphic>
+                        <Label prefHeight="17.0" prefWidth="100.0" text="Power engine" textFill="WHITE" />
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="transportTypeColumn" prefWidth="127.20001220703125" style="-fx-background-color: #7749f8;">
+                     <graphic>
+                        <Label prefHeight="17.0" prefWidth="119.0" text="Type transport" textFill="WHITE" />
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn fx:id="fuelTypeColumn" prefWidth="127.99993896484375" style="-fx-background-color: #7749f8;">
+                     <graphic>
+                        <Label prefHeight="17.0" prefWidth="119.0" text="Type fuel" textFill="WHITE" />
                      </graphic>
                   </TableColumn>
                </columns>

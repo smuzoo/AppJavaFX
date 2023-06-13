@@ -23,6 +23,7 @@ public class ImpactSpeedValidator extends Validator {
         try{
             Integer.parseInt(impactSpeed);
         }catch (NumberFormatException e){
+            e.printStackTrace();
             return true;
         }
         return false;

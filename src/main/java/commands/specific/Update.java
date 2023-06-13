@@ -44,12 +44,36 @@ public class Update {
     return error;
     }
 
+    public Errors updateX(String valueField) {
+        Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
+        Errors error = Errors.NOTHAVEERRORS;
+        error = new CoordinatesValidator(new String[]{valueField, String.valueOf(human.getY())}).validateAll();
+        Fields field = Fields.getForOrder(2);
+        if (error == Errors.NOTHAVEERRORS) {
+            Predicate<String> notNullSetter = notNullSetters.get(field);
+            notNullSetter.test(valueField + "," + human.getY());
+        }
+        return error;
+    }
+
+    public Errors updateY(String valueField) {
+        Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
+        Errors error = new CoordinatesValidator(new String[]{String.valueOf(human.getX()), valueField}).validateAll();
+        Fields field = Fields.getForOrder(2);
+        if (error == Errors.NOTHAVEERRORS) {
+            Predicate<String> notNullSetter = notNullSetters.get(field);
+            notNullSetter.test(human.getX() + "," + valueField);
+        }
+        return error;
+    }
+
     public void updateCollection(){
         Database db = Database.getInstance();
         db.deleteById("human_beings", human.getId());
         int update = db.addHumanBeingToDatabase("human_beings", human);
         if (update > 0) {
             VehicleCollection.add(human);
+            System.out.println(human.getFuelType());
             System.out.println("поле было успешно изменено");
         }
     }

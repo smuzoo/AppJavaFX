@@ -93,6 +93,22 @@ public class Vehicle implements Comparable<Vehicle>{
         return name;
     }
 
+    public float getX(){
+        return coordinates.getX();
+    }
+
+    public void setX(float x){
+        coordinates.setX(x);
+    }
+
+    public Integer getY(){
+        return coordinates.getY();
+    }
+
+    public void setY(Integer y){
+        coordinates.setY(y);
+    }
+
     /**
      * Gets coordinates.
      *
@@ -287,6 +303,18 @@ public class Vehicle implements Comparable<Vehicle>{
         this.fuelType = fuelType;
     }
 
+    public String getVehicleType() {
+        return vehicleType != null ? vehicleType.getName() : "null";
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = VehicleType.getWeaponType(vehicleType);
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = FuelType.getMood(fuelType);
+    }
+
     /**
      * Sets car.
      *
@@ -382,8 +410,9 @@ public class Vehicle implements Comparable<Vehicle>{
      *
      * @return the mood
      */
-    public FuelType getFuelType(){
-        return fuelType;
+    public String getFuelType(){
+
+        return fuelType != null ? fuelType.getName() : "null";
     }
 
     /**
