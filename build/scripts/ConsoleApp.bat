@@ -68,7 +68,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\ConsoleApp-1.0.jar;%APP_HOME%\lib\javafx-fxml-17.0.1-linux.jar;%APP_HOME%\lib\javafx-controls-17.0.1-linux.jar;%APP_HOME%\lib\javafx-controls-17.0.1.jar;%APP_HOME%\lib\javafx-graphics-17.0.1-linux.jar;%APP_HOME%\lib\javafx-graphics-17.0.1.jar;%APP_HOME%\lib\javafx-base-17.0.1-linux.jar;%APP_HOME%\lib\javafx-base-17.0.1.jar;%APP_HOME%\lib\annotations-20.1.0.jar;%APP_HOME%\lib\postgresql-42.3.1.jar;%APP_HOME%\lib\checker-qual-3.5.0.jar
+set CLASSPATH=%APP_HOME%\lib\ConsoleApp-1.0.jar;%APP_HOME%\lib\javafx-fxml-21-ea+17-linux.jar;%APP_HOME%\lib\javafx-fxml-21-ea+17.jar;%APP_HOME%\lib\javafx-controls-21-ea+17-linux.jar;%APP_HOME%\lib\javafx-controls-21-ea+17.jar;%APP_HOME%\lib\javafx-graphics-21-ea+17-linux.jar;%APP_HOME%\lib\javafx-graphics-21-ea+17.jar;%APP_HOME%\lib\javafx-base-21-ea+17-linux.jar;%APP_HOME%\lib\javafx-base-21-ea+17.jar;%APP_HOME%\lib\annotations-20.1.0.jar;%APP_HOME%\lib\postgresql-42.3.1.jar;%APP_HOME%\lib\javafx-fxml-18-ea+1.jar;%APP_HOME%\lib\checker-qual-3.5.0.jar;%APP_HOME%\lib\javafx-controls-18-ea+1.jar;%APP_HOME%\lib\javafx-graphics-18-ea+1.jar;%APP_HOME%\lib\javafx-base-18-ea+1.jar
 
 
 @rem Execute ConsoleApp

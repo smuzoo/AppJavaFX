@@ -67,7 +67,7 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"hasToothPick", "Полный привод"},
                     {"weaponType", "Тип транспорта"},
                     {"mood", "Тип топлива"},
-                    {"carCool", "Иномарка"},
+                    {"carCool", "Общественный"},
                     {"creation date", "Дата создания"},
                     {"user login", "Имя пользователя"},
                     {"to table", "К таблице"},
