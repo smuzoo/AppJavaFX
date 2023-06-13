@@ -44,7 +44,7 @@
 - <span style="color:red">remove_greater_key null</span> : удалить из коллекции все элементы, ключ которых превышает заданный
 - <span style="color:red">count_greater_than_impact_speed impactSpeed</span> : вывести количество элементов, значение поля impactSpeed которых больше заданного
 - <span style="color:red">filter_less_than_impact_speed impactSpeed</span> : вывести элементы, значение поля impactSpeed которых меньше заданного
-- <span style="color:red">print_field_descending_mood</span> : вывести значения поля mood всех элементов в порядке убывания
+- <span style="color:red">print_field_descending_mood</span> : вывести значения поля fuelType всех элементов в порядке убывания
 
 ### Формат ввода команд:
 
@@ -67,8 +67,8 @@ public class HumanBeing {
     private boolean realHero;
     private boolean hasToothpick;
     private Float impactSpeed; //Максимальное значение поля: 496, Поле может быть null
-    private WeaponType weaponType; //Поле может быть null
-    private Mood mood; //Поле может быть null
+    private WeaponType vehicleType; //Поле может быть null
+    private Mood fuelType; //Поле может быть null
     private Car car; //Поле может быть null
 }
 ```

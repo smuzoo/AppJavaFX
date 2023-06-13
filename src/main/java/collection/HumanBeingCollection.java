@@ -39,12 +39,12 @@ public class HumanBeingCollection {
                 boolean realhero = humanBeingObject.getBoolean(6);
                 boolean hastoothpick = humanBeingObject.getBoolean(7);
                 Integer impactSpeed = humanBeingObject.getInt(8);
-                WeaponType weaponType = WeaponType.getWeaponType(humanBeingObject.getString(9));
-                Mood mood = Mood.getMood(humanBeingObject.getString(10));
+                VehicleType vehicleType = VehicleType.getWeaponType(humanBeingObject.getString(9));
+                FuelType fuelType = FuelType.getMood(humanBeingObject.getString(10));
                 Car car = new Car(humanBeingObject.getBoolean(11));
                 String userLogin = humanBeingObject.getString(12);
                 add(new HumanBeing(id, name, new Coordinates(x, y), creationDate, realhero, hastoothpick, impactSpeed,
-                        weaponType, mood, car, userLogin));
+                        vehicleType, fuelType, car, userLogin));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

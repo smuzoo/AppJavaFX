@@ -7,9 +7,9 @@ public class CheckboxesConstants {
     private static final ObservableList<String> BOOLEAN_TYPES = FXCollections
             .observableArrayList("false", "true");
     private static final ObservableList<String> WEAPON_TYPES = FXCollections
-            .observableArrayList("null", "hammer", "pistol", "shotgun");
+            .observableArrayList("null", "car", "boat", "motorcycle", "ship", "chopper");
     private static final ObservableList<String> MOOD_TYPES = FXCollections
-            .observableArrayList("null", "longing", "gloom", "apathy", "rage");
+            .observableArrayList("null", "gasoline", "nuclear", "alcohol", "kerosene");
 
     public static ObservableList<String> getBooleanTypes(){
         return BOOLEAN_TYPES;

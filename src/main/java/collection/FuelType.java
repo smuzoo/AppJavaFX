@@ -3,29 +3,30 @@ package collection;
 /**
  * The enum Mood.
  */
-public enum Mood {
+public enum FuelType {
     /**
      * Longing mood.
      */
-    LONGING("longing", "1", 0),
+    GASOLINE("gasoline", "1", 0),
     /**
      * Gloom mood.
+     * 
      */
-    GLOOM("gloom", "2", 1),
+    NUCLEAR("nuclear", "2", 1),
     /**
      * Apathy mood.
      */
-    APATHY("apathy", "3", 2),
+    ALCOHOL("alcohol", "3", 2),
     /**
      * Rage mood.
      */
-    RAGE("rage", "4", 50);
+    KEROSENE("kerosene", "4", 50);
 
         private final String name, order;
         private final int power;
 
 
-        Mood(String name, String order, int power) {
+        FuelType(String name, String order, int power) {
             this.name = name;
             this.order = order;
             this.power = power;
@@ -65,11 +66,11 @@ public enum Mood {
      * @return the mood
      * @throws IllegalArgumentException the illegal argument exception
      */
-    public static Mood getMood(String s) throws  IllegalArgumentException{
-            Mood[] moodValues = Mood.values();
-            for (Mood mood : moodValues) {
-                if (s.equals(mood.getName()) || s.equals(mood.getOrder())) {
-                    return mood;
+    public static FuelType getMood(String s) throws  IllegalArgumentException{
+            FuelType[] fuelTypeValues = FuelType.values();
+            for (FuelType fuelType : fuelTypeValues) {
+                if (s.equals(fuelType.getName()) || s.equals(fuelType.getOrder())) {
+                    return fuelType;
                 }
             }
             return null;
@@ -82,8 +83,8 @@ public enum Mood {
      */
     public static String getStringValues() {
             StringBuilder sb = new StringBuilder();
-            for (Mood mood : Mood.values()) {
-                sb.append(mood.getOrder()).append(" - ").append(mood.getName()).append(" | ");
+            for (FuelType fuelType : FuelType.values()) {
+                sb.append(fuelType.getOrder()).append(" - ").append(fuelType.getName()).append(" | ");
             }
             sb.delete(sb.length() - 3, sb.length()); // удаление последнего разделителя "| "
             return sb.toString();

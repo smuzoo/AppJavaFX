@@ -29,8 +29,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
     private boolean realHero;
     private boolean hasToothpick;
     private Integer impactSpeed; //Максимальное значение поля: 496, Поле может быть null
-    private WeaponType weaponType; //Поле может быть null
-    private Mood mood; //Поле может быть null
+    private VehicleType vehicleType; //Поле может быть null
+    private FuelType fuelType; //Поле может быть null
     private Car car; //Поле может быть null
     private String userLogin;
     {
@@ -56,13 +56,13 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param realHero     the real hero
      * @param hasToothpick the has toothpick
      * @param impactSpeed  the impact speed
-     * @param weaponType   the weapon type
-     * @param mood         the mood
+     * @param vehicleType   the weapon type
+     * @param fuelType         the mood
      * @param car          the car
      * @param userLogin    the user login
      */
     public HumanBeing(Long id, String name, Coordinates coordinates, LocalDate creationDate, boolean realHero, boolean hasToothpick,
-                      Integer impactSpeed, WeaponType weaponType, Mood mood, Car car, String userLogin){
+                      Integer impactSpeed, VehicleType vehicleType, FuelType fuelType, Car car, String userLogin){
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -70,8 +70,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.realHero= realHero;
         this.hasToothpick = hasToothpick;
         this.impactSpeed = impactSpeed;
-        this.weaponType = weaponType;
-        this.mood = mood;
+        this.vehicleType = vehicleType;
+        this.fuelType = fuelType;
         this.car = car;
         this.userLogin = userLogin;
     }
@@ -146,8 +146,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the weapon type
      */
-    public WeaponType getWeaponType() {
-        return weaponType;
+    public VehicleType getWeaponType() {
+        return vehicleType;
     }
 
     /**
@@ -267,10 +267,10 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param weaponType the weapon type
      */
     public void setWeaponType(String weaponType) {
-        this.weaponType = WeaponType.getWeaponType(weaponType);
+        this.vehicleType = VehicleType.getWeaponType(weaponType);
     }
-    public void setWeaponType(WeaponType weaponType) {
-        this.weaponType = weaponType;
+    public void setWeaponType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     /**
@@ -279,12 +279,12 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param mood the mood
      */
     public void setMood(String mood) {
-        this.mood = Mood.getMood(mood);
+        this.fuelType = FuelType.getMood(mood);
     }
 
 
-    public void setMood(Mood mood) {
-        this.mood = mood;
+    public void setMood(FuelType fuelType) {
+        this.fuelType = fuelType;
     }
 
     /**
@@ -382,8 +382,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the mood
      */
-    public Mood getMood(){
-        return mood;
+    public FuelType getMood(){
+        return fuelType;
     }
 
     /**
@@ -402,7 +402,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @return the mood power
      */
     public int getMoodPower() {
-        return mood.getPower();
+        return fuelType.getPower();
     }
 
     /**
@@ -412,8 +412,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
      */
     public String getAllFieldsAsString() {
         String impactSpeedString = (impactSpeed != null) ? impactSpeed.toString() : "";
-        String weaponTypeString = (weaponType != null) ? weaponType.toString() : "";
-        String moodString = (mood != null) ? mood.toString() : "";
+        String weaponTypeString = (vehicleType != null) ? vehicleType.toString() : "";
+        String moodString = (fuelType != null) ? fuelType.toString() : "";
         String carString = (car != null) ? String.valueOf(car.getStatus()) : "";
 
         return id + "," + name + "," + coordinates.getX() + "," + coordinates.getY() + "," + creationDate + ","
@@ -430,8 +430,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
         if(car.getStatus()) power += 75;
         if(hasToothpick) power -= 50;
         int powerImpactSpeed = impactSpeed == null ? 0 : impactSpeed;
-        int weaponPower = weaponType == null ? 0 : weaponType.getPower();
-        int moodPower = mood == null ? 0 : mood.getPower();
+        int weaponPower = vehicleType == null ? 0 : vehicleType.getPower();
+        int moodPower = fuelType == null ? 0 : fuelType.getPower();
         power += powerImpactSpeed + weaponPower + moodPower;
         return power;
     }
@@ -476,8 +476,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
                 ",\n realHero=" + realHero +
                 ",\n hasToothpick=" + hasToothpick +
                 ",\n impactSpeed=" + impactSpeed +
-                ",\n weaponType=" + weaponType +
-                ",\n mood=" + mood +
+                ",\n weaponType=" + vehicleType +
+                ",\n mood=" + fuelType +
                 ",\n car.cool=" + car.getStatus() +
                 ",\n userLogin=" + userLogin +
                 "\n}";

@@ -1,8 +1,8 @@
 import Database.Database;
 import collection.Coordinates;
+import collection.FuelType;
 import collection.HumanBeing;
-import collection.Mood;
-import collection.WeaponType;
+import collection.VehicleType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -91,19 +91,19 @@ public class HumanBeingGenerator {
         return random.nextInt(495);
     }
 
-    private static WeaponType generateRandomWeaponType() {
+    private static VehicleType generateRandomWeaponType() {
         // Список возможных типов оружия
-        WeaponType[] weaponTypes = {WeaponType.HAMMER, WeaponType.PISTOL, WeaponType.SHOTGUN};
+        VehicleType[] vehicleTypes = {VehicleType.HAMMER, VehicleType.BOAT, VehicleType.SHIP};
 
         // Выбор случайного типа оружия из списка
-        return weaponTypes[random.nextInt(weaponTypes.length)];
+        return vehicleTypes[random.nextInt(vehicleTypes.length)];
     }
 
-    private static Mood generateRandomMood() {
-        Mood[] moods = {Mood.APATHY, Mood.RAGE, Mood.GLOOM, Mood.LONGING};
+    private static FuelType generateRandomMood() {
+        FuelType[] fuelTypes = {FuelType.ALCOHOL, FuelType.KEROSENE, FuelType.NUCLEAR, FuelType.GASOLINE};
 
         // Выбор случайного типа оружия из списка
-        return moods[random.nextInt(moods.length)];
+        return fuelTypes[random.nextInt(fuelTypes.length)];
     }
 }
 

@@ -34,11 +34,11 @@ public enum Fields {
     /**
      * Weapontype fields.
      */
-    WEAPONTYPE("тип оружия", "может быть " + WeaponType.getStringValues() + ", может быть null", 6),
+    WEAPONTYPE("тип оружия", "может быть " + VehicleType.getStringValues() + ", может быть null", 6),
     /**
      * Mood fields.
      */
-    MOOD("муд", "может быть " + Mood.getStringValues() + ", может быть null", 7),
+    MOOD("муд", "может быть " + FuelType.getStringValues() + ", может быть null", 7),
     /**
      * Carcool fields.
      */

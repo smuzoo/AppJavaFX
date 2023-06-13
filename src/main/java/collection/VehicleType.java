@@ -1,29 +1,29 @@
 package collection;
 
-import org.jetbrains.annotations.Nullable;
-
 /**
  * The enum Weapon type.
  */
-public enum WeaponType {
+public enum VehicleType {
     /**
      * Hammer weapon type.
      */
-    HAMMER("hammer", "1", 10),
+    HAMMER("car", "1", 15),
     /**
      * Pistol weapon type.
      */
-    PISTOL("pistol", "2", 45),
+    BOAT("boat", "2", 45),
     /**
      * Shotgun weapon type.
      */
-    SHOTGUN("shotgun", "3", 80);
+    MOROTCYCLE("motorcycle", "3", 5),
+    CHOPPER("chopper", "4", 10),
+    SHIP("ship", "5", 80);
 
     private final String name, order;
 
     private final int power;
 
-    WeaponType(String name, String order, int power) {
+    VehicleType(String name, String order, int power) {
         this.name = name;
         this.order = order;
         this.power = power;
@@ -63,11 +63,11 @@ public enum WeaponType {
      * @param s the string(name or order)
      * @return the weapon type
      */
-    public static @Nullable WeaponType getWeaponType(String s) {
-        WeaponType[] weaponTypesValues = WeaponType.values();
-        for (WeaponType weaponType : weaponTypesValues) {
-            if (s.equals(weaponType.getName()) || s.equals(weaponType.getOrder())) {
-                return weaponType;
+    public static VehicleType getWeaponType(String s) {
+        VehicleType[] vehicleTypesValues = VehicleType.values();
+        for (VehicleType vehicleType : vehicleTypesValues) {
+            if (s.equals(vehicleType.getName()) || s.equals(vehicleType.getOrder())) {
+                return vehicleType;
             }
         }
         return null;
@@ -80,8 +80,8 @@ public enum WeaponType {
      */
     public static String getStringValues() {
         StringBuilder sb = new StringBuilder();
-        for (WeaponType weaponType : WeaponType.values()) {
-            sb.append(weaponType.getOrder()).append(" - ").append(weaponType.getName()).append(" | ");
+        for (VehicleType vehicleType : VehicleType.values()) {
+            sb.append(vehicleType.getOrder()).append(" - ").append(vehicleType.getName()).append(" | ");
         }
         sb.delete(sb.length() - 3, sb.length()); // удаление последнего разделителя "| "
         return sb.toString();
