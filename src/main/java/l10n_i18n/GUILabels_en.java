@@ -1,6 +1,6 @@
 package l10n_i18n;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 
 import java.util.ListResourceBundle;
 
@@ -85,9 +85,9 @@ public class GUILabels_en extends ListResourceBundle {
                     {"info about commands", "Information about Commands"},
                     {"info about collection", "Information about the Collection"},
                     {"info", "Collection HashMap<java.util.UUID, Velicles>\n" +
-                            "Collection creation date: " + HumanBeingCollection.getDateOfInitialization() + "\n" +
-                            "Date of last collection modification: " + HumanBeingCollection.getDateOfLastChange() + "\n" +
-                            "Number of elements in the collection: " + HumanBeingCollection.getCountHumanBeingCollection()},
+                            "Collection creation date: " + VehicleCollection.getDateOfInitialization() + "\n" +
+                            "Date of last collection modification: " + VehicleCollection.getDateOfLastChange() + "\n" +
+                            "Number of elements in the collection: " + VehicleCollection.getCountVehicleCollection()},
                     {"info for commands", "filter_less_than_engine_power enginePower : display elements whose enginePower field value is less than the specified\n" +
                             "remove_greater_key null : remove from the collection all elements whose key exceeds the specified\n" +
                             "execute_script file_name : read and execute a script from the specified file. The script contains commands in the same format as the user enters them interactively.\n" +

@@ -1,9 +1,6 @@
 import Database.Database;
 import application.Application;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
-import commands.specific.ShowHelp;
-import commands.specific.ShowInfo;
+import collection.VehicleCollection;
 
 /**
  * The main class to launch app.
@@ -15,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         Database db = Database.getInstance();
-        HumanBeingCollection.readFromDatabase();
+        VehicleCollection.readFromDatabase();
         Application.open();
         db.closeConnection();
     }

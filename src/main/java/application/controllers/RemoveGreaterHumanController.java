@@ -2,9 +2,8 @@ package application.controllers;
 
 import application.tools.CheckboxesConstants;
 import application.tools.ModalController;
-import collection.HumanBeing;
+import collection.Vehicle;
 import commands.specific.RemoveGreaterHumanBeing;
-import commands.specific.RemoveLowerHumanBeing;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -83,12 +82,12 @@ public class RemoveGreaterHumanController implements Initializable, ModalControl
             String mood = moodChoice.getValue();
             String carCool = carChoice.getValue();
             CreatorHumanBeingObject creatorHumanBeingObject = new CreatorHumanBeingObject(new ReaderFromConsole());
-            HumanBeing humanBeing = creatorHumanBeingObject.create(name, coordinates, impactSpeed, realHero, hasToothPick,
+            Vehicle vehicle = creatorHumanBeingObject.create(name, coordinates, impactSpeed, realHero, hasToothPick,
                     weaponType, mood, carCool);
             Errors error = creatorHumanBeingObject.getError();
             if(error == Errors.NOTHAVEERRORS){
                 RemoveGreaterHumanBeing removeGreaterHumanBeing = new RemoveGreaterHumanBeing(new ReaderFromConsole());
-                removeGreaterHumanBeing.remove(humanBeing);
+                removeGreaterHumanBeing.remove(vehicle);
                 modalStage.close();
             }else {
                 errorText.setText(error.getError());

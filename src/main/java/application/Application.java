@@ -15,7 +15,6 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         stage.setTitle("VehicleApp");
-        stage.getIcons().add(new Image(getClass().getResource("/images/Icon.png").toExternalForm()));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setMaximized(false);

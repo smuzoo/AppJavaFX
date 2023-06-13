@@ -2,9 +2,9 @@ package application.tools;
 
 import application.controllers.MainController;
 import authentication.User;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
-import collection.HumanBeingInfo;
+import collection.Vehicle;
+import collection.VehicleCollection;
+import collection.VehicleInfo;
 import commands.specific.RemoveElement;
 import commands.specific.Update;
 import javafx.collections.FXCollections;
@@ -17,21 +17,21 @@ import javafx.scene.text.Text;
 import validators.Errors;
 
 public class MouseClickedHandler  implements EventHandler<MouseEvent> {
-    private final TableCell<HumanBeing, String> cell;
-    private final TableView<HumanBeing> tableView;
-    private final TableView<HumanBeingInfo> humanBeingFieldInformation;
-    private final TableView<HumanBeingInfo> humanBeingInformationEdit;
+    private final TableCell<Vehicle, String> cell;
+    private final TableView<Vehicle> tableView;
+    private final TableView<VehicleInfo> humanBeingFieldInformation;
+    private final TableView<VehicleInfo> humanBeingInformationEdit;
     private final AnchorPane paneTableField;
     private final Button deleteButton;
     private final Text errorText;
     private final Button updateTableFieldButton;
-    private final TableColumn<HumanBeingInfo, Control> editColumn;
+    private final TableColumn<VehicleInfo, Control> editColumn;
 
-    public MouseClickedHandler(TableCell<HumanBeing, String> cell, TableView<HumanBeing> tableView,
-                               TableView<HumanBeingInfo> humanBeingFieldInformation,
-                               TableView<HumanBeingInfo> humanBeingInformationEdit, AnchorPane paneTableField,
+    public MouseClickedHandler(TableCell<Vehicle, String> cell, TableView<Vehicle> tableView,
+                               TableView<VehicleInfo> humanBeingFieldInformation,
+                               TableView<VehicleInfo> humanBeingInformationEdit, AnchorPane paneTableField,
                                Button deleteButton, Text errorText, Button updateTableFieldButton,
-                               TableColumn<HumanBeingInfo, Control> editColumn) {
+                               TableColumn<VehicleInfo, Control> editColumn) {
         this.cell = cell;
         this.tableView = tableView;
         this.humanBeingFieldInformation = humanBeingFieldInformation;
@@ -47,25 +47,25 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
         errorText.setVisible(false);
         MainController.setDoubleClickedOnField(true);
         final int index = cell.getTableRow().getIndex();
-        ObservableList<HumanBeing> humanBeings = tableView.getItems();
-        if (index < humanBeings.size()) {
+        ObservableList<Vehicle> vehicles = tableView.getItems();
+        if (index < vehicles.size()) {
             humanBeingFieldInformation.setVisible(false);
             paneTableField.setVisible(false);
-            HumanBeing humanBeing = humanBeings.get(index);
-            TableFields tableFields = new TableFields(humanBeing);
-            ObservableList<HumanBeingInfo> dataField = tableFields.getTableFields();
-            if (humanBeing.getUserLogin().equals(User.getLogin())) {
+            Vehicle vehicle = vehicles.get(index);
+            TableFields tableFields = new TableFields(vehicle);
+            ObservableList<VehicleInfo> dataField = tableFields.getTableFields();
+            if (vehicle.getUserLogin().equals(User.getLogin())) {
                 humanBeingInformationEdit.setItems(dataField);
                 humanBeingInformationEdit.refresh();
                 paneTableField.setVisible(true);
                 deleteButton.setOnAction(actionEvent -> {
                     RemoveElement removeElement = new RemoveElement();
-                    Errors error = removeElement.isExecute(String.valueOf(humanBeing.getId()));
+                    Errors error = removeElement.isExecute(String.valueOf(vehicle.getId()));
                     if(error == Errors.NOTHAVEERRORS){
                         MainController.setDoubleClickedOnField(false);
                         paneTableField.setVisible(false);
                         tableView.setItems(FXCollections.observableArrayList(
-                                HumanBeingCollection.getHumanBeings()
+                                VehicleCollection.getVehicles()
                         ));
                         tableView.refresh();
                     }else {
@@ -74,9 +74,9 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
                     }
                 });
                 updateTableFieldButton.setOnAction(e -> {
-                   ObservableList<HumanBeingInfo> itemsMainTable = humanBeingInformationEdit.getItems();
+                   ObservableList<VehicleInfo> itemsMainTable = humanBeingInformationEdit.getItems();
                     boolean isUpdated = true;
-                    Update update = new Update(humanBeing);
+                    Update update = new Update(vehicle);
                     for(int i = 0; i < itemsMainTable.size(); i++){
                         Control cell = editColumn.getCellObservableValue(i).getValue();
                         if(cell instanceof TextField text){
@@ -109,7 +109,7 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
                     if(isUpdated){
                         update.updateCollection();
                         tableView.setItems(FXCollections.observableArrayList(
-                                HumanBeingCollection.getHumanBeings()
+                                VehicleCollection.getVehicles()
                         ));
                         tableView.refresh();
                         paneTableField.setVisible(false);

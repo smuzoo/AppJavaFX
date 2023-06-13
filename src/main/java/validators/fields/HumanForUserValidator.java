@@ -1,7 +1,7 @@
 package validators.fields;
 
 import authentication.User;
-import collection.HumanBeing;
+import collection.Vehicle;
 import validators.Errors;
 import validators.Validator;
 
@@ -10,14 +10,14 @@ import validators.Validator;
  */
 public class HumanForUserValidator extends Validator {
 
-    private HumanBeing human;
+    private Vehicle human;
 
     /**
      * Instantiates a new Human for user validator.
      *
      * @param human the human
      */
-    public HumanForUserValidator(HumanBeing human) {
+    public HumanForUserValidator(Vehicle human) {
         this.human = human;
     }
 

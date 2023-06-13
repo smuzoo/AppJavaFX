@@ -1,10 +1,8 @@
 package validators.fields;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 import validators.Errors;
 import validators.Validator;
-
-import java.util.UUID;
 
 /**
  * The type Exist uuid validator.
@@ -37,7 +35,7 @@ public class ExistIDValidator extends Validator {
     }
 
     private boolean isNotExistElement(){
-        return !HumanBeingCollection.hasElement(Long.parseLong(id));
+        return !VehicleCollection.hasElement(Long.parseLong(id));
     }
 
     @Override

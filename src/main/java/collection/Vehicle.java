@@ -19,7 +19,7 @@ import java.util.function.Predicate;
 /**
  * The main class that is stored in the collection
  */
-public class HumanBeing implements Comparable<HumanBeing>{
+public class Vehicle implements Comparable<Vehicle>{
     private final Map<Fields, Predicate<String>> notNullSetters = new LinkedHashMap<>(); // Все сеттеры, устанавливающие поля, которые не должны быть null
     private final Map<Fields, Consumer<String>> setters = new LinkedHashMap<>(); // Все сеттеры, устанавливающие поля, которые могут быть null
     private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -31,7 +31,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     private Integer impactSpeed; //Максимальное значение поля: 496, Поле может быть null
     private VehicleType vehicleType; //Поле может быть null
     private FuelType fuelType; //Поле может быть null
-    private Car car; //Поле может быть null
+    private VehiclePublicity vehiclePublicity; //Поле может быть null
     private String userLogin;
     {
         /**Adding all setters to Map*/
@@ -42,7 +42,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
         addSetter(Fields.HASTOOTHPICK, this::setHasToothpick);
         addSetter(Fields.WEAPONTYPE, this::setWeaponType);
         addSetter(Fields.MOOD, this::setMood);
-        addSetter(Fields.CARCOOL, this::setCar);
+        addSetter(Fields.CARCOOL, this::setVehiclePublicity);
     }
 
 
@@ -58,11 +58,11 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @param impactSpeed  the impact speed
      * @param vehicleType   the weapon type
      * @param fuelType         the mood
-     * @param car          the car
+     * @param vehiclePublicity          the car
      * @param userLogin    the user login
      */
-    public HumanBeing(Long id, String name, Coordinates coordinates, LocalDate creationDate, boolean realHero, boolean hasToothpick,
-                      Integer impactSpeed, VehicleType vehicleType, FuelType fuelType, Car car, String userLogin){
+    public Vehicle(Long id, String name, Coordinates coordinates, LocalDate creationDate, boolean realHero, boolean hasToothpick,
+                   Integer impactSpeed, VehicleType vehicleType, FuelType fuelType, VehiclePublicity vehiclePublicity, String userLogin){
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -72,14 +72,14 @@ public class HumanBeing implements Comparable<HumanBeing>{
         this.impactSpeed = impactSpeed;
         this.vehicleType = vehicleType;
         this.fuelType = fuelType;
-        this.car = car;
+        this.vehiclePublicity = vehiclePublicity;
         this.userLogin = userLogin;
     }
 
     /**
      * Instantiates a new Human being.
      */
-    public HumanBeing(){
+    public Vehicle(){
         this.creationDate = LocalDate.now();
         this.userLogin = User.getLogin();
     }
@@ -165,8 +165,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the car
      */
-    public Car getCar() {
-        return car;
+    public VehiclePublicity getCar() {
+        return vehiclePublicity;
     }
 
     /**
@@ -290,15 +290,15 @@ public class HumanBeing implements Comparable<HumanBeing>{
     /**
      * Sets car.
      *
-     * @param isCarCool the is car cool
+     * @param isPublicity the is car cool
      */
-    public void setCar(String isCarCool) {
-        boolean coolCar = Boolean.parseBoolean(isCarCool);
-        this.car = new Car(coolCar);
+    public void setVehiclePublicity(String isPublicity) {
+        boolean vehiclePublicity1 = Boolean.parseBoolean(isPublicity);
+        this.vehiclePublicity = new VehiclePublicity(vehiclePublicity1);
     }
 
-    public void setCar(boolean isCarCool) {
-        this.car = new Car(isCarCool);
+    public void setVehiclePublicity(boolean vehiclePublicity) {
+        this.vehiclePublicity = new VehiclePublicity(vehiclePublicity);
     }
 
     public void setUserLogin(String userLogin) {
@@ -382,7 +382,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the mood
      */
-    public FuelType getMood(){
+    public FuelType getFuelType(){
         return fuelType;
     }
 
@@ -391,8 +391,8 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the string
      */
-    public String getStringMood(){
-        return getMood() == null ? "null" : getMood().toString();
+    public String getFuelTypeString(){
+        return getFuelType() == null ? "null" : getFuelType().toString();
     }
 
 
@@ -401,7 +401,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      *
      * @return the mood power
      */
-    public int getMoodPower() {
+    public int getFuelTypePower() {
         return fuelType.getPower();
     }
 
@@ -414,7 +414,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
         String impactSpeedString = (impactSpeed != null) ? impactSpeed.toString() : "";
         String weaponTypeString = (vehicleType != null) ? vehicleType.toString() : "";
         String moodString = (fuelType != null) ? fuelType.toString() : "";
-        String carString = (car != null) ? String.valueOf(car.getStatus()) : "";
+        String carString = (vehiclePublicity != null) ? String.valueOf(vehiclePublicity.getStatus()) : "";
 
         return id + "," + name + "," + coordinates.getX() + "," + coordinates.getY() + "," + creationDate + ","
                 + realHero + "," + hasToothpick + "," + impactSpeedString + "," + weaponTypeString + ","
@@ -427,7 +427,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
     private int countPower(){
         int power = 0;
         if(realHero) power += 100;
-        if(car.getStatus()) power += 75;
+        if(vehiclePublicity.getStatus()) power += 75;
         if(hasToothpick) power -= 50;
         int powerImpactSpeed = impactSpeed == null ? 0 : impactSpeed;
         int weaponPower = vehicleType == null ? 0 : vehicleType.getPower();
@@ -460,7 +460,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
      * @return int
      * */
     @Override
-    public int compareTo(HumanBeing human){
+    public int compareTo(Vehicle human){
         return this.countPower() - human.countPower();
     }
 
@@ -478,7 +478,7 @@ public class HumanBeing implements Comparable<HumanBeing>{
                 ",\n impactSpeed=" + impactSpeed +
                 ",\n weaponType=" + vehicleType +
                 ",\n mood=" + fuelType +
-                ",\n car.cool=" + car.getStatus() +
+                ",\n car.cool=" + vehiclePublicity.getStatus() +
                 ",\n userLogin=" + userLogin +
                 "\n}";
     }

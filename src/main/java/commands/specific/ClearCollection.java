@@ -1,10 +1,8 @@
 package commands.specific;
 
 import Database.Database;
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 import commands.Command;
-
-import static colors.Colors.*;
 
 /**
  * The command Clear collection.
@@ -15,7 +13,7 @@ public class ClearCollection implements Command {
     public void execute(String ignore){
         Database db = Database.getInstance();
         db.truncateTable("human_beings", "user_id_seq");
-        HumanBeingCollection.clear();
+        VehicleCollection.clear();
         System.out.println("Коллекция успешно очищена");
     }
 

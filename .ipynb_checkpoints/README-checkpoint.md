@@ -68,7 +68,7 @@ public class HumanBeing {
     private Float impactSpeed; //Максимальное значение поля: 496, Поле может быть null
     private WeaponType vehicleType; //Поле может быть null
     private Mood fuelType; //Поле может быть null
-    private Car car; //Поле может быть null
+    private Car vehiclePublicity; //Поле может быть null
 }
 ```
 

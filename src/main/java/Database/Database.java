@@ -1,9 +1,8 @@
 package Database;
 
-import collection.HumanBeing;
+import collection.Vehicle;
 
 import java.sql.*;
-import java.util.Objects;
 
 /**
  * The type Database.
@@ -114,7 +113,7 @@ public class Database {
      *
      * @return the result set
      */
-    public ResultSet getHumanBeings(){
+    public ResultSet getVehicles(){
         String sqlRequest = "SELECT * FROM human_beings";
         return executePrepareStatement(sqlRequest);
     }
@@ -137,10 +136,10 @@ public class Database {
      * @param human the human
      * @return the int
      */
-    public int addHumanBeingToDatabase(String table, HumanBeing human){
+    public int addHumanBeingToDatabase(String table, Vehicle human){
         return addNewHumanBeing(table, human.getId(), human.getName(), human.getCoordinates().getX(),
                 human.getCoordinates().getY(), human.getCreationDate(), human.isRealHero(), human.isHasToothpick(),
-                human.getImpactSpeed(), human.getStringWeaponType(), human.getStringMood(),
+                human.getImpactSpeed(), human.getStringWeaponType(), human.getFuelTypeString(),
                 human.getCar().getStatus(), human.getUserLogin());
     }
 

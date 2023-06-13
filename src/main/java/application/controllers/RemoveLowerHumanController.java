@@ -2,8 +2,7 @@ package application.controllers;
 
 import application.tools.CheckboxesConstants;
 import application.tools.ModalController;
-import collection.HumanBeing;
-import commands.specific.InsertHumanBeing;
+import collection.Vehicle;
 import commands.specific.RemoveLowerHumanBeing;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -83,12 +82,12 @@ public class RemoveLowerHumanController implements Initializable, ModalControlle
             String mood = moodChoice.getValue();
             String carCool = carChoice.getValue();
             CreatorHumanBeingObject creatorHumanBeingObject = new CreatorHumanBeingObject(new ReaderFromConsole());
-            HumanBeing humanBeing = creatorHumanBeingObject.create(name, coordinates, impactSpeed, realHero, hasToothPick,
+            Vehicle vehicle = creatorHumanBeingObject.create(name, coordinates, impactSpeed, realHero, hasToothPick,
                     weaponType, mood, carCool);
             Errors error = creatorHumanBeingObject.getError();
             if(error == Errors.NOTHAVEERRORS){
                 RemoveLowerHumanBeing removeLowerHumanBeing = new RemoveLowerHumanBeing(new ReaderFromConsole());
-                removeLowerHumanBeing.remove(humanBeing);
+                removeLowerHumanBeing.remove(vehicle);
                 modalStage.close();
             }else {
                 errorText.setText(error.getError());

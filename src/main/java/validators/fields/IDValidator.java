@@ -1,6 +1,6 @@
 package validators.fields;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 import validators.Errors;
 import validators.Validator;
 
@@ -38,7 +38,7 @@ public class IDValidator extends Validator {
     }
 
     private boolean isUsed(){
-        return HumanBeingCollection.hasElement(Long.parseLong(id));
+        return VehicleCollection.hasElement(Long.parseLong(id));
 
     }
 

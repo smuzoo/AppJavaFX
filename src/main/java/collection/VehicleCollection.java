@@ -11,16 +11,16 @@ import java.util.*;
 /**
  * The type Human being collection.
  */
-public class HumanBeingCollection {
+public class VehicleCollection {
 
-    private static final Map<Long, HumanBeing> humanBeingCollection;
+    private static final Map<Long, Vehicle> vehicleCollection;
     private static final Date dateOfInitialization;
     private static Date dateOfLastChange;
 
     static {
         dateOfInitialization = new Date();
         dateOfLastChange = new Date();
-        humanBeingCollection = new HashMap<>();
+        vehicleCollection = new HashMap<>();
     }
 
     /**
@@ -28,23 +28,23 @@ public class HumanBeingCollection {
      */
     public static void readFromDatabase(){
         Database db = Database.getInstance();
-        ResultSet humanBeingObject = db.getHumanBeings();
+        ResultSet VehicleObject = db.getVehicles();
         try {
-            while(humanBeingObject.next()){
-                Long id = humanBeingObject.getLong(1);
-                String name = humanBeingObject.getString(2);
-                float x = humanBeingObject.getFloat(3);
-                Integer y = humanBeingObject.getInt(4);
-                LocalDate creationDate = humanBeingObject.getDate(5).toLocalDate();
-                boolean realhero = humanBeingObject.getBoolean(6);
-                boolean hastoothpick = humanBeingObject.getBoolean(7);
-                Integer impactSpeed = humanBeingObject.getInt(8);
-                VehicleType vehicleType = VehicleType.getWeaponType(humanBeingObject.getString(9));
-                FuelType fuelType = FuelType.getMood(humanBeingObject.getString(10));
-                Car car = new Car(humanBeingObject.getBoolean(11));
-                String userLogin = humanBeingObject.getString(12);
-                add(new HumanBeing(id, name, new Coordinates(x, y), creationDate, realhero, hastoothpick, impactSpeed,
-                        vehicleType, fuelType, car, userLogin));
+            while(VehicleObject.next()){
+                Long id = VehicleObject.getLong(1);
+                String name = VehicleObject.getString(2);
+                float x = VehicleObject.getFloat(3);
+                Integer y = VehicleObject.getInt(4);
+                LocalDate creationDate = VehicleObject.getDate(5).toLocalDate();
+                boolean realhero = VehicleObject.getBoolean(6);
+                boolean hastoothpick = VehicleObject.getBoolean(7);
+                Integer impactSpeed = VehicleObject.getInt(8);
+                VehicleType vehicleType = VehicleType.getWeaponType(VehicleObject.getString(9));
+                FuelType fuelType = FuelType.getMood(VehicleObject.getString(10));
+                VehiclePublicity vehiclePublicity = new VehiclePublicity(VehicleObject.getBoolean(11));
+                String userLogin = VehicleObject.getString(12);
+                add(new Vehicle(id, name, new Coordinates(x, y), creationDate, realhero, hastoothpick, impactSpeed,
+                        vehicleType, fuelType, vehiclePublicity, userLogin));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -56,11 +56,11 @@ public class HumanBeingCollection {
     /**
      * Add to HumanBeing collection.
      *
-     * @param human the human
+     * @param vehicle the vehicle
      */
-    public static void add(HumanBeing human){
+    public static void add(Vehicle vehicle){
         dateOfLastChange = new Date();
-        humanBeingCollection.put(human.getId(), human);
+        vehicleCollection.put(vehicle.getId(), vehicle);
     }
 
     /**
@@ -68,7 +68,7 @@ public class HumanBeingCollection {
      */
     public static void clear(){
         dateOfLastChange = new Date();
-        humanBeingCollection.clear();
+        vehicleCollection.clear();
     }
 
     /**
@@ -78,7 +78,7 @@ public class HumanBeingCollection {
      */
     public static void remove(Long id){
         dateOfLastChange = new Date();
-        humanBeingCollection.remove(id);
+        vehicleCollection.remove(id);
     }
 
     /**
@@ -87,8 +87,8 @@ public class HumanBeingCollection {
      * @param id the id
      * @return the human being
      */
-    public static HumanBeing getHuman(Long id){
-        return humanBeingCollection.get(id);
+    public static Vehicle getVehicle(Long id){
+        return vehicleCollection.get(id);
     }
 
     /**
@@ -97,22 +97,22 @@ public class HumanBeingCollection {
      * @param id the id
      * @return the boolean
      */
-    public static boolean hasElement(Long id) {return humanBeingCollection.get(id) != null;}
+    public static boolean hasElement(Long id) {return vehicleCollection.get(id) != null;}
 
     /**
      * Get count HumanBeing collection long.
      *
      * @return the long
      */
-    public static long getCountHumanBeingCollection(){ return humanBeingCollection.size(); }
+    public static long getCountVehicleCollection(){ return vehicleCollection.size(); }
 
     /**
      * Get entry set HumanBeing collection.
      *
      * @return the set
      */
-    public static Set<Map.Entry<Long, HumanBeing>> getEntrySet(){
-        return humanBeingCollection.entrySet();
+    public static Set<Map.Entry<Long, Vehicle>> getEntrySet(){
+        return vehicleCollection.entrySet();
     }
 
     /**
@@ -120,8 +120,8 @@ public class HumanBeingCollection {
      *
      * @return the collection
      */
-    public static Collection<HumanBeing> getHumanBeings(){
-        return humanBeingCollection.values();
+    public static Collection<Vehicle> getVehicles(){
+        return vehicleCollection.values();
     }
 
     /**
@@ -138,8 +138,8 @@ public class HumanBeingCollection {
      *
      * @return the HumanBeing collection
      */
-    public static Map<Long, HumanBeing> getHumanBeingCollection() {
-        return humanBeingCollection;
+    public static Map<Long, Vehicle> getVehicleCollection() {
+        return vehicleCollection;
     }
 
     /**

@@ -3,8 +3,8 @@
     import application.tools.ChangeSceneHandler;
     import application.tools.Scenes;
     import authentication.User;
-    import collection.HumanBeing;
-    import collection.HumanBeingCollection;
+    import collection.Vehicle;
+    import collection.VehicleCollection;
     import javafx.fxml.FXML;
     import javafx.fxml.Initializable;
     import javafx.scene.control.Alert;
@@ -37,14 +37,14 @@
 
         private double oldY;
 
-        private HumanBeing draggedHumanBeing;
+        private Vehicle draggedVehicle;
 
 
         private final Map<String, Color> colorsUsers = new HashMap<>();
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-            for (HumanBeing human : HumanBeingCollection.getHumanBeings()) {
+            for (Vehicle human : VehicleCollection.getVehicles()) {
                 String userLogin = human.getUserLogin();
                 Color color = colorsUsers.get(userLogin);
                 if(color == null) {
@@ -70,15 +70,15 @@
         private void onMousePressed(MouseEvent event) {
             if (event.getButton() == MouseButton.PRIMARY) {
                 Circle circle = (Circle) event.getSource();
-                draggedHumanBeing = (HumanBeing) circle.getUserData();
-                oldX = normalizeX(draggedHumanBeing.getCoordinates().getX());
-                oldY = normalizeY(draggedHumanBeing.getCoordinates().getY());
+                draggedVehicle = (Vehicle) circle.getUserData();
+                oldX = normalizeX(draggedVehicle.getCoordinates().getX());
+                oldY = normalizeY(draggedVehicle.getCoordinates().getY());
             }
         }
 
         private void onMouseDragged(MouseEvent event) {
-            if (draggedHumanBeing != null) {
-                if(!draggedHumanBeing.getUserLogin().equals(User.getLogin())){
+            if (draggedVehicle != null) {
+                if(!draggedVehicle.getUserLogin().equals(User.getLogin())){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle(CurrentLanguage.getCurrentLanguage().getString("impossible edit object"));
                     alert.setHeaderText(null);
@@ -100,8 +100,8 @@
                     circle.setCenterX(newX);
                     circle.setCenterY(newY);
 
-                    draggedHumanBeing.getCoordinates().setX(denormalizeX((float) newX));
-                    draggedHumanBeing.getCoordinates().setY((int) denormalizeY(newY));
+                    draggedVehicle.getCoordinates().setX(denormalizeX((float) newX));
+                    draggedVehicle.getCoordinates().setY((int) denormalizeY(newY));
 
                 }
                   }
@@ -110,7 +110,7 @@
         }
 
         private void onMouseReleased(MouseEvent event) {
-            if (draggedHumanBeing != null && User.getLogin().equals(draggedHumanBeing.getUserLogin())) {
+            if (draggedVehicle != null && User.getLogin().equals(draggedVehicle.getUserLogin())) {
 
                 Circle circle = (Circle) event.getSource();
 
@@ -142,17 +142,17 @@
                         // Если пользователь нажал "Да", изменяем координаты объекта
                         circle.setCenterX(newX);
                         circle.setCenterY(newY);
-                        draggedHumanBeing.getCoordinates().setX(denormalizeX((float) newX));
-                        draggedHumanBeing.getCoordinates().setY((int) denormalizeY(newY));
+                        draggedVehicle.getCoordinates().setX(denormalizeX((float) newX));
+                        draggedVehicle.getCoordinates().setY((int) denormalizeY(newY));
                     } else {
                         // Если пользователь нажал "Нет", возвращаем объект на исходную позицию
                         circle.setCenterX(oldX);
                         circle.setCenterY(oldY);
-                        draggedHumanBeing.getCoordinates().setX(denormalizeX(oldX));
-                        draggedHumanBeing.getCoordinates().setY((int) denormalizeY(oldY));
+                        draggedVehicle.getCoordinates().setX(denormalizeX(oldX));
+                        draggedVehicle.getCoordinates().setY((int) denormalizeY(oldY));
                     }
                 }
-                draggedHumanBeing = null;
+                draggedVehicle = null;
 
             }
 

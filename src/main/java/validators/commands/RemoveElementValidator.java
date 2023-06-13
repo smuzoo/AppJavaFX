@@ -1,6 +1,6 @@
 package validators.commands;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 import validators.Errors;
 
 /**
@@ -22,7 +22,7 @@ public class RemoveElementValidator extends RemoveGreaterKeyValidator {
      */
     protected boolean isNotHasElement(){
         Long id = Long.parseLong(argument);
-        return !HumanBeingCollection.hasElement(id);
+        return !VehicleCollection.hasElement(id);
     }
 
     @Override

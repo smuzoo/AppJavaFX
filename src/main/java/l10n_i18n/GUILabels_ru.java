@@ -1,6 +1,7 @@
 package l10n_i18n;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
+
 import java.util.ListResourceBundle;
 
 public class GUILabels_ru extends ListResourceBundle {
@@ -84,9 +85,9 @@ public class GUILabels_ru extends ListResourceBundle {
                     {"info about commands", "Информация о командах"},
                     {"info about collection", "Информация о коллекции"},
                     {"info", "Коллекция HashMap<java.util.UUID, Velicles>\n" +
-                            "Дата создания коллекции:" + HumanBeingCollection.getDateOfInitialization() + "\n" +
-                            "Дата последнего изменения коллекции: " + HumanBeingCollection.getDateOfLastChange() + "\n" +
-                            "Количество элементов в коллекции: " + HumanBeingCollection.getCountHumanBeingCollection()},
+                            "Дата создания коллекции:" + VehicleCollection.getDateOfInitialization() + "\n" +
+                            "Дата последнего изменения коллекции: " + VehicleCollection.getDateOfLastChange() + "\n" +
+                            "Количество элементов в коллекции: " + VehicleCollection.getCountVehicleCollection()},
                     {"info for commands", "filter_less_than_engine_power enginePower : вывести элементы, значение поля enginePower которых меньше заданного\n" +
                             "remove_greater_key null : удалить из коллекции все элементы, ключ которых превышает заданный\n" +
                             "execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.       \n" +

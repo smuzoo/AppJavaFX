@@ -3,20 +3,20 @@ package collection;
 /**
  * The type Car.
  */
-public class Car {
+public class VehiclePublicity {
     private boolean cool;
 
     /**
      * Instantiates a new Car.
      */
-    public Car(){}
+    public VehiclePublicity(){}
 
     /**
      * Instantiates a new Car.
      *
      * @param cool the cool
      */
-    public Car(boolean cool){
+    public VehiclePublicity(boolean cool){
         this.cool = cool;
     }
 

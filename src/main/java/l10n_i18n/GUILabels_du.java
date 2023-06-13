@@ -1,8 +1,7 @@
 package l10n_i18n;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ListResourceBundle;
 
 public class GUILabels_du extends ListResourceBundle {
@@ -86,9 +85,9 @@ public class GUILabels_du extends ListResourceBundle {
                             {"info about commands", "Informatie over opdrachten"},
                             {"info about collection", "Informatie over de collectie"},
                             {"info", "HashMap<java.util.UUID, HumanBeing> Collectie\n" +
-                                    "Datum van collectiecreatie: " + HumanBeingCollection.getDateOfInitialization() + "\n" +
-                                    "Datum van laatste wijziging in collectie: " + HumanBeingCollection.getDateOfLastChange() + "\n" +
-                                    "Aantal elementen in de collectie: " + HumanBeingCollection.getCountHumanBeingCollection()},
+                                    "Datum van collectiecreatie: " + VehicleCollection.getDateOfInitialization() + "\n" +
+                                    "Datum van laatste wijziging in collectie: " + VehicleCollection.getDateOfLastChange() + "\n" +
+                                    "Aantal elementen in de collectie: " + VehicleCollection.getCountVehicleCollection()},
                             {"info for commands", "filter_less_than_impact_speed impactSpeed : Geeft elementen weer waarvan de impactSpeed kleiner is dan opgegeven\n" +
                                     "remove_greater_key null : Verwijdert alle elementen uit de collectie waarvan de sleutel groter is dan opgegeven\n" +
                                     "execute_script file_name : Leest en voert een script uit het opgegeven bestand uit. Het script bevat opdrachten zoals gebruikers ze in de interactieve modus invoeren.       \n" +

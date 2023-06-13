@@ -1,8 +1,8 @@
 package commands.specific;
 
 import Database.Database;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
+import collection.Vehicle;
+import collection.VehicleCollection;
 import commands.Command;
 import utils.CreatorHumanBeingObject;
 import utils.readers.Reader;
@@ -11,8 +11,6 @@ import validators.fields.HumanForUserValidator;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import static colors.Colors.*;
 
 /**
  * The command Remove greater human being.
@@ -32,15 +30,15 @@ public class RemoveGreaterHumanBeing implements Command {
     @Override
     public void execute(String ignore){
         CreatorHumanBeingObject creatorHumanBeingObject = new CreatorHumanBeingObject(reader);
-        HumanBeing human = creatorHumanBeingObject.create();
-        Set<Map.Entry<Long, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
-        Set<Map.Entry<Long, HumanBeing>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
+        Vehicle human = creatorHumanBeingObject.create();
+        Set<Map.Entry<Long, Vehicle>> humanBeingEntrySet = VehicleCollection.getEntrySet();
+        Set<Map.Entry<Long, Vehicle>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
                 humanInCollection.getValue().compareTo(human) < 0 &&
                         new HumanForUserValidator(humanInCollection.getValue()).isValid()).collect(Collectors.toSet());
         Database db = Database.getInstance();
         long sumUpdate = 0;
 
-            for (Map.Entry<Long, HumanBeing> humanBeing : humanBeingFilter) {
+            for (Map.Entry<Long, Vehicle> humanBeing : humanBeingFilter) {
                 sumUpdate += db.deleteById("human_beings", humanBeing.getKey());
         }if(sumUpdate > 0){
             humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getValue().compareTo(human) < 0);
@@ -51,15 +49,15 @@ public class RemoveGreaterHumanBeing implements Command {
 
     }
 
-    public void remove(HumanBeing human){
-        Set<Map.Entry<Long, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
-        Set<Map.Entry<Long, HumanBeing>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
+    public void remove(Vehicle human){
+        Set<Map.Entry<Long, Vehicle>> humanBeingEntrySet = VehicleCollection.getEntrySet();
+        Set<Map.Entry<Long, Vehicle>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
                 humanInCollection.getValue().compareTo(human) < 0 &&
                         new HumanForUserValidator(humanInCollection.getValue()).isValid()).collect(Collectors.toSet());
         Database db = Database.getInstance();
         long sumUpdate = 0;
 
-        for (Map.Entry<Long, HumanBeing> humanBeing : humanBeingFilter) {
+        for (Map.Entry<Long, Vehicle> humanBeing : humanBeingFilter) {
             sumUpdate += db.deleteById("human_beings", humanBeing.getKey());
         }if(sumUpdate > 0){
             humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getValue().compareTo(human) < 0);

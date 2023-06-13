@@ -1,8 +1,7 @@
 package utils;
 
 import collection.Fields;
-import collection.HumanBeing;
-import javafx.util.Pair;
+import collection.Vehicle;
 import utils.readers.Reader;
 import validators.Errors;
 import validators.Validator;
@@ -10,7 +9,6 @@ import validators.fields.CoordinatesValidator;
 import validators.fields.ImpactSpeedValidator;
 import validators.fields.NameValidator;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -37,10 +35,10 @@ public class CreatorHumanBeingObject {
      *
      * @return the human being
      */
-    public HumanBeing create(){
-        HumanBeing humanBeing = new HumanBeing();
-        Map<Fields, Predicate<String>> notNullSetters = humanBeing.getNotNullSetters();
-        Map<Fields, Consumer<String>> setters = humanBeing.getSetters();
+    public Vehicle create(){
+        Vehicle vehicle = new Vehicle();
+        Map<Fields, Predicate<String>> notNullSetters = vehicle.getNotNullSetters();
+        Map<Fields, Consumer<String>> setters = vehicle.getSetters();
         boolean isCorrectField;
         for(Fields field : notNullSetters.keySet()){
             do{
@@ -54,14 +52,14 @@ public class CreatorHumanBeingObject {
             System.out.println(field);
             setters.get(field).accept(reader.getNewLine());
         }
-        return humanBeing;
+        return vehicle;
     }
 
-    public HumanBeing create(String... fields){
+    public Vehicle create(String... fields){
         error = validate(fields[0], fields[1], fields[2]);
-        HumanBeing humanBeing = new HumanBeing();
-        List<Predicate<String>> notNullSetters = new ArrayList<>(humanBeing.getNotNullSetters().values());
-        List<Consumer<String>> setters = new ArrayList<>(humanBeing.getSetters().values());
+        Vehicle vehicle = new Vehicle();
+        List<Predicate<String>> notNullSetters = new ArrayList<>(vehicle.getNotNullSetters().values());
+        List<Consumer<String>> setters = new ArrayList<>(vehicle.getSetters().values());
         if(fields.length != (notNullSetters.size() + setters.size()))
             throw new RuntimeException("ERROR! Setters have a different number of fields than the one passed on");
         for(int i = 0; i < notNullSetters.size(); i ++){
@@ -70,7 +68,7 @@ public class CreatorHumanBeingObject {
         for(int i = 0; i < setters.size(); i++){
            setters.get(i).accept(fields[notNullSetters.size()+i]);
         }
-        return humanBeing;
+        return vehicle;
     }
 
     private Errors validate(String name, String coordinates, String impactSpeed) {

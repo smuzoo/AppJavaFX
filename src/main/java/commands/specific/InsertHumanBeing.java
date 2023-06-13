@@ -1,8 +1,8 @@
 package commands.specific;
 
 import Database.Database;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
+import collection.Vehicle;
+import collection.VehicleCollection;
 import commands.Command;
 import utils.CreatorHumanBeingObject;
 import utils.readers.Reader;
@@ -17,9 +17,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import static colors.Colors.*;
 
 /**
  * The command Insert human being.
@@ -44,7 +41,7 @@ public class InsertHumanBeing implements Command {
         /* если id == null то UUID генерируется автоматически: не факт, что так должно быть, в ТЗ такого нет*/
 
 
-        HumanBeing human = creatorHumanBeingObject.create();
+        Vehicle human = creatorHumanBeingObject.create();
         boolean addStatus = addToDb(idArgument, human);
         if (addStatus) System.out.println("Элемент успешно добавлен в коллекцию");
     }
@@ -61,15 +58,15 @@ public class InsertHumanBeing implements Command {
         Errors error = validate(name, coordinates, impactSpeed);
         if (error == Errors.NOTHAVEERRORS) {
             CreatorHumanBeingObject creatorHumanBeingObject = new CreatorHumanBeingObject(reader);
-            HumanBeing humanBeing = creatorHumanBeingObject.create(name, coordinates, impactSpeed, realHero, hasToothPick,
+            Vehicle vehicle = creatorHumanBeingObject.create(name, coordinates, impactSpeed, realHero, hasToothPick,
                     weaponType, mood, carCool);
-            boolean addStatus = addToDb("null", humanBeing);
+            boolean addStatus = addToDb("null", vehicle);
             if (!addStatus) error = Errors.UNKNOWNERROR;
         }
         return error;
     }
 
-    private boolean addToDb(String userId, HumanBeing humanBeing) {
+    private boolean addToDb(String userId, Vehicle vehicle) {
         Long id = null;
         if (userId.equals("null")) {
             Database db = Database.getInstance();
@@ -87,11 +84,11 @@ public class InsertHumanBeing implements Command {
             id = Long.parseLong(userId);
         }
         if (id != null) {
-            humanBeing.setId(id);
+            vehicle.setId(id);
             Database db = Database.getInstance();
-            int update = db.addHumanBeingToDatabase("human_beings", humanBeing);
+            int update = db.addHumanBeingToDatabase("human_beings", vehicle);
             if (update > 0) {
-                HumanBeingCollection.add(humanBeing);
+                VehicleCollection.add(vehicle);
                 System.out.println("Элемент успешно добавлен в коллекцию");
                 return true;
             }

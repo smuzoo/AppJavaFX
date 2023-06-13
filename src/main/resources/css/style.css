@@ -38,14 +38,14 @@
 }
 
 .menu-button  .menu-item:focused {
-    -fx-background-color:  #b48698;
+    -fx-background-color:  #EBE5FC;
 }
 
 
 .menu-button  .menu-item {
-    -fx-background-color: #dca2b8;
+    -fx-background-color: #EBE5FC;
 }
 
 .menu-button .context-menu {
-    -fx-background-color:  #dca2b8;
+    -fx-background-color:  #EBE5FC;
 }

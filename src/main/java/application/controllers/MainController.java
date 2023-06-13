@@ -2,12 +2,11 @@ package application.controllers;
 
 import application.tools.*;
 import authentication.User;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
-import collection.HumanBeingInfo;
+import collection.Vehicle;
+import collection.VehicleCollection;
+import collection.VehicleInfo;
 import commands.Command;
 import commands.CommandController;
-import commands.specific.ShowHelp;
 import commands.specific.ShowInfo;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -25,17 +24,16 @@ import utils.readers.ReaderFromConsole;
 
 import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class MainController implements Initializable {
     @FXML
-    private TableView<HumanBeing> tableHumanBeingInfo;
+    private TableView<Vehicle> tableHumanBeingInfo;
     @FXML
-    private TableColumn<HumanBeing, Long> idColumn;
+    private TableColumn<Vehicle, Long> idColumn;
     @FXML
-    private TableColumn<HumanBeing, String> nameColumn;
+    private TableColumn<Vehicle, String> nameColumn;
     @FXML
     private Button leaveButton;
     @FXML
@@ -43,19 +41,19 @@ public class MainController implements Initializable {
     @FXML
     private Button deleteByIdButton;
     @FXML
-    private TableView<HumanBeingInfo> humanBeingFieldInformation;
+    private TableView<VehicleInfo> humanBeingFieldInformation;
     @FXML
-    private TableColumn<HumanBeingInfo, String> nameField;
+    private TableColumn<VehicleInfo, String> nameField;
     @FXML
-    private TableColumn<HumanBeingInfo, String> valueField;
+    private TableColumn<VehicleInfo, String> valueField;
     @FXML
-    private TableView<HumanBeingInfo> humanBeingInformationEdit;
+    private TableView<VehicleInfo> humanBeingInformationEdit;
     @FXML
-    private TableColumn<HumanBeingInfo, Control> editColumn;
+    private TableColumn<VehicleInfo, Control> editColumn;
     @FXML
-    private TableColumn<HumanBeingInfo, String> valueFieldUpdate;
+    private TableColumn<VehicleInfo, String> valueFieldUpdate;
     @FXML
-    private TableColumn<HumanBeingInfo, String> nameFieldUpdate;
+    private TableColumn<VehicleInfo, String> nameFieldUpdate;
     @FXML
     private Text errorTextTableField;
     @FXML
@@ -136,7 +134,7 @@ public class MainController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         idColumn.setCellFactory(column -> new Column<>());
         nameColumn.setCellFactory(column -> {
-                    TableCell<HumanBeing, String> cell = new Column<>();
+                    TableCell<Vehicle, String> cell = new Column<>();
                     cell.setOnMouseEntered(new MouseEnteredHandler(cell, tableHumanBeingInfo, humanBeingFieldInformation,
                             humanBeingInformationEdit, paneTableField));
                     cell.setOnMouseClicked(new MouseClickedHandler(cell, tableHumanBeingInfo, humanBeingFieldInformation,
@@ -161,20 +159,20 @@ public class MainController implements Initializable {
             doubleClickedOnField = false;
         });
 
-        updateTable(HumanBeingCollection.getHumanBeings());
+        updateTable(VehicleCollection.getVehicles());
 
         addButton.setOnAction(event -> {
             Scene root = addButton.getScene();
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.ADDFORM, root);
             handler.handle(event);
-            updateTable(HumanBeingCollection.getHumanBeings());
+            updateTable(VehicleCollection.getVehicles());
         });
 
         deleteByIdButton.setOnAction(event -> {
             Scene root = deleteByIdButton.getScene();
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.DELETEBYID, root);
             handler.handle(event);
-            updateTable(HumanBeingCollection.getHumanBeings());
+            updateTable(VehicleCollection.getVehicles());
         });
 
         leaveButton.setOnAction(event -> {
@@ -210,7 +208,7 @@ public class MainController implements Initializable {
             if(User.getLogin().equals("admin")) {
                 Command clearCommand = new CommandController(new ReaderFromConsole()).getCommand("clear");
                 clearCommand.execute("");
-                updateTable(HumanBeingCollection.getHumanBeings());
+                updateTable(VehicleCollection.getVehicles());
             }else showAlert(CurrentLanguage.getCurrentLanguage().getString("impossible clear"),
                     CurrentLanguage.getCurrentLanguage().getString("not admin"));
         });
@@ -237,7 +235,7 @@ public class MainController implements Initializable {
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.DELETEGREATERKEY,
                     addButton.getScene());
             handler.handle(event);
-            updateTable(HumanBeingCollection.getHumanBeings());
+            updateTable(VehicleCollection.getVehicles());
         });
         showLessSpeedButton.setOnAction(event -> {
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.SHOWLESSSPEED,
@@ -248,13 +246,13 @@ public class MainController implements Initializable {
         removeLowerHumanButton.setOnAction(event -> {
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.REMOVELOWERHUMAN, addButton.getScene());
             handler.handle(event);
-            updateTable(HumanBeingCollection.getHumanBeings());
+            updateTable(VehicleCollection.getVehicles());
         });
 
         removeGreaterHumanButton.setOnAction(event -> {
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.REMOVEGREATERHUMAN, addButton.getScene());
             handler.handle(event);
-            updateTable(HumanBeingCollection.getHumanBeings());
+            updateTable(VehicleCollection.getVehicles());
         });
 
         ruLanguage.setOnAction(event -> {
@@ -318,9 +316,9 @@ public class MainController implements Initializable {
         tableHumanBeingInfo.getItems().clear();
 
         // Выполняем поиск и добавляем найденные элементы в таблицу
-        for (HumanBeing humanBeing : HumanBeingCollection.getHumanBeings()) {
-            if (String.valueOf(humanBeing.getId()).contains(searchTerm) || humanBeing.getName().contains(searchTerm)) {
-                tableHumanBeingInfo.getItems().add(humanBeing);
+        for (Vehicle vehicle : VehicleCollection.getVehicles()) {
+            if (String.valueOf(vehicle.getId()).contains(searchTerm) || vehicle.getName().contains(searchTerm)) {
+                tableHumanBeingInfo.getItems().add(vehicle);
             }
         }
     }
@@ -332,7 +330,7 @@ public class MainController implements Initializable {
     public static void setDoubleClickedOnField(boolean doubleClickedOnField) {
         MainController.doubleClickedOnField = doubleClickedOnField;
     }
-    public void updateTable(Collection<HumanBeing> data){
+    public void updateTable(Collection<Vehicle> data){
         tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
                 data
         ));

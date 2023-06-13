@@ -1,7 +1,7 @@
 import Database.Database;
 import collection.Coordinates;
 import collection.FuelType;
-import collection.HumanBeing;
+import collection.Vehicle;
 import collection.VehicleType;
 
 import java.sql.ResultSet;
@@ -11,40 +11,40 @@ import java.util.Random;
 public class HumanBeingGenerator {
     private static final Random random = new Random();
 
-    public static HumanBeing generateRandomHumanBeing() {
-        HumanBeing humanBeing = new HumanBeing();
+    public static Vehicle generateRandomHumanBeing() {
+        Vehicle vehicle = new Vehicle();
 
         // Генерация уникального идентификатора
-        humanBeing.setId(generateUniqueId());
+        vehicle.setId(generateUniqueId());
 
         // Генерация случайного имени
-        humanBeing.setName(generateRandomName());
+        vehicle.setName(generateRandomName());
 
         // Генерация координат
-        humanBeing.setCoordinates(generateRandomCoordinates());
+        vehicle.setCoordinates(generateRandomCoordinates());
 
         // Генерация значения для realHero (true/false)
-        humanBeing.setRealHero(generateRandomBoolean());
+        vehicle.setRealHero(generateRandomBoolean());
 
         // Генерация значения для hasToothpick (true/false)
-        humanBeing.setHasToothpick(generateRandomBoolean());
+        vehicle.setHasToothpick(generateRandomBoolean());
 
         // Генерация случайной impactSpeed
-        humanBeing.setImpactSpeed(generateRandomImpactSpeed());
+        vehicle.setImpactSpeed(generateRandomImpactSpeed());
 
         // Генерация случайного weaponType
-        humanBeing.setWeaponType(generateRandomWeaponType());
+        vehicle.setWeaponType(generateRandomWeaponType());
 
         // Генерация случайного mood
-        humanBeing.setMood(generateRandomMood());
+        vehicle.setMood(generateRandomMood());
 
         // Генерация случайного автомобиля
-        humanBeing.setCar(generateRandomBoolean());
+        vehicle.setVehiclePublicity(generateRandomBoolean());
 
         // Генерация случайного значения для userLogin
-        humanBeing.setUserLogin("Marat");
+        vehicle.setUserLogin("Marat");
 
-        return humanBeing;
+        return vehicle;
     }
 
     private static Long generateUniqueId() {

@@ -1,14 +1,13 @@
 package collection;
 
 import javafx.scene.control.Control;
-import javafx.scene.control.TextInputControl;
 
-public class HumanBeingInfo {
+public class VehicleInfo {
     private final String nameField;
     private final String valueField;
     private final Control updateField;
 
-    public HumanBeingInfo(String nameField, String valueField, Control updateField) {
+    public VehicleInfo(String nameField, String valueField, Control updateField) {
         this.nameField = nameField;
         this.valueField = valueField;
         this.updateField = updateField;

@@ -1,8 +1,8 @@
 package commands.specific;
 
 import Database.Database;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
+import collection.Vehicle;
+import collection.VehicleCollection;
 import commands.Command;
 import validators.Errors;
 import validators.commands.RemoveGreaterKeyValidator;
@@ -10,10 +10,7 @@ import validators.fields.HumanForUserValidator;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
-
-import static colors.Colors.*;
 
 /**
  * The command Remove greater key.
@@ -25,14 +22,14 @@ public class RemoveGreaterKey implements Command {
         RemoveGreaterKeyValidator removeGreaterKeyValidator = new RemoveGreaterKeyValidator(argument);
         if(removeGreaterKeyValidator.isValid()){
             Long id = Long.parseLong(argument);
-            Set<Map.Entry<Long, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
-            Set<Map.Entry<Long, HumanBeing>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
+            Set<Map.Entry<Long, Vehicle>> humanBeingEntrySet = VehicleCollection.getEntrySet();
+            Set<Map.Entry<Long, Vehicle>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
                     humanInCollection.getKey().compareTo(id) > 0 &&
                             new HumanForUserValidator(humanInCollection.getValue()).isValid()).collect(Collectors.toSet());
             Database db = Database.getInstance();
             long sumUpdate = 0;
 
-            for (Map.Entry<Long, HumanBeing> humanBeing : humanBeingFilter) {
+            for (Map.Entry<Long, Vehicle> humanBeing : humanBeingFilter) {
                 sumUpdate += db.deleteById("human_beings", humanBeing.getKey());
             }if(sumUpdate > 0){
                 humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getKey().compareTo(id) > 0);
@@ -50,14 +47,14 @@ public class RemoveGreaterKey implements Command {
             Errors error = removeGreaterKeyValidator.validateAll();
             if(error == Errors.NOTHAVEERRORS){
                 Long id = Long.parseLong(argument);
-                Set<Map.Entry<Long, HumanBeing>> humanBeingEntrySet = HumanBeingCollection.getEntrySet();
-                Set<Map.Entry<Long, HumanBeing>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
+                Set<Map.Entry<Long, Vehicle>> humanBeingEntrySet = VehicleCollection.getEntrySet();
+                Set<Map.Entry<Long, Vehicle>> humanBeingFilter = humanBeingEntrySet.stream().filter(humanInCollection ->
                         humanInCollection.getKey().compareTo(id) > 0 &&
                                 new HumanForUserValidator(humanInCollection.getValue()).isValid()).collect(Collectors.toSet());
                 Database db = Database.getInstance();
                 long sumUpdate = 0;
 
-                for (Map.Entry<Long, HumanBeing> humanBeing : humanBeingFilter) {
+                for (Map.Entry<Long, Vehicle> humanBeing : humanBeingFilter) {
                     sumUpdate += db.deleteById("human_beings", humanBeing.getKey());
                 }if(sumUpdate > 0){
                     humanBeingEntrySet.removeIf(humanInCollection -> humanInCollection.getKey().compareTo(id) > 0);

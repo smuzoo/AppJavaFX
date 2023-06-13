@@ -2,26 +2,25 @@ package application.tools;
 
 import application.controllers.MainController;
 import authentication.User;
-import collection.HumanBeing;
-import collection.HumanBeingInfo;
+import collection.Vehicle;
+import collection.VehicleInfo;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 
 public class MouseEnteredHandler implements EventHandler<MouseEvent> {
-    private final TableCell<HumanBeing, String> cell;
-    private final TableView<HumanBeing> tableView;
-    private final TableView<HumanBeingInfo> humanBeingFieldInformation;
-    private final TableView<HumanBeingInfo> humanBeingInformationEdit;
+    private final TableCell<Vehicle, String> cell;
+    private final TableView<Vehicle> tableView;
+    private final TableView<VehicleInfo> humanBeingFieldInformation;
+    private final TableView<VehicleInfo> humanBeingInformationEdit;
     private final AnchorPane paneTableField;
 
-    public MouseEnteredHandler(TableCell<HumanBeing, String> cell, TableView<HumanBeing> tableView,
-                               TableView<HumanBeingInfo> humanBeingFieldInformation,
-                               TableView<HumanBeingInfo> humanBeingInformationEdit, AnchorPane paneTableField) {
+    public MouseEnteredHandler(TableCell<Vehicle, String> cell, TableView<Vehicle> tableView,
+                               TableView<VehicleInfo> humanBeingFieldInformation,
+                               TableView<VehicleInfo> humanBeingInformationEdit, AnchorPane paneTableField) {
         this.cell = cell;
         this.tableView = tableView;
         this.humanBeingFieldInformation = humanBeingFieldInformation;
@@ -33,12 +32,12 @@ public class MouseEnteredHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         if (!MainController.isDoubleClickedOnField()) {
             final int index = cell.getTableRow().getIndex();
-            ObservableList<HumanBeing> humanBeings = tableView.getItems();
-            if (index < humanBeings.size()) {
-                HumanBeing humanBeing = humanBeings.get(index);
-                TableFields tableFields = new TableFields(humanBeing);
-                ObservableList<HumanBeingInfo> dataField = tableFields.getTableFields();
-                if (humanBeing.getUserLogin().equals(User.getLogin())) {
+            ObservableList<Vehicle> vehicles = tableView.getItems();
+            if (index < vehicles.size()) {
+                Vehicle vehicle = vehicles.get(index);
+                TableFields tableFields = new TableFields(vehicle);
+                ObservableList<VehicleInfo> dataField = tableFields.getTableFields();
+                if (vehicle.getUserLogin().equals(User.getLogin())) {
                     humanBeingInformationEdit.setItems(dataField);
                     humanBeingInformationEdit.refresh();
                     paneTableField.setVisible(true);

@@ -1,7 +1,6 @@
 package application.controllers;
 
 import application.tools.ModalController;
-import collection.HumanBeing;
 import commands.specific.CountLessThanImpactSpeed;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +13,6 @@ import l10n_i18n.CurrentLanguage;
 import validators.Errors;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CountLessSpeedController implements Initializable, ModalController {

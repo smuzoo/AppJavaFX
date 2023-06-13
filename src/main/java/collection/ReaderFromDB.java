@@ -6,7 +6,7 @@ package collection;
 public class ReaderFromDB implements Runnable{
     @Override
     public void run(){
-        HumanBeingCollection.readFromDatabase();
+        VehicleCollection.readFromDatabase();
     }
 
 }

@@ -1,7 +1,7 @@
 package utils;
 
 import collection.Fields;
-import collection.HumanBeing;
+import collection.Vehicle;
 import utils.readers.Reader;
 
 import java.util.Map;
@@ -31,7 +31,7 @@ public class UpdateHumanBeingObject {
      * @param field the field
      * @return the human being
      */
-    public HumanBeing update(HumanBeing human, Fields field) {
+    public Vehicle update(Vehicle human, Fields field) {
         Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
         System.out.println(field);
         String valueField = reader.getNewLine();
@@ -55,7 +55,7 @@ public class UpdateHumanBeingObject {
      * @param field      the field
      * @param valueField the value field
      */
-    public void updateNullSetter(HumanBeing human, Fields field, String valueField){
+    public void updateNullSetter(Vehicle human, Fields field, String valueField){
         Map<Fields, Consumer<String>> setters = human.getSetters();
         setters.get(field).accept(valueField);
     }

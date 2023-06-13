@@ -73,7 +73,7 @@ loadScripts(document, 'script');</script>
 <h1 title="Class HumanBeing" class="title">Class HumanBeing</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">collection.HumanBeing</div>
+<div class="inheritance">collection.Vehicle</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
@@ -98,7 +98,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">HumanBeing</a>()</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.UUID,java.lang.String,collection.Coordinates,java.time.LocalDate,boolean,boolean,java.lang.Integer,collection.VehicleType,collection.FuelType,collection.Car)" class="member-name-link">HumanBeing</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.UUID,java.lang.String,collection.Coordinates,java.time.LocalDate,boolean,boolean,java.lang.Integer,collection.VehicleType,collection.FuelType,collection.VehiclePublicity)" class="member-name-link">HumanBeing</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="Coordinates.html" title="class in collection">Coordinates</a>&nbsp;coordinates,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;creationDate,
@@ -107,7 +107,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;impactSpeed,
  <a href="WeaponType.html" title="enum class in collection">WeaponType</a>&nbsp;vehicleType,
  <a href="Mood.html" title="enum class in collection">Mood</a>&nbsp;fuelType,
- <a href="Car.html" title="class in collection">Car</a>&nbsp;car)</code></div>
+ <a href="Car.html" title="class in collection">Car</a>&nbsp;vehiclePublicity)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
@@ -132,7 +132,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;consumer)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#compareTo(collection.HumanBeing)" class="member-name-link">compareTo</a><wbr>(<a href="HumanBeing.html" title="class in collection">HumanBeing</a>&nbsp;human)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#compareTo(collection.Vehicle)" class="member-name-link">compareTo</a><wbr>(<a href="HumanBeing.html" title="class in collection">HumanBeing</a>&nbsp;human)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Метод для сравнения драконов по мощности</div>
 </div>
@@ -216,7 +216,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,collection.Coordinates,java.time.LocalDate,boolean,boolean,java.lang.Integer,collection.VehicleType,collection.FuelType,collection.Car)">
+<section class="detail" id="&lt;init&gt;(java.util.UUID,java.lang.String,collection.Coordinates,java.time.LocalDate,boolean,boolean,java.lang.Integer,collection.VehicleType,collection.FuelType,collection.VehiclePublicity)">
 <h3>HumanBeing</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">HumanBeing</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
@@ -227,7 +227,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;impactSpeed,
  <a href="WeaponType.html" title="enum class in collection">WeaponType</a>&nbsp;vehicleType,
  <a href="Mood.html" title="enum class in collection">Mood</a>&nbsp;fuelType,
- <a href="Car.html" title="class in collection">Car</a>&nbsp;car)</span></div>
+ <a href="Car.html" title="class in collection">Car</a>&nbsp;vehiclePublicity)</span></div>
 </section>
 </li>
 <li>
@@ -378,7 +378,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="compareTo(collection.HumanBeing)">
+<section class="detail" id="compareTo(collection.Vehicle)">
 <h3>compareTo</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">compareTo</span><wbr><span class="parameters">(<a href="HumanBeing.html" title="class in collection">HumanBeing</a>&nbsp;human)</span></div>
 <div class="block">Метод для сравнения драконов по мощности</div>

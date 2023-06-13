@@ -1,12 +1,9 @@
 package commands.specific;
 
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 import commands.Command;
 import validators.Errors;
 import validators.commands.ImpactSpeedValidator;
-
-import static colors.Colors.*;
 
 /**
  * The command Count greater than impact speed.
@@ -24,7 +21,7 @@ public class CountGreaterThanImpactSpeed implements Command {
         ImpactSpeedValidator impactSpeedValidator = new ImpactSpeedValidator(argument);
         if(impactSpeedValidator.isValid()){
             Integer impactSpeed = Integer.parseInt(argument);
-            long count = HumanBeingCollection.getHumanBeings().stream().filter(human ->
+            long count = VehicleCollection.getVehicles().stream().filter(human ->
                     human.getImpactSpeed() > impactSpeed).count();
             System.out.println("Количество элементов HumanBeing, превышающих impactSpeed=" + impactSpeed +
                     " равен " + count);
@@ -36,7 +33,7 @@ public class CountGreaterThanImpactSpeed implements Command {
         Errors error = impactSpeedValidator.validateAll();
         if(error == Errors.NOTHAVEERRORS){
             Integer impactSpeed = Integer.parseInt(argument);
-            long count = HumanBeingCollection.getHumanBeings().stream().filter(human ->
+            long count = VehicleCollection.getVehicles().stream().filter(human ->
                     human.getImpactSpeed() > impactSpeed).count();
            result = String.valueOf(count);
 

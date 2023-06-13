@@ -1,13 +1,9 @@
 package commands.specific;
 
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 import commands.Command;
 import validators.Errors;
 import validators.commands.ImpactSpeedValidator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The command Show less than impact speed.
@@ -25,7 +21,7 @@ public class CountLessThanImpactSpeed implements Command {
         ImpactSpeedValidator impactSpeedValidator = new ImpactSpeedValidator(argument);
         if(impactSpeedValidator.isValid()){
             Integer impactSpeed = Integer.parseInt(argument);
-            HumanBeingCollection.getHumanBeings().stream().filter(human ->
+            VehicleCollection.getVehicles().stream().filter(human ->
                     human.getImpactSpeed() < impactSpeed).forEach(System.out::println);
         }
     }
@@ -35,7 +31,7 @@ public class CountLessThanImpactSpeed implements Command {
         Errors error = impactSpeedValidator.validateAll();
         if(error == Errors.NOTHAVEERRORS){
             Integer impactSpeed = Integer.parseInt(argument);
-            long count = HumanBeingCollection.getHumanBeings().stream().filter(human ->
+            long count = VehicleCollection.getVehicles().stream().filter(human ->
                     human.getImpactSpeed() < impactSpeed).count();
             result = String.valueOf(count);
         }

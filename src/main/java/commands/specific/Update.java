@@ -2,8 +2,8 @@ package commands.specific;
 
 import Database.Database;
 import collection.Fields;
-import collection.HumanBeing;
-import collection.HumanBeingCollection;
+import collection.Vehicle;
+import collection.VehicleCollection;
 import validators.Errors;
 import validators.fields.CoordinatesValidator;
 import validators.fields.ImpactSpeedValidator;
@@ -14,13 +14,13 @@ import java.util.function.Predicate;
 
 public class Update {
 
-    private final HumanBeing human;
+    private final Vehicle human;
 
-    public Update(HumanBeing human) {
+    public Update(Vehicle human) {
         this.human = human;
     }
 
-    public HumanBeing getHuman() {
+    public Vehicle getHuman() {
         return human;
     }
 
@@ -49,12 +49,12 @@ public class Update {
         db.deleteById("human_beings", human.getId());
         int update = db.addHumanBeingToDatabase("human_beings", human);
         if (update > 0) {
-            HumanBeingCollection.add(human);
+            VehicleCollection.add(human);
             System.out.println("поле было успешно изменено");
         }
     }
 
-    public void updateNullSetter(HumanBeing human, Fields field, String valueField){
+    public void updateNullSetter(Vehicle human, Fields field, String valueField){
         Map<Fields, Consumer<String>> setters = human.getSetters();
         setters.get(field).accept(valueField);
     }

@@ -1,8 +1,7 @@
 package l10n_i18n;
 
-import collection.HumanBeingCollection;
+import collection.VehicleCollection;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ListResourceBundle;
 
 public class GUILabels_sp extends ListResourceBundle {
@@ -86,9 +85,9 @@ public class GUILabels_sp extends ListResourceBundle {
                             {"info about commands", "Información sobre los comandos"},
                             {"info about collection", "Información sobre la colección"},
                             {"info", "Colección HashMap<java.util.UUID, HumanBeing>\n" +
-                                    "Fecha de creación de la colección: " + HumanBeingCollection.getDateOfInitialization() + "\n" +
-                                    "Fecha de la última modificación de la colección: " + HumanBeingCollection.getDateOfLastChange() + "\n" +
-                                    "Cantidad de elementos en la colección: " + HumanBeingCollection.getCountHumanBeingCollection()},
+                                    "Fecha de creación de la colección: " + VehicleCollection.getDateOfInitialization() + "\n" +
+                                    "Fecha de la última modificación de la colección: " + VehicleCollection.getDateOfLastChange() + "\n" +
+                                    "Cantidad de elementos en la colección: " + VehicleCollection.getCountVehicleCollection()},
                             {"info for commands", "filter_less_than_impact_speed impactSpeed : mostrar elementos cuyo valor de impactSpeed sea menor al valor dado\n" +
                                     "remove_greater_key null : eliminar de la colección todos los elementos cuya clave sea mayor a la clave dada\n" +
                                     "execute_script file_name : leer y ejecutar el script del archivo especificado. El script contiene comandos en el mismo formato que los ingresa el usuario en el modo interactivo.\n" +
