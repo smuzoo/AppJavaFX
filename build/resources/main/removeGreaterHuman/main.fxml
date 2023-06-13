@@ -8,68 +8,68 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="690.0" prefWidth="400.0" style="-fx-background-color: #3E0E1A; -fx-background-radius: 40; -fx-border-radius: 30; -fx-background-insets: 0, 0 1 1 0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RemoveGreaterHumanController">
+<AnchorPane prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: fbfcfc; -fx-background-radius: 5; -fx-border-radius: 10; -fx-background-insets: 0, 0 1 1 0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.RemoveGreaterHumanController">
    <children>
-      <Label fx:id="createObject" layoutX="63.0" layoutY="44.0" style="-fx-opacity: 1;" text="NEW HUMAN BEING" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="createObject" alignment="CENTER" contentDisplay="CENTER" layoutY="120.0" prefHeight="30.0" prefWidth="600.0" style="-fx-opacity: 1;" text="Vehicle" textAlignment="CENTER" textFill="#7749f8">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="nameLabel" layoutX="177.0" layoutY="93.0" prefHeight="19.0" prefWidth="48.0" text="Name" textAlignment="JUSTIFY" textFill="WHITE">
+      <Label fx:id="nameLabel" layoutX="185.0" layoutY="168.0" prefHeight="19.0" prefWidth="48.0" text="Name" textAlignment="JUSTIFY" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="coordinatesField" alignment="CENTER" layoutX="118.0" layoutY="178.0" prefHeight="30.0" prefWidth="164.0" promptText="Input text" />
-      <Label fx:id="realHeroLabel" layoutX="164.0" layoutY="284.0" text="Real hero" textFill="WHITE">
+      <TextField fx:id="coordinatesField" alignment="CENTER" layoutX="126.0" layoutY="253.0" prefHeight="30.0" prefWidth="164.0" promptText="Input text" style="-fx-background-color: ecf0f1;" />
+      <Label fx:id="realHeroLabel" layoutX="172.0" layoutY="359.0" text="Real hero" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="hasToothPickLabel" layoutX="145.0" layoutY="348.0" text="Has tooth pick" textFill="WHITE">
+      <Label fx:id="hasToothPickLabel" layoutX="341.0" layoutY="166.0" text="Has tooth pick" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="impactSpeedLabel" layoutX="144.0" layoutY="218.0" text="Impact speed" textFill="WHITE">
+      <Label fx:id="impactSpeedLabel" layoutX="152.0" layoutY="293.0" text="Impact speed" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="moodLabel" layoutX="175.0" layoutY="474.0" text="Mood" textFill="WHITE">
+      <Label fx:id="moodLabel" layoutX="371.0" layoutY="295.0" text="Mood" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="weaponTypeLabel" layoutX="150.0" layoutY="410.0" text="Weapon type" textFill="WHITE">
+      <Label fx:id="weaponTypeLabel" layoutX="346.0" layoutY="227.0" text="Weapon type" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="coordinatesLabel" layoutX="138.0" layoutY="157.0" text="Coordinates(x,y)" textFill="WHITE">
+      <Label fx:id="coordinatesLabel" layoutX="146.0" layoutY="232.0" text="Coordinates(x,y)" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="nameField" alignment="CENTER" layoutX="118.0" layoutY="112.0" prefHeight="30.0" prefWidth="164.0" promptText="Input text" />
+      <TextField fx:id="nameField" alignment="CENTER" layoutX="126.0" layoutY="187.0" prefHeight="30.0" prefWidth="164.0" promptText="Input text" style="-fx-background-color: ecf0f1;" />
 
-      <TextField fx:id="impactSpeedField" alignment="CENTER" layoutX="118.0" layoutY="243.0" prefHeight="30.0" prefWidth="164.0" promptText="Input text" />
-      <Label fx:id="carCoolLabel" layoutX="164.0" layoutY="536.0" text="Car cool" textFill="WHITE">
+      <TextField fx:id="impactSpeedField" alignment="CENTER" layoutX="126.0" layoutY="318.0" prefHeight="30.0" prefWidth="164.0" promptText="Input text" style="-fx-background-color: ecf0f1;" />
+      <Label fx:id="carCoolLabel" layoutX="360.0" layoutY="359.0" text="Car cool" textFill="#7749f8">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="submitButton" layoutX="145.0" layoutY="611.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: #78A8A2;" text="SUBMIT" textFill="#fffbfb">
+      <Button fx:id="submitButton" layoutX="250.0" layoutY="440.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 30; -fx-background-color: ecf0f1;" text="SUBMIT" textFill="#7749f8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="realHeroChoice" layoutX="117.0" layoutY="307.0" prefHeight="30.0" prefWidth="164.0" />
-      <ChoiceBox fx:id="hasToothPickChoice" layoutX="117.0" layoutY="370.0" prefHeight="30.0" prefWidth="164.0" />
-      <ChoiceBox fx:id="weaponTypeChoice" layoutX="119.0" layoutY="436.0" prefHeight="30.0" prefWidth="164.0" />
-      <ChoiceBox fx:id="moodChoice" layoutX="119.0" layoutY="498.0" prefHeight="30.0" prefWidth="164.0" />
-      <ChoiceBox fx:id="carChoice" layoutX="119.0" layoutY="559.0" prefHeight="30.0" prefWidth="164.0" />
-      <Button fx:id="closeButton" layoutX="345.0" layoutY="14.0" prefHeight="34.0" prefWidth="34.0" styleClass="close-button" />
+      <ChoiceBox fx:id="realHeroChoice" layoutX="125.0" layoutY="382.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: ecf0f1;" />
+      <ChoiceBox fx:id="hasToothPickChoice" layoutX="313.0" layoutY="188.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: ecf0f1;" />
+      <ChoiceBox fx:id="weaponTypeChoice" layoutX="315.0" layoutY="253.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: ecf0f1;" />
+      <ChoiceBox fx:id="moodChoice" layoutX="315.0" layoutY="319.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: ecf0f1;" />
+      <ChoiceBox fx:id="carChoice" layoutX="315.0" layoutY="382.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: ecf0f1;" />
+      <Button fx:id="closeButton" layoutX="552.0" layoutY="14.0" prefHeight="34.0" prefWidth="34.0" style="-fx-background-radius: 50;" styleClass="close-button" />
       <Text fx:id="errorText" layoutX="22.0" layoutY="674.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="356.734375">
          <font>
             <Font name="System Bold" size="16.0" />
