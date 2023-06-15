@@ -14,8 +14,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-image: url('../login/images/Cover.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1080.0" style="-fx-background-size: cover;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainController">
    <children>
+      <Button fx:id="updateTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="300.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 10; -fx-background-color: #7749f8;" text="UPDATE" textAlignment="CENTER" textFill="#fffbfb">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="482.0" layoutY="722.0" mnemonicParsing="false" opacity="0.0" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 10; -fx-background-color: #ec7063;" text="DELETE" textAlignment="CENTER" textFill="#fffbfb">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="closeTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="722.0" mnemonicParsing="false" opacity="0.0" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 10; -fx-background-color: #7749f8;" text="CLOSE" textAlignment="CENTER" textFill="#fffbfb">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Text fx:id="errorTextTableField" fill="RED" layoutX="358.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" wrappingWidth="380.0" />
       <AnchorPane prefHeight="57.0" prefWidth="333.0" style="-fx-background-color: #7749f8;">
          <children>
             <Label fx:id="searchLabel" layoutX="15.0" layoutY="10.0" text="Search:" textFill="WHITE">
@@ -30,49 +46,49 @@
             </TextField>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="516.0" fitWidth="479.0" layoutX="605.0" layoutY="365.0">
+      <ImageView fx:id="Car" fitHeight="516.0" fitWidth="479.0" layoutX="605.0" layoutY="365.0">
          <image>
             <Image url="@../registration/images/2.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="24.0" layoutY="29.0" prefHeight="114.0" prefWidth="114.0" style="-fx-background-radius: 90; -fx-background-color: #D6D6D6; -fx-background-size: cover; -fx-border-width: 0;" />
-      <AnchorPane layoutX="94.0" layoutY="14.0" prefHeight="762.0" prefWidth="354.0">
+      <AnchorPane layoutX="83.0" prefHeight="762.0" prefWidth="354.0">
          <children>
-            <TableView fx:id="tableHumanBeingInfo" layoutX="-1.0" layoutY="155.0" prefHeight="380.0" prefWidth="908.0">
+            <TableView fx:id="tableHumanBeingInfo" layoutX="-1.0" layoutY="155.0" prefHeight="354.0" prefWidth="908.0" style="-fx-background-color: EBE5FC;">
                <columns>
-                  <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="107.99996638298035" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="103.5" style="-fx-background-color: #7749f8;">
                      <graphic>
                         <Label text="ID" textFill="white" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="nameColumn" prefWidth="115.99996948242188" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="nameColumn" prefWidth="140.5" style="-fx-background-color: #7749f8;">
                      <graphic>
                         <Label fx:id="nameLabel" text="Name" textFill="white" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn prefWidth="175.99993896484375" style="-fx-background-color: #7749f8;" fx:id="xColumn">
+                  <TableColumn prefWidth="108.5" style="-fx-background-color: #7749f8;" fx:id="xColumn">
                      <graphic>
-                        <Label prefHeight="17.0" prefWidth="165.0" text="Coordinate x" textFill="WHITE" />
+                        <Label prefHeight="17.0" prefWidth="165.0" text="X" textFill="WHITE" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="yColumn" prefWidth="148.00003051757812" style="-fx-background-color: #7749f8;" text="Coordinate Y">
+                  <TableColumn fx:id="yColumn" prefWidth="102.0" style="-fx-background-color: #7749f8;" text="Coordinate Y">
                      <graphic>
-                        <Label prefHeight="17.0" prefWidth="165.0" text="Coordinate y" textFill="WHITE" />
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Y" textFill="WHITE" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="powerEngineColumn" prefWidth="106.39996337890625" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="powerEngineColumn" prefWidth="152.0" style="-fx-background-color: #7749f8;">
                      <graphic>
-                        <Label prefHeight="17.0" prefWidth="100.0" text="Power engine" textFill="WHITE" />
+                        <Label prefHeight="17.0" prefWidth="167.0" text="Power engine" textFill="WHITE" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="transportTypeColumn" prefWidth="127.20001220703125" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="transportTypeColumn" prefWidth="158.0" style="-fx-background-color: #7749f8;">
                      <graphic>
                         <Label prefHeight="17.0" prefWidth="119.0" text="Type transport" textFill="WHITE" />
                      </graphic>
                   </TableColumn>
-                  <TableColumn fx:id="fuelTypeColumn" prefWidth="127.99993896484375" style="-fx-background-color: #7749f8;">
+                  <TableColumn fx:id="fuelTypeColumn" prefWidth="146.0" style="-fx-background-color: #7749f8;">
                      <graphic>
-                        <Label prefHeight="17.0" prefWidth="119.0" text="Type fuel" textFill="WHITE" />
+                        <Label prefHeight="17.0" prefWidth="135.0" text="Type fuel" textFill="WHITE" />
                      </graphic>
                   </TableColumn>
                </columns>
@@ -151,21 +167,5 @@
             <Font size="20.0" />
          </font>
       </MenuButton>
-      <Button fx:id="updateTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="722.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 10; -fx-background-color: #7749f8;" text="UPDATE" textAlignment="CENTER" textFill="#fffbfb">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="deleteTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="482.0" layoutY="722.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 10; -fx-background-color: #ec7063;" text="DELETE" textAlignment="CENTER" textFill="#fffbfb">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="closeTableFieldButton" alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="722.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 10; -fx-background-color: #7749f8;" text="CLOSE" textAlignment="CENTER" textFill="#fffbfb">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Text fx:id="errorTextTableField" fill="RED" layoutX="358.0" layoutY="713.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" wrappingWidth="380.0" />
    </children>
 </AnchorPane>

@@ -1,12 +1,3 @@
-.close-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-image: url('../addElement/images/closeButton.png');
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
-    -fx-background-position: center;
-
-}
 
 .button{
     -fx-transition: all 1s;

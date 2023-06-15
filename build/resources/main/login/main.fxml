@@ -25,7 +25,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="loginField" layoutX="100.0" layoutY="300.0" prefHeight="50.0" prefWidth="615.0" promptText="login" style="-fx-background-color: E9ECEF; -fx-background-radius: 0; -fx-text-fill: #47a89c;">
+                  <TextField fx:id="loginField" layoutX="100.0" layoutY="300.0" prefHeight="50.0" prefWidth="615.0" promptText="login" style="-fx-background-color: E9ECEF; -fx-background-radius: 0; -fx-text-fill: #7749f8;">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -35,7 +35,7 @@
                         <Font name="System Italic" size="36.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="370.0" prefHeight="50.0" prefWidth="615.0" promptText="password" style="-fx-background-color: E9ECEF E9ECEF; -fx-background-radius: 0; -fx-text-fill: #47a89c;">
+                  <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="370.0" prefHeight="50.0" prefWidth="615.0" promptText="password" style="-fx-background-color: E9ECEF E9ECEF; -fx-background-radius: 0; -fx-text-fill: #7749f8;">
                      <font>
                         <Font size="27.0" />
                      </font>

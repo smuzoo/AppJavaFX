@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -47,6 +48,9 @@ public class MainController implements Initializable {
     private Button addButton;
     @FXML
     private Button deleteByIdButton;
+
+    @FXML
+    private ImageView Car;
 
 
     @FXML
@@ -190,7 +194,7 @@ public class MainController implements Initializable {
             Vehicle selectedVehicle = event.getRowValue();
             if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
                 try {
-                    float newValue = event.getNewValue();
+                    Integer newValue = event.getNewValue();
                     Update updateCommand = new Update(selectedVehicle);
                     Errors error = updateCommand.updateY(String.valueOf(newValue));
                     if(error != Errors.NOTHAVEERRORS){
