@@ -1,13 +1,14 @@
 package application.controllers;
 
 import application.tools.*;
-import authentication.Authentication;
 import authentication.User;
 import collection.*;
 import commands.Command;
 import commands.CommandController;
 import commands.specific.ShowInfo;
 import commands.specific.Update;
+import javafx.animation.Animation;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,8 +31,6 @@ import validators.Errors;
 
 import java.net.URL;
 import java.util.Collection;
-import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -50,7 +49,9 @@ public class MainController implements Initializable {
     private Button deleteByIdButton;
 
     @FXML
-    private ImageView Car;
+    private ImageView car;
+    private TranslateTransition translateTransition;
+    private boolean isMovingForward = false;
 
 
     @FXML
@@ -125,6 +126,9 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+
         tableHumanBeingInfo.setEditable(true);
         tableHumanBeingInfo.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -155,6 +159,33 @@ public class MainController implements Initializable {
                 tableHumanBeingInfo.refresh();
             }
         });
+        // Создаем TranslateTransition
+        translateTransition = new TranslateTransition(Duration.seconds(1), car);
+        translateTransition.setFromX(475); // Начальная позиция X
+        translateTransition.setToX(0); // Конечная позиция X
+        translateTransition.setAutoReverse(true);
+        translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+        translateTransition.setRate(0.2); // Начальная скорость
+        // Остановка анимации при клике на машину
+        car.setOnMouseClicked(event -> {
+            if (translateTransition.getStatus() == Animation.Status.RUNNING) {
+                // Если анимация выполняется, остановить её
+                translateTransition.stop();
+            } else {
+                // Запустить анимацию
+                translateTransition.play();
+            }
+        });
+        // Запуск анимации после инициализации контроллера
+        translateTransition.play();
+        translateTransition.setOnFinished(event -> {
+            // Изменение параметров анимации после первого цикла
+            translateTransition.setFromX(0); // Начальная позиция X
+            translateTransition.setToX(475); // Конечная позиция X
+            translateTransition.setRate(0.3); // Увеличение скорости
+            translateTransition.play();
+        });
+
 
         xColumn.setCellValueFactory(new PropertyValueFactory<>("x"));
         xColumn.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
@@ -498,6 +529,19 @@ public class MainController implements Initializable {
         alert.setResizable(true);
         alert.getButtonTypes().setAll(okButton);
         alert.showAndWait();
+
+    }
+    @FXML
+    public void handleCarClick() {
+        if (translateTransition.getStatus() == Animation.Status.RUNNING) {
+            // Если анимация выполняется, остановить её
+            translateTransition.stop();
+        } else {
+            // Запустить анимацию
+            translateTransition.play();
+        }
     }
 
 }
+
+
