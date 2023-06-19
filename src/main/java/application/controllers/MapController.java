@@ -5,19 +5,18 @@ import application.tools.Scenes;
 import authentication.User;
 import collection.Vehicle;
 import collection.VehicleCollection;
+import commands.specific.Update;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import l10n_i18n.CurrentLanguage;
 
 import java.io.File;
@@ -34,7 +33,7 @@ public class MapController implements Initializable {
     private static final float SCREEN_WIDTH = 1080;
     private static final Integer SCREEN_HEIGHT = 700;
 
-    private float oldX;
+    private double oldX;
 
     private double oldY;
 
@@ -50,18 +49,15 @@ public class MapController implements Initializable {
         Random random = new Random();
 
         for (Vehicle human : VehicleCollection.getVehicles()) {
-            String userLogin = human.getUserLogin();
-            Color color = colorsUsers.get(userLogin);
-            if (color == null) {
-                color = generateRandomColor();
-                colorsUsers.put(userLogin, color);
-            }
+
+
             double radius = RADIUS * 4; // Увеличение размера в 4 раза
             ImageView imageView = new ImageView(new Image("file:" + files[random.nextInt(files.length)].getPath()));
             imageView.setFitWidth(radius);
             imageView.setFitHeight(radius);
             imageView.setX(normalizeX(human.getCoordinates().getX()));
             imageView.setY(normalizeY(human.getCoordinates().getY()));
+            imageView.setUserData(human);
             imageView.setOnMousePressed(this::onMousePressed);
             imageView.setOnMouseDragged(this::onMouseDragged);
             imageView.setOnMouseReleased(this::onMouseReleased);
@@ -73,10 +69,12 @@ public class MapController implements Initializable {
     }
     private void onMousePressed(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
-            Circle circle = (Circle) event.getSource();
-            draggedVehicle = (Vehicle) circle.getUserData();
-            oldX = normalizeX(draggedVehicle.getCoordinates().getX());
-            oldY = normalizeY(draggedVehicle.getCoordinates().getY());
+            ImageView image = (ImageView) event.getSource();
+            draggedVehicle = (Vehicle) image.getUserData();
+            if (draggedVehicle != null) {
+                oldX = normalizeX(draggedVehicle.getCoordinates().getX());
+                oldY = normalizeY(draggedVehicle.getCoordinates().getY());
+            }
         }
     }
 
@@ -92,7 +90,7 @@ public class MapController implements Initializable {
                 alert.showAndWait();
             }
             else {
-                Circle circle = (Circle) event.getSource();
+                ImageView image = (ImageView) event.getSource();
 
                 double newX = event.getX();
                 double newY = event.getY();
@@ -101,9 +99,8 @@ public class MapController implements Initializable {
                 newX = Math.max(RADIUS, Math.min(SCREEN_WIDTH - RADIUS, newX));
                 newY = Math.max(RADIUS, Math.min(SCREEN_HEIGHT - RADIUS, newY));
 
-                circle.setCenterX(newX);
-                circle.setCenterY(newY);
-
+                image.setX(newX);
+                image.setY(newY);
                 draggedVehicle.getCoordinates().setX(denormalizeX((float) newX));
                 draggedVehicle.getCoordinates().setY((int) denormalizeY(newY));
 
@@ -115,7 +112,7 @@ public class MapController implements Initializable {
     private void onMouseReleased(MouseEvent event) {
         if (draggedVehicle != null && User.getLogin().equals(draggedVehicle.getUserLogin())) {
 
-            Circle circle = (Circle) event.getSource();
+            ImageView image = (ImageView) event.getSource();
 
             double newX = event.getX();
             double newY = event.getY();
@@ -138,22 +135,26 @@ public class MapController implements Initializable {
 
                 alert.getButtonTypes().setAll(buttonYes, buttonNo);
 
-                // Ожидание ответа пользователя
                 Optional<ButtonType> result = alert.showAndWait();
+                float x;
+                int y;
 
                 if (result.isPresent() && result.get() == buttonYes) {
-                    // Если пользователь нажал "Да", изменяем координаты объекта
-                    circle.setCenterX(newX);
-                    circle.setCenterY(newY);
-                    draggedVehicle.getCoordinates().setX(denormalizeX((float) newX));
-                    draggedVehicle.getCoordinates().setY((int) denormalizeY(newY));
+                    image.setX(newX);
+                    image.setY(newY);
+                    x = denormalizeX((float) newX);
+                    y = (int) denormalizeY(newY);
                 } else {
-                    // Если пользователь нажал "Нет", возвращаем объект на исходную позицию
-                    circle.setCenterX(oldX);
-                    circle.setCenterY(oldY);
-                    draggedVehicle.getCoordinates().setX(denormalizeX(oldX));
-                    draggedVehicle.getCoordinates().setY((int) denormalizeY(oldY));
+                    image.setX(oldX);
+                    image.setY(oldY);
+                    x = denormalizeX(oldX);
+                    y = (int) denormalizeY(oldY);
                 }
+                Update update = new Update(draggedVehicle);
+                update.updateVehicle(1, x + "," + y);
+                update.updateCollection();
+                draggedVehicle.getCoordinates().setX(x);
+                draggedVehicle.getCoordinates().setY(y);
             }
             draggedVehicle = null;
 
@@ -167,18 +168,11 @@ public class MapController implements Initializable {
         closeMapButton.setText(currentLanguage.getString("to table"));
 
     }
-    private Color generateRandomColor() {
-        Random random = new Random();
-        double red = random.nextDouble();
-        double green = random.nextDouble();
-        double blue = random.nextDouble();
 
-        return new Color(red, green, blue, 1.0);
-    }
 
-    private float normalizeX(float x){
-        float minValue = -Float.MAX_VALUE;
-        float maxValue = -809f;
+    private double normalizeX(float x){
+        float minValue = -Float.MAX_VALUE / 4;
+        float maxValue = Float.MAX_VALUE / 4;
         return ((x - minValue) / (maxValue - minValue)) * SCREEN_WIDTH;
     }
     private double normalizeY(double y){
@@ -187,11 +181,11 @@ public class MapController implements Initializable {
         double res =  (y - minValue) /   (maxValue - minValue);
         return res*SCREEN_HEIGHT;
     }
-    private float denormalizeX(float normalizedX) {
-        float minValue = -Float.MAX_VALUE;
-        float maxValue = -809f;
-        float denormalizedX = normalizedX / SCREEN_WIDTH * (maxValue - minValue) + minValue;
-        return denormalizedX;
+    private float denormalizeX(double normalizedX) {
+        float minValue = -Float.MAX_VALUE / 4;
+        float maxValue = Float.MAX_VALUE / 4;
+        double denormalizedX = normalizedX / SCREEN_WIDTH * (maxValue - minValue) + minValue;
+        return (float) denormalizedX;
     }
 
     private double denormalizeY(double normalizedY) {

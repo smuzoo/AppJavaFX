@@ -36,7 +36,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
-    private TableView<Vehicle> tableHumanBeingInfo;
+    private TableView<Vehicle> tableVehiclesInfo;
     @FXML
     private TableColumn<Vehicle, Long> idColumn;
     @FXML
@@ -51,7 +51,14 @@ public class MainController implements Initializable {
     @FXML
     private ImageView car;
     private TranslateTransition translateTransition;
-    private boolean isMovingForward = false;
+    private double initialCarPosition = 475.0;
+    private double initialRate = 0.2;
+    private boolean firstClick = true;
+    private boolean doubleClick = false;
+    private boolean animationStopped = false;
+    private double lastStoppedPosition = 0.0;
+    private int clickCount = 0;
+
 
 
     @FXML
@@ -59,10 +66,13 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Vehicle, Integer> yColumn;
 
-    @FXML private TableColumn<Vehicle, Integer> powerEngineColumn;
-    @FXML private TableColumn<Vehicle, String> transportTypeColumn;
+    @FXML
+    private TableColumn<Vehicle, Integer> powerEngineColumn;
+    @FXML
+    private TableColumn<Vehicle, String> transportTypeColumn;
 
-    @FXML private TableColumn<Vehicle, String> fuelTypeColumn;
+    @FXML
+    private TableColumn<Vehicle, String> fuelTypeColumn;
 
 
     @FXML
@@ -91,33 +101,47 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem countGreaterSpeedButton;
 
-    @FXML private MenuButton currentLanguageMenu;
+    @FXML
+    private MenuButton currentLanguageMenu;
 
-    @FXML private MenuItem ruLanguage;
+    @FXML
+    private MenuItem ruLanguage;
 
-    @FXML private MenuItem itLanguage;
+    @FXML
+    private MenuItem itLanguage;
 
-    @FXML private MenuItem dutLanguage;
+    @FXML
+    private MenuItem dutLanguage;
 
-    @FXML private MenuItem spainLanguage;
+    @FXML
+    private MenuItem spainLanguage;
 
-    @FXML private Label languageLabel;
+    @FXML
+    private Label languageLabel;
 
-    @FXML private Label nickname;
+    @FXML
+    private Label nickname;
 
-    @FXML private MenuButton commands;
+    @FXML
+    private MenuButton commands;
 
-    @FXML private MenuItem removeGreaterKeyButton;
+    @FXML
+    private MenuItem removeGreaterKeyButton;
 
-    @FXML private MenuItem removeGreaterHumanButton;
+    @FXML
+    private MenuItem removeGreaterHumanButton;
 
-    @FXML private MenuItem removeLowerHumanButton;
+    @FXML
+    private MenuItem removeLowerHumanButton;
 
-    @FXML private MenuItem showLessSpeedButton;
+    @FXML
+    private MenuItem showLessSpeedButton;
 
-    @FXML private Label searchLabel;
+    @FXML
+    private Label searchLabel;
 
-    @FXML private Label nameLabel;
+    @FXML
+    private Label nameLabel;
 
     private static boolean doubleClickedOnField = false;
 
@@ -128,9 +152,8 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
-        tableHumanBeingInfo.setEditable(true);
-        tableHumanBeingInfo.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
+        tableVehiclesInfo.setEditable(true);
+        tableVehiclesInfo.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -140,25 +163,27 @@ public class MainController implements Initializable {
                 try {
                     String newValue = event.getNewValue();
                     Update updateCommand = new Update(selectedVehicle);
-                    Errors error = updateCommand.updateHuman(0, newValue);
-                    if(error != Errors.NOTHAVEERRORS){
+                    Errors error = updateCommand.updateVehicle(0, newValue);
+                    if (error != Errors.NOTHAVEERRORS) {
                         showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
-                        tableHumanBeingInfo.refresh();
-                    }else {
+                        tableVehiclesInfo.refresh();
+                    } else {
                         updateCommand.updateCollection();
                         updateTable(VehicleCollection.getVehicles());
                     }
-                }catch (NullPointerException nullPointerException){
+                } catch (NullPointerException nullPointerException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
-                    tableHumanBeingInfo.refresh();
+                    tableVehiclesInfo.refresh();
                 }
-            }else {
+            } else {
                 showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
-                tableHumanBeingInfo.refresh();
+                tableVehiclesInfo.refresh();
             }
         });
+
+
         // Создаем TranslateTransition
         translateTransition = new TranslateTransition(Duration.seconds(1), car);
         translateTransition.setFromX(475); // Начальная позиция X
@@ -166,23 +191,43 @@ public class MainController implements Initializable {
         translateTransition.setAutoReverse(true);
         translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
         translateTransition.setRate(0.2); // Начальная скорость
+
         // Остановка анимации при клике на машину
         car.setOnMouseClicked(event -> {
-            if (translateTransition.getStatus() == Animation.Status.RUNNING) {
-                // Если анимация выполняется, остановить её
-                translateTransition.stop();
+            clickCount++;
+            if (animationStopped) {
+                // Если анимация остановлена, возобновить с последней остановленной позиции
+                translateTransition.setFromX(lastStoppedPosition);
+                animationStopped = false;
+                translateTransition.play();
             } else {
-                // Запустить анимацию
+                if (translateTransition.getStatus() == Animation.Status.RUNNING) {
+                    // Если анимация выполняется, остановить ее и сохранить текущую позицию
+                    translateTransition.stop();
+                    lastStoppedPosition = car.getTranslateX();
+                    animationStopped = true;
+                } else {
+                    // Запустить анимацию с начальной позиции
+                    translateTransition.setFromX(475);
+                    translateTransition.play();
+                }
+            }
+            if (clickCount % 3 == 0) {
+                // Если это третий клик, сбросить анимацию с начала
+                translateTransition.stop();
+                translateTransition.setFromX(475);
+                animationStopped = false;
                 translateTransition.play();
             }
         });
+
         // Запуск анимации после инициализации контроллера
         translateTransition.play();
         translateTransition.setOnFinished(event -> {
             // Изменение параметров анимации после первого цикла
             translateTransition.setFromX(0); // Начальная позиция X
             translateTransition.setToX(475); // Конечная позиция X
-            translateTransition.setRate(0.3); // Увеличение скорости
+            translateTransition.setRate(0.1); // Увеличение скорости
             translateTransition.play();
         });
 
@@ -198,24 +243,24 @@ public class MainController implements Initializable {
                     Errors error = updateCommand.updateX(String.valueOf(newValue));
                     if (error != Errors.NOTHAVEERRORS) {
                         showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
-                        tableHumanBeingInfo.refresh();
+                        tableVehiclesInfo.refresh();
                     } else {
                         updateCommand.updateCollection();
                         updateTable(VehicleCollection.getVehicles());
                     }
                 } catch (NullPointerException nullPointerException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
-                    tableHumanBeingInfo.refresh();
-                } catch (NumberFormatException  numberFormatException) {
+                    tableVehiclesInfo.refresh();
+                } catch (NumberFormatException numberFormatException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), Errors.NOTCANTRANSFORMTOINT.getError());
-                    tableHumanBeingInfo.refresh();
+                    tableVehiclesInfo.refresh();
                 }
 
-            }else {
+            } else {
                 showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
-                tableHumanBeingInfo.refresh();
+                tableVehiclesInfo.refresh();
             }
         });
 
@@ -228,30 +273,30 @@ public class MainController implements Initializable {
                     Integer newValue = event.getNewValue();
                     Update updateCommand = new Update(selectedVehicle);
                     Errors error = updateCommand.updateY(String.valueOf(newValue));
-                    if(error != Errors.NOTHAVEERRORS){
+                    if (error != Errors.NOTHAVEERRORS) {
                         showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
-                        tableHumanBeingInfo.refresh();
+                        tableVehiclesInfo.refresh();
 
-                    }else {
+                    } else {
                         updateCommand.updateCollection();
                         updateTable(VehicleCollection.getVehicles());
                     }
 
-                }catch (NullPointerException nullPointerException){
+                } catch (NullPointerException nullPointerException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
-                    tableHumanBeingInfo.refresh();
-                }
-                catch (NumberFormatException   numberFormatException){
+                    tableVehiclesInfo.refresh();
+                } catch (NumberFormatException numberFormatException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), Errors.NOTCANTRANSFORMTOINT.getError());
-                    tableHumanBeingInfo.refresh();
+                    tableVehiclesInfo.refresh();
                 }
-            }else {
+            } else {
                 showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
-                tableHumanBeingInfo.refresh();
+                tableVehiclesInfo.refresh();
             }
         });
+
         powerEngineColumn.setCellValueFactory(new PropertyValueFactory<>("impactSpeed"));
         powerEngineColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         powerEngineColumn.setOnEditCommit(event -> {
@@ -260,29 +305,28 @@ public class MainController implements Initializable {
                 try {
                     Integer newValue = event.getNewValue();
                     Update updateCommand = new Update(selectedVehicle);
-                    Errors error = updateCommand.updateHuman(2, String.valueOf(newValue));
-                    if(error != Errors.NOTHAVEERRORS){
+                    Errors error = updateCommand.updateVehicle(2, String.valueOf(newValue));
+                    if (error != Errors.NOTHAVEERRORS) {
                         showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
-                        tableHumanBeingInfo.refresh();
+                        tableVehiclesInfo.refresh();
 
-                    }else {
+                    } else {
                         updateCommand.updateCollection();
                         updateTable(VehicleCollection.getVehicles());
                     }
 
-                }catch (NullPointerException nullPointerException){
+                } catch (NullPointerException nullPointerException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("null"), CurrentLanguage.getCurrentLanguage().getString("not null"));
-                    tableHumanBeingInfo.refresh();
-                }
-                catch (NumberFormatException   numberFormatException){
+                    tableVehiclesInfo.refresh();
+                } catch (NumberFormatException numberFormatException) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), Errors.NOTCANTRANSFORMTOINT.getError());
-                    tableHumanBeingInfo.refresh();
+                    tableVehiclesInfo.refresh();
                 }
-            }else {
+            } else {
                 showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
-                tableHumanBeingInfo.refresh();
+                tableVehiclesInfo.refresh();
             }
         });
 
@@ -292,22 +336,21 @@ public class MainController implements Initializable {
             Vehicle selectedVehicle = event.getRowValue();
             if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
                 String newValue = event.getNewValue().toLowerCase();
-                Update updateCommand = new Update(selectedVehicle );
-                Errors error = updateCommand.updateHuman(5, newValue);
-                if(error != Errors.NOTHAVEERRORS){
+                Update updateCommand = new Update(selectedVehicle);
+                Errors error = updateCommand.updateVehicle(5, newValue);
+                if (error != Errors.NOTHAVEERRORS) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
-                    tableHumanBeingInfo.refresh();
+                    tableVehiclesInfo.refresh();
 
-                }else {
+                } else {
                     updateCommand.updateCollection();
                     updateTable(VehicleCollection.getVehicles());
                 }
-            }
-            else {
+            } else {
                 showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
-                tableHumanBeingInfo.refresh();
+                tableVehiclesInfo.refresh();
             }
         });
 
@@ -319,21 +362,20 @@ public class MainController implements Initializable {
                 String newValue = event.getNewValue().toLowerCase().toLowerCase();
                 System.out.println("New value: " + newValue);
                 Update updateCommand = new Update(selectedVehicle);
-                Errors error = updateCommand.updateHuman(6, newValue);
-                if(error != Errors.NOTHAVEERRORS){
+                Errors error = updateCommand.updateVehicle(6, newValue);
+                if (error != Errors.NOTHAVEERRORS) {
                     showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), error.getError());
-                    tableHumanBeingInfo.refresh();
+                    tableVehiclesInfo.refresh();
 
-                }else {
+                } else {
                     updateCommand.updateCollection();
                     updateTable(VehicleCollection.getVehicles());
                 }
-            }
-            else {
+            } else {
                 showAlert(CurrentLanguage.getCurrentLanguage().getString("not update"),
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
-                tableHumanBeingInfo.refresh();
+                tableVehiclesInfo.refresh();
             }
         });
 
@@ -359,7 +401,8 @@ public class MainController implements Initializable {
         });
 
         leaveButton.setOnAction(event -> {
-            doubleClickedOnField = false;;
+            doubleClickedOnField = false;
+            ;
             ChangeSceneHandler changeSceneHandler = new ChangeSceneHandler(Scenes.LOGIN);
             changeSceneHandler.handle(event);
         });
@@ -369,7 +412,7 @@ public class MainController implements Initializable {
             fileChooser.setTitle(CurrentLanguage.getCurrentLanguage().getString("choose script"));
             CommandController commandController = new CommandController(new ReaderFromConsole());
             Command executeScript = commandController.getCommand("execute_script");
-            executeScript.execute(fileChooser.showOpenDialog(tableHumanBeingInfo.getScene().getWindow()).getAbsolutePath());
+            executeScript.execute(fileChooser.showOpenDialog(tableVehiclesInfo.getScene().getWindow()).getAbsolutePath());
         });
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -388,11 +431,11 @@ public class MainController implements Initializable {
         mapButton.setOnAction(new ChangeSceneHandler(Scenes.MAP));
 
         clearButton.setOnAction(event -> {
-            if(User.getLogin().equals("admin")) {
+            if (User.getLogin().equals("admin")) {
                 Command clearCommand = new CommandController(new ReaderFromConsole()).getCommand("clear");
                 clearCommand.execute("");
                 updateTable(VehicleCollection.getVehicles());
-            }else showAlert(CurrentLanguage.getCurrentLanguage().getString("impossible clear"),
+            } else showAlert(CurrentLanguage.getCurrentLanguage().getString("impossible clear"),
                     CurrentLanguage.getCurrentLanguage().getString("not admin"));
         });
 
@@ -463,7 +506,7 @@ public class MainController implements Initializable {
     }
 
 
-    private void setLanguage(){
+    private void setLanguage() {
         ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
         currentLanguageMenu.setText(currentLanguage.getString(CurrentLanguage.getCurrentLanguageString()));
         ruLanguage.setText(currentLanguage.getString("ru"));
@@ -496,12 +539,12 @@ public class MainController implements Initializable {
 
     private void performSearch(String searchTerm) {
         // Очищаем предыдущий результат поиска
-        tableHumanBeingInfo.getItems().clear();
+        tableVehiclesInfo.getItems().clear();
 
         // Выполняем поиск и добавляем найденные элементы в таблицу
         for (Vehicle vehicle : VehicleCollection.getVehicles()) {
             if (String.valueOf(vehicle.getId()).contains(searchTerm) || vehicle.getName().contains(searchTerm)) {
-                tableHumanBeingInfo.getItems().add(vehicle);
+                tableVehiclesInfo.getItems().add(vehicle);
             }
         }
     }
@@ -513,14 +556,15 @@ public class MainController implements Initializable {
     public static void setDoubleClickedOnField(boolean doubleClickedOnField) {
         MainController.doubleClickedOnField = doubleClickedOnField;
     }
-    public void updateTable(Collection<Vehicle> data){
-        tableHumanBeingInfo.setItems(FXCollections.observableArrayList(
+
+    public void updateTable(Collection<Vehicle> data) {
+        tableVehiclesInfo.setItems(FXCollections.observableArrayList(
                 data
         ));
-        tableHumanBeingInfo.refresh();
+        tableVehiclesInfo.refresh();
     }
 
-    private void showAlert(String title, String result){
+    private void showAlert(String title, String result) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -531,14 +575,25 @@ public class MainController implements Initializable {
         alert.showAndWait();
 
     }
+
     @FXML
     public void handleCarClick() {
-        if (translateTransition.getStatus() == Animation.Status.RUNNING) {
-            // Если анимация выполняется, остановить её
-            translateTransition.stop();
-        } else {
-            // Запустить анимацию
+        if (animationStopped) {
+            // Если анимация остановлена, возобновить с последней остановленной позиции
+            translateTransition.setFromX(lastStoppedPosition);
+            animationStopped = false;
             translateTransition.play();
+        } else {
+            if (translateTransition.getStatus() == Animation.Status.RUNNING) {
+                // Если анимация выполняется, остановить ее и сохранить текущую позицию
+                translateTransition.stop();
+                lastStoppedPosition = car.getTranslateX();
+                animationStopped = true;
+            } else {
+                // Запустить анимацию с начальной позиции
+                translateTransition.setFromX(475);
+                translateTransition.play();
+            }
         }
     }
 

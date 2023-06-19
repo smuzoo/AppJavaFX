@@ -91,7 +91,7 @@
       <AnchorPane layoutX="322.0" layoutY="722.0" prefHeight="46.0" prefWidth="325.0" style="-fx-background-color: #210B2B;" />
       <AnchorPane layoutX="182.0" layoutY="6.0" prefHeight="660.0" prefWidth="358.0">
          <children>
-            <TableView fx:id="tableHumanBeingInfo" layoutX="141.0" layoutY="-6.0" mouseTransparent="true" prefHeight="724.0" prefWidth="324.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableVehiclesInfo" layoutX="141.0" layoutY="-6.0" mouseTransparent="true" prefHeight="724.0" prefWidth="324.0" VBox.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="185.60003662109375" style="-fx-background-color: #462323;">
                      <graphic>

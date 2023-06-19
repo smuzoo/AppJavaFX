@@ -24,7 +24,7 @@ public class Update {
         return human;
     }
 
-    public Errors updateHuman(int idField, String valueField){
+    public Errors updateVehicle(int idField, String valueField){
         Map<Fields, Predicate<String>> notNullSetters = human.getNotNullSetters();
         Errors error = Errors.NOTHAVEERRORS;
         if(idField == 0) {

@@ -82,7 +82,7 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
                         if(cell instanceof TextField text){
                             String textValue = text.getText();
                             if(!textValue.isEmpty()){
-                                Errors error = update.updateHuman(i, textValue);
+                                Errors error = update.updateVehicle(i, textValue);
                                 if(error != Errors.NOTHAVEERRORS){
                                     errorText.setText(error.getError());
                                     errorText.setVisible(true);
@@ -94,7 +94,7 @@ public class MouseClickedHandler  implements EventHandler<MouseEvent> {
                             ChoiceBox<String> choiceBox = (ChoiceBox<String>) cell;
                             String value = choiceBox.getValue();
                             if(!value.equals("null")){
-                                Errors error = update.updateHuman(i, value);
+                                Errors error = update.updateVehicle(i, value);
                                 if(error != Errors.NOTHAVEERRORS){
                                     errorText.setText(error.getError());
                                     errorText.setVisible(true);

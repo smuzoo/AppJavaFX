@@ -40,7 +40,7 @@
       <AnchorPane layoutX="24.0" layoutY="29.0" prefHeight="114.0" prefWidth="114.0" style="-fx-background-radius: 90; -fx-background-color: #D6D6D6; -fx-background-size: cover; -fx-border-width: 0;" />
       <AnchorPane layoutX="83.0" prefHeight="762.0" prefWidth="354.0">
          <children>
-            <TableView fx:id="tableHumanBeingInfo" layoutX="-1.0" layoutY="155.0" prefHeight="354.0" prefWidth="908.0" style="-fx-background-color: EBE5FC;">
+            <TableView fx:id="tableVehiclesInfo" layoutX="-1.0" layoutY="155.0" prefHeight="354.0" prefWidth="908.0" style="-fx-background-color: EBE5FC;">
                <columns>
                   <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="103.5" style="-fx-background-color: #7749f8;">
                      <graphic>
