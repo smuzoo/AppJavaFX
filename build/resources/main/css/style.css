@@ -40,3 +40,11 @@
 .menu-button .context-menu {
     -fx-background-color:  #EBE5FC;
 }
+
+.name-column .table-cell {
+    -fx-text-fill: #EBE5FC; /* Цвет текста */
+}
+
+.table-cell .text-field {
+    -fx-text-fill: #7749f8; /* Цвет текста */
+}

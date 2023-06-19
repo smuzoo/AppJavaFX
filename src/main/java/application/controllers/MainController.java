@@ -129,10 +129,10 @@ public class MainController implements Initializable {
     private MenuItem removeGreaterKeyButton;
 
     @FXML
-    private MenuItem removeGreaterHumanButton;
+    private MenuItem removeGreaterVehicleButton;
 
     @FXML
-    private MenuItem removeLowerHumanButton;
+    private MenuItem removeLowerVehicleButton;
 
     @FXML
     private MenuItem showLessSpeedButton;
@@ -153,7 +153,8 @@ public class MainController implements Initializable {
 
 
         tableVehiclesInfo.setEditable(true);
-        tableVehiclesInfo.setStyle("-fx-background-color: #6B3982; -fx-table-cell-border-color: transparent;");
+        tableVehiclesInfo.setStyle("-fx-background-color: #7749f8; -fx-table-cell-border-color: transparent;");
+        tableVehiclesInfo.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -185,7 +186,7 @@ public class MainController implements Initializable {
 
 
         // Создаем TranslateTransition
-        translateTransition = new TranslateTransition(Duration.seconds(1), car);
+        translateTransition = new TranslateTransition(Duration.seconds(0.75), car);
         translateTransition.setFromX(475); // Начальная позиция X
         translateTransition.setToX(0); // Конечная позиция X
         translateTransition.setAutoReverse(true);
@@ -261,8 +262,12 @@ public class MainController implements Initializable {
                         CurrentLanguage.getCurrentLanguage().getString("not this user"));
 
                 tableVehiclesInfo.refresh();
+
             }
+
         });
+
+
 
         yColumn.setCellValueFactory(new PropertyValueFactory<>("y"));
         yColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -331,7 +336,7 @@ public class MainController implements Initializable {
         });
 
         transportTypeColumn.setCellValueFactory(new PropertyValueFactory<>("vehicleType"));
-        transportTypeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(CheckboxesConstants.getWeaponTypes()));
+        transportTypeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(CheckboxesConstants.getTransportTypes()));
         transportTypeColumn.setOnEditCommit(event -> {
             Vehicle selectedVehicle = event.getRowValue();
             if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
@@ -355,7 +360,7 @@ public class MainController implements Initializable {
         });
 
         fuelTypeColumn.setCellValueFactory(new PropertyValueFactory<>("fuelType"));
-        fuelTypeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(CheckboxesConstants.getMoodTypes()));
+        fuelTypeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(CheckboxesConstants.getFuelTypes()));
         fuelTypeColumn.setOnEditCommit(event -> {
             Vehicle selectedVehicle = event.getRowValue();
             if (User.getLogin().equals(selectedVehicle.getUserLogin())) {
@@ -402,7 +407,6 @@ public class MainController implements Initializable {
 
         leaveButton.setOnAction(event -> {
             doubleClickedOnField = false;
-            ;
             ChangeSceneHandler changeSceneHandler = new ChangeSceneHandler(Scenes.LOGIN);
             changeSceneHandler.handle(event);
         });
@@ -469,13 +473,13 @@ public class MainController implements Initializable {
             handler.handle(event);
         });
 
-        removeLowerHumanButton.setOnAction(event -> {
+        removeLowerVehicleButton.setOnAction(event -> {
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.REMOVELOWERHUMAN, addButton.getScene());
             handler.handle(event);
             updateTable(VehicleCollection.getVehicles());
         });
 
-        removeGreaterHumanButton.setOnAction(event -> {
+        removeGreaterVehicleButton.setOnAction(event -> {
             ModalSceneHandler handler = new ModalSceneHandler(Scenes.REMOVEGREATERHUMAN, addButton.getScene());
             handler.handle(event);
             updateTable(VehicleCollection.getVehicles());
@@ -523,8 +527,8 @@ public class MainController implements Initializable {
         countGreaterSpeedButton.setText(currentLanguage.getString("countGreaterSpeedButton"));
         clearButton.setText(currentLanguage.getString("clearButton"));
         removeGreaterKeyButton.setText(currentLanguage.getString("removeGreaterKeyButton"));
-        removeGreaterHumanButton.setText(currentLanguage.getString("removeGreaterHumanButton"));
-        removeLowerHumanButton.setText(currentLanguage.getString("removeLowerHumanButton"));
+        removeGreaterVehicleButton.setText(currentLanguage.getString("removeGreaterHumanButton"));
+        removeLowerVehicleButton.setText(currentLanguage.getString("removeLowerHumanButton"));
         showInfoButton.setText(currentLanguage.getString("showInfoButton"));
         showLessSpeedButton.setText(currentLanguage.getString("showLessSpeedButton"));
         helpButton.setText(currentLanguage.getString("helpButton"));

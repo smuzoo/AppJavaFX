@@ -15,11 +15,11 @@ public class CheckboxesConstants {
         return BOOLEAN_TYPES;
     }
 
-    public static ObservableList<String> getWeaponTypes(){
+    public static ObservableList<String> getTransportTypes(){
         return WEAPON_TYPES;
     }
 
-    public static ObservableList<String> getMoodTypes(){
+    public static ObservableList<String> getFuelTypes(){
         return MOOD_TYPES;
     }
 

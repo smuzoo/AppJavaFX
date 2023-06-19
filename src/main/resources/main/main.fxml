@@ -149,8 +149,8 @@
            <MenuItem fx:id="showLessSpeedButton" mnemonicParsing="false" styleClass="menu-commands" text="Show less than impact speed" />
           <MenuItem fx:id="clearButton" mnemonicParsing="false" styleClass="menu-commands" text="Clear collection" />
             <MenuItem fx:id="removeGreaterKeyButton" mnemonicParsing="false" styleClass="menu-commands" text="Remove greater key" />
-            <MenuItem fx:id="removeGreaterHumanButton" mnemonicParsing="false" styleClass="menu-commands" text="Remove greater human being" />
-            <MenuItem fx:id="removeLowerHumanButton" mnemonicParsing="false" styleClass="menu-commands" text="Remove lower human being" />
+            <MenuItem fx:id="removeGreaterVehicleButton" mnemonicParsing="false" styleClass="menu-commands" text="Remove greater human being" />
+            <MenuItem fx:id="removeLowerVehicleButton" mnemonicParsing="false" styleClass="menu-commands" text="Remove lower human being" />
            <MenuItem fx:id="showInfoButton" mnemonicParsing="false" styleClass="menu-commands" text="Show info" />
             <MenuItem fx:id="helpButton" mnemonicParsing="false" styleClass="menu-commands" text="Help" />
         </items>

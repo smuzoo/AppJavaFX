@@ -19,8 +19,8 @@ public class TableFields {
 
     public ObservableList<VehicleInfo> getTableFields(){
         final ObservableList<String> BOOLEAN_TYPES = CheckboxesConstants.getBooleanTypes();
-        final ObservableList<String> WEAPON_TYPES = CheckboxesConstants.getWeaponTypes();
-        final ObservableList<String> MOOD_TYPES = CheckboxesConstants.getMoodTypes();
+        final ObservableList<String> WEAPON_TYPES = CheckboxesConstants.getTransportTypes();
+        final ObservableList<String> MOOD_TYPES = CheckboxesConstants.getFuelTypes();
         ChoiceBox<String> choiceBoxIsRealHero = new ChoiceBox<>(BOOLEAN_TYPES);
         choiceBoxIsRealHero.setValue(String.valueOf(vehicle.isRealHero()));
         ChoiceBox<String> choiceBoxIsToothPick = new ChoiceBox<>(BOOLEAN_TYPES);

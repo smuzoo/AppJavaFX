@@ -25,8 +25,8 @@ public class RemoveGreaterHumanController implements Initializable, ModalControl
     private Stage modalStage;
 
     private final ObservableList<String> BOOLEAN_TYPES = CheckboxesConstants.getBooleanTypes();
-    private final ObservableList<String> WEAPON_TYPES = CheckboxesConstants.getWeaponTypes();
-    private final ObservableList<String> MOOD_TYPES = CheckboxesConstants.getMoodTypes();
+    private final ObservableList<String> WEAPON_TYPES = CheckboxesConstants.getTransportTypes();
+    private final ObservableList<String> MOOD_TYPES = CheckboxesConstants.getFuelTypes();
     @FXML private ChoiceBox<String> realHeroChoice;
     @FXML private ChoiceBox<String> hasToothPickChoice;
     @FXML private ChoiceBox<String> weaponTypeChoice;
